@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SMS.Model
+namespace SMS.Service
 {
     public class Class1
     {

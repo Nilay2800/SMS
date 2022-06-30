@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>45777dc7-3611-4d67-b38a-d27be41dc8b0</ProjectGuid>
+    <ProjectGuid>0fd3c8a5-9c3b-4c0d-89f7-ed31f713b5a8</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SMS.HELPER</RootNamespace>
-    <AssemblyName>SMS.HELPER</AssemblyName>
+    <RootNamespace>SMS.Helper</RootNamespace>
+    <AssemblyName>SMS.Helper</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SMS.HELPER
+namespace SMS.Helper
 {
     public class Class1
     {
