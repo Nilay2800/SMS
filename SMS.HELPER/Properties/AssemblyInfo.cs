@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SMS.HELPER")]
+[assembly: AssemblyTitle("SMS.Helper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SMS.HELPER")]
+[assembly: AssemblyProduct("SMS.Helper")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("45777dc7-3611-4d67-b38a-d27be41dc8b0")]
+[assembly: Guid("0fd3c8a5-9c3b-4c0d-89f7-ed31f713b5a8")]
 
 // Version information for an assembly consists of the following four values:
 //
