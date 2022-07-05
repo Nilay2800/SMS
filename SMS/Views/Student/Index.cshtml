@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Student List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new {  }, htmlAttributes: new { @class = "Mybtn" })
 </p>
 <table class="table">
     <tr>
@@ -59,11 +59,21 @@
             @Html.DisplayFor(modelItem => item.ContactNumber)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StudentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StudentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StudentId })
+            
+            @Html.ActionLink("Edit", "Edit", new { StudentId = item.StudentId }, htmlAttributes: new { @class = "Mybtn" }) |
+            @Html.ActionLink("Delete", "Delete", new { Id = item.StudentId }, htmlAttributes: new { @class = "Mybtn" })
         </td>
     </tr>
+    <style>
+        a.Mybtn {
+            background : #777;
+            color: #fff;
+            display: inline-block;
+            padding: 6px 12px 6px 12px;
+            text-decoration: none;
+        }
+    </style>
+
 }
 
 </table>

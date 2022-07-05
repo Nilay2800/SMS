@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SMS.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,10 @@ namespace SMS.Data
 {
    public class BaseProvider : IDisposable
     {
-        public SMSEntites _db;
+        public StudentEntites _db;
         public BaseProvider()
         {
-            _db = new SMSEntites();
+            _db = new StudentEntites();
 
         }
         public void Dispose()

@@ -33,7 +33,7 @@ namespace SMS.Model
 
         public static string Gender { get; set; }
 
-        public static int ContactNumber { get; set; }
+        public static string ContactNumber { get; set; }
         
 
 

@@ -3,12 +3,12 @@ namespace SMS.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class initial_create : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Students",
+                "dbo.Student",
                 c => new
                     {
                         StudentId = c.Guid(nullable: false),
@@ -18,7 +18,7 @@ namespace SMS.Data.Migrations
                         Gender = c.String(),
                         Standard = c.Int(nullable: false),
                         Email = c.String(),
-                        ContactNumber = c.Int(nullable: false),
+                        ContactNumber = c.String(),
                     })
                 .PrimaryKey(t => t.StudentId);
             
@@ -26,7 +26,7 @@ namespace SMS.Data.Migrations
         
         public override void Down()
         {
-            DropTable("dbo.Students");
+            DropTable("dbo.Student");
         }
     }
 }

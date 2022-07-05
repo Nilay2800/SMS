@@ -1,4 +1,5 @@
 ﻿using SMS.Model;
+
 using SMS.Service;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace SMS.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly StudentService _studentService;
+        public readonly StudentService _studentService;
         public StudentController()
         {
             _studentService = new StudentService();
@@ -39,25 +40,28 @@ namespace SMS.Controllers
         public ActionResult Create(Student student)
         {
             _studentService.CreateStudent(student);
+            TempData["Message"] = "Student Added Successfully!!";
             return RedirectToAction("Index", "Student");
         }
         [HttpGet]
         public ActionResult Edit(Guid StudentId)
         {
-            Student s2 = _studentService.GetStudentById(StudentId);
-            return View(StudentId);
+            Student student = _studentService.GetStudentById(StudentId);
+            return View(student);
         }
         [HttpPost]
         public ActionResult Edit(Student student)
         {
-            Student s2 = _studentService.UpdateStudent(student);
+            Student student1 =  _studentService.UpdateStudent(student);
+            TempData["Message"] = "Detail Updated Successfully!!";
             return RedirectToAction("Index");
         }
-        public ActionResult Delete(Guid studentId)
+        public ActionResult Delete(Guid Id)
         {
-            Student s3 = _studentService.GetStudentById(studentId);
-            return RedirectToAction("Index");        
-        }
+            _studentService.DeleteStudent(Id);
+            
+              return RedirectToAction("Index");
+         }
         
     }
 }

@@ -22,7 +22,7 @@ namespace SMS.Service
             var data = _studentProvider.GetStudentById(StudentId);
             Student students = new Student()
             {
-                StudentId = data.StudentId,
+                StudentId = Guid.NewGuid(),
                 Firstname = data.Firstname,
                 Lastname =  data.Lastname,
                  Age = data.Age,
@@ -38,20 +38,23 @@ namespace SMS.Service
         {
             return _studentProvider.CreateStudent(student);
         }
-        public Student UpdateStudent(Student student)
+        public Student UpdateStudent(Student students)
         {
-            return _studentProvider.UpdateStudent(student);
+           return _studentProvider.UpdateStudent(students);
         }
         public List<Student> GetallStudent()
         {
             var studentlist = _studentProvider.GetallStudent();
             return studentlist;
         }
-        public void DeleteStudent(Guid StudentId)
+        public void DeleteStudent(Guid Id)
         {
-            _studentProvider.DeleteStudent(StudentId);
+            _studentProvider.DeleteStudent(Id);
         }
-     
 
+        //public Student DeleteStudent(Guid studentId)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

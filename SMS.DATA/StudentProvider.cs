@@ -1,6 +1,4 @@
-﻿using com.sun.tools.doclets.formats.html.resources;
-using Nest;
-using SMS.Model;
+﻿using SMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +9,10 @@ namespace SMS.Data
 {
     public class StudentProvider : BaseProvider
     {
-
-
         public StudentProvider()
         {
 
         }
-
         public Student GetStudentById(Guid StudentId)
         {
             return _db.students.Find(StudentId);
@@ -46,9 +41,9 @@ namespace SMS.Data
         }
         public Student UpdateStudent(Student students)
         {
-            Student obj  = new Student();
+            //Student obj1  = new Student();
             var obj1 = GetStudentById(students.StudentId);
-            obj1.StudentId = students.StudentId;
+           // obj1.StudentId = Guid.NewGuid();
             obj1.Firstname = students.Firstname;
             obj1.Lastname = students.Lastname;
             obj1.Age = students.Age;
@@ -61,33 +56,19 @@ namespace SMS.Data
         }
         public List<Student> GetallStudent()
         {
-            var studentlist = (from Student in _db.students
-                               select new Student
-                               {
-                                   StudentId = Student.StudentId,
-                                   Firstname = Student.Firstname,
-                                   Lastname = Student.Lastname,
-                                   Age = Student.Age,
-                                   Gender = Student.Gender,
-                                   Standard = Student.Standard,
-                                   Email = Student.Email,
-                                   ContactNumber = Student.ContactNumber
-                               }).OrderBy(a => a.StudentId).ToList();
-            return studentlist.ToList();
+            return _db.students.ToList();
         }
 
-        public Student DeleteStudent(Guid StudentId)
+        public void DeleteStudent(Guid Id)
         {
-            var data = GetStudentById(StudentId);
+            var data = GetStudentById(Id);
             if (data != null)
             {
                 _db.students.Remove(data);
                 _db.SaveChanges();
             }
-            return data;
+            //return data;
         }
-
-
     }
 }
 
