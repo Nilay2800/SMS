@@ -16,7 +16,6 @@ namespace SMS.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-            // test branch  nilay  Harsh test branch 
             return View();
         }
 

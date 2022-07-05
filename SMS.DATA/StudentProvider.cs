@@ -41,9 +41,8 @@ namespace SMS.Data
         }
         public Student UpdateStudent(Student students)
         {
-            //Student obj1  = new Student();
+          
             var obj1 = GetStudentById(students.StudentId);
-           // obj1.StudentId = Guid.NewGuid();
             obj1.Firstname = students.Firstname;
             obj1.Lastname = students.Lastname;
             obj1.Age = students.Age;
@@ -67,7 +66,7 @@ namespace SMS.Data
                 _db.students.Remove(data);
                 _db.SaveChanges();
             }
-            //return data;
+            
         }
     }
 }

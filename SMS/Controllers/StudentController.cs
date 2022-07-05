@@ -17,7 +17,7 @@ namespace SMS.Controllers
         {
             _studentService = new StudentService();
         }
-        public ActionResult Index(/*int? Page,*/ Guid? studentId)
+        public ActionResult Index( Guid? studentId)
         {
             List<Student> studentlist = _studentService.GetallStudent().ToList();
             studentlist = _studentService.GetallStudent().ToList();
@@ -29,7 +29,7 @@ namespace SMS.Controllers
             {
                 studentlist = _studentService.GetallStudent().Where(a => a.StudentId == studentId).ToList();
             }
-            return View(studentlist);/*.ToPagedList(Page ? 1, 10));*/
+            return View(studentlist);
         }
         public ActionResult Create()
         {

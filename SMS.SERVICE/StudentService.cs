@@ -11,8 +11,6 @@ namespace SMS.Service
    public class StudentService
     {
         public readonly StudentProvider _studentProvider;
-        //private string Firstname;
-
         public StudentService()
         {
             _studentProvider = new StudentProvider();
@@ -51,10 +49,5 @@ namespace SMS.Service
         {
             _studentProvider.DeleteStudent(Id);
         }
-
-        //public Student DeleteStudent(Guid studentId)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
