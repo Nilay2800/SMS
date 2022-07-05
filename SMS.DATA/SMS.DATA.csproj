@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -38,8 +39,14 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="Elasticsearch.Net, Version=7.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
       <HintPath>..\packages\Elasticsearch.Net.7.17.4\lib\net461\Elasticsearch.Net.dll</HintPath>
@@ -160,7 +167,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnnoucementProvider.cs" />
+    <Compile Include="StudentProvider.cs" />
     <Compile Include="BaseProvider.cs" />
+
     <Compile Include="FormProvider.cs" />
     <Compile Include="Migrations\202207041223159_initial_create.cs" />
     <Compile Include="Migrations\202207041223159_initial_create.Designer.cs">
@@ -178,6 +188,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentEntites.cs" />
     <Compile Include="StudentProvider.cs" />
+    <Compile Include="Database\Annoucement.cs" />
+    <Compile Include="Database\Signup.cs" />
+    <Compile Include="Database\Teacher.cs" />
+    <Compile Include="Migrations\202207010912547_InitialCreate.cs" />
+    <Compile Include="Migrations\202207010912547_InitialCreate.designer.cs">
+      <DependentUpon>202207010912547_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207040906445_Create_Table_Annoucement.cs" />
+    <Compile Include="Migrations\202207040906445_Create_Table_Annoucement.designer.cs">
+      <DependentUpon>202207040906445_Create_Table_Annoucement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207050708253_NameFixSignup.cs" />
+    <Compile Include="Migrations\202207050708253_NameFixSignup.designer.cs">
+      <DependentUpon>202207050708253_NameFixSignup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SMSContext.cs" />
+    <Compile Include="TeacherProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -190,6 +219,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+
     <EmbeddedResource Include="Migrations\202207041223159_initial_create.resx">
       <DependentUpon>202207041223159_initial_create.cs</DependentUpon>
     </EmbeddedResource>
@@ -198,7 +228,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207060553576_FormModels.resx">
       <DependentUpon>202207060553576_FormModels.cs</DependentUpon>
+	</EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207010912547_InitialCreate.resx">
+      <DependentUpon>202207010912547_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207040906445_Create_Table_Annoucement.resx">
+      <DependentUpon>202207040906445_Create_Table_Annoucement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207050708253_NameFixSignup.resx">
+      <DependentUpon>202207050708253_NameFixSignup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

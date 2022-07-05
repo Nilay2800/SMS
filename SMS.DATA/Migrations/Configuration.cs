@@ -1,16 +1,19 @@
-namespace SMS.Data.Migrations
+﻿namespace SMS.Data.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
+
     internal sealed class Configuration : DbMigrationsConfiguration<SMS.Data.StudentEntites>
+
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
+
 
         protected override void Seed(SMS.Data.StudentEntites context)
         {
@@ -26,6 +29,8 @@ namespace SMS.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
         }
     }
 }
+

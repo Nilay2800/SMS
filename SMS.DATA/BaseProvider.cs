@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 
 namespace SMS.Data
 {
-   public class BaseProvider : IDisposable
+    public class BaseProvider : IDisposable
     {
-        public StudentEntites _db;
+
+        public SMSContext _db;
         public BaseProvider()
         {
-            _db = new StudentEntites();
-
+            _db = new SMSContext();
         }
         public void Dispose()
         {
-            _db.Dispose();
+            throw new NotImplementedException();
         }
-
     }
 }
