@@ -1,0 +1,79 @@
+﻿@model IEnumerable<SMS.Model.FormMst>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>FORM</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create"  , new { }, htmlAttributes: new { @class = "Mybtn" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NavigateURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FormAcessCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DisplayOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParentForm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDisplayMenu)
+        </th>
+                <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NavigateURL)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FormAcessCode)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DisplayOrder)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ParentForm)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsActive)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsDisplayMenu)
+    </td>
+    
+    <td>
+        @Html.ActionLink("Edit", "Create", new { Id = item.Id }, htmlAttributes: new { @class = "Mybtn" }) 
+           </td>
+</tr>
+        <style>
+            a.Mybtn {
+                background: #777;
+                color: #fff;
+                display: inline-block;
+                padding: 6px 12px 6px 12px;
+                text-decoration: none;
+            }
+        </style>
+
+    }
+
+</table>

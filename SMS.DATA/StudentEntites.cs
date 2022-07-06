@@ -18,7 +18,8 @@ namespace SMS.Data
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
         public DbSet<Student> students { get; set; }
-    }
+        public DbSet<FormModel> formModel { get; set; }
+     }
 
     
 }

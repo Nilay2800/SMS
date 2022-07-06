@@ -7,10 +7,10 @@
 <h2>ADD STUDENT</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4> </h4>
         <hr />
@@ -80,8 +80,18 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index" , new { }, htmlAttributes: new { @class = "Mybtn" })
 </div>
+<style>
+    a.Mybtn {
+        background: #777;
+        color: #fff;
+        display: inline-block;
+        padding: 6px 12px 6px 12px;
+        text-decoration: none;
+    }
+</style>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
