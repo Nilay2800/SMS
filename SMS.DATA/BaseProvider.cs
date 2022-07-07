@@ -1,19 +1,15 @@
-﻿using SMS.Data;
+﻿using SMS.Data.Database;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SMS.Data
 {
     public class BaseProvider : IDisposable
     {
 
-        public SMSContext _db;
+        public StudentEntites _db;
         public BaseProvider()
         {
-            _db = new SMSContext();
+            _db = new StudentEntites();
         }
         public void Dispose()
         {

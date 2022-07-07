@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SMS.Data.Database
+namespace SMS.Model
 {
-    public class Signup
+    public class Signups
     {
         [Key]
         public int Userid { get; set; }

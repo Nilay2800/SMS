@@ -1,4 +1,5 @@
 ﻿using SMS.Data;
+using SMS.Data.Database;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,7 +20,7 @@ namespace SMS
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //Database.SetInitializer<SMSContext>(new DropCreateDatabaseIfModelChanges<SMSContext>());
-            Database.SetInitializer<SMSContext>(null);
+            Database.SetInitializer<StudentEntites>(null);
         }
     }
 }

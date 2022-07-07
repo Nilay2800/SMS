@@ -1,5 +1,4 @@
-﻿using SMS.Data.Database;
-using SMS.Model;
+﻿using SMS.Model;
 using SMS.Service;
 using System;
 using System.Collections.Generic;

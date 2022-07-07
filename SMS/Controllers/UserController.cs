@@ -12,7 +12,7 @@ namespace SMS.Controllers
 {
     public class UserController : Controller
     {
-        SMSContext smsContext = new SMSContext();
+        StudentEntites smsContext = new StudentEntites();
         // GET: User
         public ActionResult Index()
         {
@@ -25,7 +25,7 @@ namespace SMS.Controllers
         [HttpPost]
         public ActionResult Signup(SignupModel model)
         {
-            Signup s = new Signup();
+            Signups s = new Signups();
             s.Email = model.Email;
             s.UserName = model.UserName;
             s.Password = model.Password;
@@ -41,7 +41,7 @@ namespace SMS.Controllers
         [HttpPost]
         public ActionResult Login(SignupModel model)
         {
-            Signup s = smsContext.signups.Where(a => a.Email.Equals(model.Email) && a.Password.Equals(model.Password)).SingleOrDefault();
+            Signups s = smsContext.signups.Where(a => a.Email.Equals(model.Email) && a.Password.Equals(model.Password)).SingleOrDefault();
             if (s != null)
             {
                 Session["UserId"] = s.Userid.ToString();
