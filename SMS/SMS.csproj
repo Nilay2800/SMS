@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoleMasterController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\AnnoucementController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
@@ -288,6 +289,8 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\UserMaster\DisplayUser.cshtml" />
     <Content Include="Views\UserMaster\EditUserRoleMapping.cshtml" />
+    <Content Include="Views\RoleMaster\Index.cshtml" />
+    <Content Include="Views\RoleMaster\CreateRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

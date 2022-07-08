@@ -73,6 +73,7 @@
     <Compile Include="TeacherModel.cs" />
     <Compile Include="UserRoleMapping.cs" />
     <Compile Include="WebpagesRole.cs" />
+    <Compile Include="WebpagesUserRole.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
