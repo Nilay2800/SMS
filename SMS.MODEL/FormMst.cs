@@ -24,7 +24,6 @@ namespace SMS.Model
 
         [Required]
         [Display(Name = "Code")]
-        [Remote("CheckDuplicateFormAccessCode", "Form", HttpMethod = "Post", AdditionalFields = "Id")]
         public string FormAcessCode { get; set; }
 
         [Display(Name = "Display Order")]
