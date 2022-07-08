@@ -21,5 +21,6 @@ namespace SMS.Model
 
         
         public string ConfirmPassword { get; set; }
+        public int Role { get; set; }
     }
 }

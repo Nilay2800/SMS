@@ -27,6 +27,8 @@ namespace SMS.Data.Database
         public DbSet<Signups> signups { get; set; }
         public DbSet<Student> students { get; set; }
         public DbSet<FormModel> formModel { get; set; }
+        public DbSet<WebpagesRole> WebpagesRoles { get; set; }
+        public DbSet<UserRoleMapping> UserRoleMappings { get; set; }
     }
 
     //public class MyEntity
