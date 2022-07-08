@@ -134,6 +134,7 @@
     <Compile Include="Controllers\AnnoucementController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserMasterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -285,6 +286,8 @@
     <Content Include="Views\Annoucement\EditAnnoucement.cshtml" />
     <Content Include="Views\User\Signup.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\UserMaster\DisplayUser.cshtml" />
+    <Content Include="Views\UserMaster\EditUserRoleMapping.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

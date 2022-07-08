@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="AcessPermission.cs" />
     <Compile Include="Annoucement.cs" />
+    <Compile Include="DropDownList.cs" />
     <Compile Include="FormModel.cs" />
     <Compile Include="FormMst.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +71,8 @@
     <Compile Include="SignupModel.cs" />
     <Compile Include="Teacher.cs" />
     <Compile Include="TeacherModel.cs" />
+    <Compile Include="UserRoleMapping.cs" />
+    <Compile Include="WebpagesRole.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
