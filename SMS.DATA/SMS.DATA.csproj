@@ -108,7 +108,12 @@
     <Compile Include="Migrations\202207080611004_create_WebpagesRole_UserRoleMapping.Designer.cs">
       <DependentUpon>202207080611004_create_WebpagesRole_UserRoleMapping.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207080848581_create_WebpagesUserRole.cs" />
+    <Compile Include="Migrations\202207080848581_create_WebpagesUserRole.Designer.cs">
+      <DependentUpon>202207080848581_create_WebpagesUserRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="RoleMasterProvider.cs" />
     <Compile Include="StudentProvider.cs" />
     <Compile Include="BaseProvider.cs" />
     <Compile Include="FormProvider.cs" />
@@ -139,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207080611004_create_WebpagesRole_UserRoleMapping.resx">
       <DependentUpon>202207080611004_create_WebpagesRole_UserRoleMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207080848581_create_WebpagesUserRole.resx">
+      <DependentUpon>202207080848581_create_WebpagesUserRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

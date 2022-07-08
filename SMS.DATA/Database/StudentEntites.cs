@@ -29,6 +29,7 @@ namespace SMS.Data.Database
         public DbSet<FormModel> formModel { get; set; }
         public DbSet<WebpagesRole> WebpagesRoles { get; set; }
         public DbSet<UserRoleMapping> UserRoleMappings { get; set; }
+        public DbSet<WebpagesUserRole> WebpagesUserRoles { get; set; }
     }
 
     //public class MyEntity

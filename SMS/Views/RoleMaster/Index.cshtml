@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SMS.Model.WebpagesRole>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateRole",null, htmlAttributes: new { @class = "Mybtn" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleCode)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleCode)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RoleId }, htmlAttributes: new { @class = "Mybtn" })
+
+            </td>
+        </tr>
+        <style>
+            a.Mybtn {
+                background: #777;
+                color: #fff;
+                display: inline-block;
+                padding: 6px 12px 6px 12px;
+                text-decoration: none;
+            }
+        </style>
+
+    }
+
+</table>
