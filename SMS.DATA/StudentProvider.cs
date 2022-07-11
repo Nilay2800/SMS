@@ -20,7 +20,7 @@ namespace SMS.Data
         public Guid CreateStudent(Student students)
         {
             var createdby = (from Student in _db.students
-                             where students.Email == SessionHelper.Email
+                             where students.Email == SessionHelper.EmailId
                              select students.StudentId).FirstOrDefault();
 
             Student obj = new Student()

@@ -18,19 +18,19 @@ namespace SMS.Service
         {
             _formProvider = new FormProvider();
         }
-        public List<FormMst> GetAllForms()
+        public List<FormModel> GetAllForms()
         {
             var forms = _formProvider.GetAllForms();
             return forms;
         }
-        public FormMst SaveUpdateForm(FormMst model)
+        public FormModel SaveUpdateForm(FormModel model)
         {
             return _formProvider.SaveUpdateForm(model);
         }
-        public FormMst GetFormsById(int Id)
+        public FormModel GetFormsById(int Id)
         {
             var data = _formProvider.GetFormsById(Id);
-            FormMst form = new FormMst()
+            FormModel form = new FormModel()
             {
 
                 Id = data.Id,
@@ -45,7 +45,7 @@ namespace SMS.Service
             };
             return form;
         }
-        public FormMst GetFormsByCode(string formcode)
+        public FormModel GetFormsByCode(string formcode)
         {
             return _formProvider.GetFormsByCode(formcode);
         }

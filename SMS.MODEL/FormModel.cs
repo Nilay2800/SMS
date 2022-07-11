@@ -10,7 +10,11 @@ namespace SMS.Model
 {
    public  class FormModel
     {
-        
+        public FormModel()
+        {
+
+            _parentFormList = new List<SelectListItem>();
+        }
         public int Id { get; set; }
         public string  Name { get; set; }
         public string NavigateURL { get; set; }
@@ -27,8 +31,8 @@ namespace SMS.Model
         public int? ParentForm { get; set; }
         public bool  IsActive { get; set; }
         public bool IsDisplayMenu { get; set; }
-      
-        
+        public List<SelectListItem> _parentFormList { get; set; }
+
 
 
 

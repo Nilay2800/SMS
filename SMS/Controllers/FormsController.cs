@@ -18,12 +18,12 @@ namespace SMS.Controllers
         }
         public ActionResult Index()
         {
-            List<FormMst> formlist = _formsService.GetAllForms();
+            List<FormModel> formlist = _formsService.GetAllForms();
             return View(formlist);
         }
         public ActionResult Create(int? Id)
         {
-            FormMst form = new FormMst();
+            FormModel form = new FormModel();
             if (Id.HasValue)
             {
                 var formdetail = _formsService.GetFormsById(Id.Value);
@@ -45,7 +45,7 @@ namespace SMS.Controllers
             return View(form);
         }
         [HttpPost]
-        public ActionResult Create(FormMst form)
+        public ActionResult Create(FormModel form)
         {
             
             _formsService.SaveUpdateForm(form);
@@ -53,11 +53,11 @@ namespace SMS.Controllers
             return RedirectToAction("Index");
 
         }
-        private void BindDropdown(ref FormMst model)
+        private void BindDropdown(ref FormModel model)
         {
             BindParentForm(ref model);
         }
-        public FormMst BindParentForm(ref FormMst model)
+        public FormModel BindParentForm(ref FormModel model)
         {
             int formid = model.Id;
             var getparentform = _formsService.GetAllForms().Where(f => f.Id != formid).Select(a => new FormMst { Id = a.Id, Name = a.Name }).OrderBy(a => a.Name);

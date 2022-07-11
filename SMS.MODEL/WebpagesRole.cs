@@ -11,9 +11,9 @@ namespace SMS.Model
     {
         [Key]
         public int RoleId { get; set; }
+        public string RoleName { get; set; }
         [Display(Name = "Role Name")]
         [Required]
-        public string RoleName { get; set; }
         public bool IsActive { get; set; }
         [Display(Name = "Role Code")]
         [Required]
