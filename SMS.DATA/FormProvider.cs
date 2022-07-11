@@ -13,7 +13,7 @@ namespace SMS.Data
         {
 
         }
-        public int CreateForms(FormModel form)
+        public int CreateForms(FormMst form)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace SMS.Data
                 throw ex;
             }
         }
-        public int UpdateForms(FormModel form)
+        public int UpdateForms(FormMst form)
         {
             try
             {
@@ -40,15 +40,15 @@ namespace SMS.Data
                 throw ex;
             }       
         }
-        public FormModel GetFormsById(int Id)
+        public FormMst GetFormsById(int Id)
         {
             return _db.formModel.Find(Id);
         }
 
-        public FormMst GetFormsByCode(string formcode)
+        public FormModel GetFormsByCode(string formcode)
         {
             var Formcode = _db.formModel.Where(a => a.FormAcessCode == formcode).FirstOrDefault();
-            FormMst formMst = new FormMst()
+            FormModel formMst = new FormModel()
             {
                 Id = Formcode.Id,
                 Name = Formcode.Name,
@@ -61,9 +61,9 @@ namespace SMS.Data
             };
             return formMst;
         }
-        public FormMst SaveUpdateForm(FormMst form)
+        public FormModel SaveUpdateForm(FormModel form)
         {
-            FormModel obj = new FormModel();
+            FormMst obj = new FormMst();
             if (form.Id > 0)
             {
                 obj = GetFormsById(form.Id);
@@ -94,7 +94,7 @@ namespace SMS.Data
             }
            
         }
-        public List<FormMst> GetAllForms()
+        public List<FormModel> GetAllForms()
         {
             var getallforms = (from p in _db.formModel
                                select new
@@ -108,7 +108,7 @@ namespace SMS.Data
                                    IsDisplayMenu = p.IsDisplayMenu,
                                    Name = ((p.ParentForm == null ? 0 : p.ParentForm) == 0 ? p.Name : ((from fc in _db.formModel where fc.Id == (p.ParentForm == null ? 0 : p.ParentForm) select fc).FirstOrDefault().Name) + " " + ">>" + " " + p.Name)
 
-                               }).AsEnumerable().Select(x => new FormMst()
+                               }).AsEnumerable().Select(x => new FormModel()
                                {
                                    Id = x.Id,
                                    NavigateURL = x.NavigateURL,

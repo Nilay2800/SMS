@@ -19,7 +19,7 @@ namespace SMS.Controllers
 
         public ActionResult Index()
         {
-            List<WebpagesRole> RoleList = roleMasterService.GetAllRoles();
+            List<RoleModel> RoleList = roleMasterService.GetAllRoles();
             return View(RoleList);
         }
         public ActionResult CreateRole()

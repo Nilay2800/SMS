@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FormRoleMappingController.cs" />
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleMasterController.cs" />
@@ -278,7 +279,6 @@
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Forms\Index.cshtml" />
-    <Content Include="Views\Forms\Create.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
     <Content Include="Views\Teacher\AddTeacher.cshtml" />
     <Content Include="Views\Teacher\EditTeacher.cshtml" />
@@ -289,8 +289,10 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\UserMaster\DisplayUser.cshtml" />
     <Content Include="Views\UserMaster\EditUserRoleMapping.cshtml" />
-    <Content Include="Views\RoleMaster\Index.cshtml" />
     <Content Include="Views\RoleMaster\CreateRole.cshtml" />
+    <Content Include="Views\FormRoleMapping\ViewPermission.cshtml" />
+    <Content Include="Views\Forms\Create.cshtml" />
+    <Content Include="Views\RoleMaster\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

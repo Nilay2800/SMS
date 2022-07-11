@@ -13,30 +13,23 @@ namespace SMS.Data
         {
 
         }
-        //public WebpagesUserRole GetRolesById(int id)
-        //{
-        //    return _db.WebpagesUserRoles.Find(id);
-        //}
-        public WebpagesRole GetRolesById()
+        
+        public WebpagesRole GetRolesById(int Id)
         {
-            var userId = (from user in _db.signups
-                          where user.Email == SessionHelper.Email
-                          select user.Userid).FirstOrDefault();
-           
-           return _db.WebpagesRoles.Find(userId);
+            return _db.WebpagesRoles.Find(Id);
         }
-        public List<WebpagesRole> GetAllRoles()
+        public List<RoleModel> GetAllRoles()
         {
-            //var data = (from a in _db.WebpagesRoles
-            //            select new WebpagesRole
-            //            {
-            //                RoleId = a.RoleId,
-            //                RoleName = a.RoleName,
-            //                RoleCode = a.RoleCode,
-            //                IsActive = a.IsActive
-            //            }).ToList();
+            var data = (from a in _db.WebpagesRoles
+                        select new RoleModel
+                        {
+                            Id = a.RoleId,
+                            Name = a.RoleName,
+                            RoleCode = a.RoleCode,
+                            IsActive = a.IsActive
+                        }).ToList();
 
-            return _db.WebpagesRoles.ToList();
+            return data;
         }
         public WebpagesRole GetRolesByName(string roleName)
         {

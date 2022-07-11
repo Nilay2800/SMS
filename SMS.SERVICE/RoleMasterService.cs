@@ -15,23 +15,20 @@ namespace SMS.Service
         {
             roleMasterProvider = new RoleMasterProvider();
         }
-        public List<WebpagesRole> GetAllRoles()
+        public List<RoleModel> GetAllRoles()
         {
             var roles = roleMasterProvider.GetAllRoles();
             return roles;
         }
-        //public WebpagesRole GetRolesById(int id)
-        //{
-        //    return roleMasterProvider.GetRolesById(id);
-        //}
+       
 
-        public WebpagesRole GetRolesById()
+        public RoleModel GetRolesById(int Id)
         {
-            var data = roleMasterProvider.GetRolesById();
-            WebpagesRole role = new WebpagesRole()
+            var data = roleMasterProvider.GetRolesById(Id);
+            RoleModel role = new RoleModel()
             {
-                RoleId = data.RoleId,
-                RoleName = data.RoleName,
+                Id = data.RoleId,
+                Name = data.RoleName,
                 RoleCode = data.RoleCode,
                 IsActive = data.IsActive
             };

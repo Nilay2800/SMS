@@ -4,11 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace SMS.Model
 {
     public class SignupModel
     {
+        public SignupModel()
+        {
+            _RoleList = new List<SelectListItem>();
+            _DefaultFormList = new List<SelectListItem>();
+        }
         [Key]
         public int Userid { get; set; }
         [Required]
@@ -27,7 +33,10 @@ namespace SMS.Model
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        public string Role { get; set; }
+        public List<SelectListItem> _RoleList { get; set; }
+        public List<SelectListItem> _DefaultFormList { get; set; }
     }
 }
