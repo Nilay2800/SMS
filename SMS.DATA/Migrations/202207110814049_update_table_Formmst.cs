@@ -30,7 +30,7 @@ namespace SMS.Data.Migrations
             DropColumn("dbo.FormRoleMappings", "CreateOn");
             DropColumn("dbo.FormRoleMappings", "FormName");
             DropColumn("dbo.FormRoleMappings", "RoleName");
-            DropTable("dbo.FormModels");
+            //DropTable("dbo.FormModels");
         }
         
         public override void Down()

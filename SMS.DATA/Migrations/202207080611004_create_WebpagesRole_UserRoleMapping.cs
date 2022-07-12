@@ -28,7 +28,7 @@ namespace SMS.Data.Migrations
                     })
                 .PrimaryKey(t => t.RoleId);
             
-            AddColumn("dbo.Signups", "Role", c => c.Int(nullable: false));
+            //AddColumn("dbo.Signups", "Role", c => c.Int(nullable: false));
         }
         
         public override void Down()
