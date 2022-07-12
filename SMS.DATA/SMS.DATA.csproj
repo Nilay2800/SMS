@@ -121,6 +121,10 @@
     <Compile Include="Migrations\202207110814049_update_table_Formmst.Designer.cs">
       <DependentUpon>202207110814049_update_table_Formmst.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207120635039_changes-in-roletables.cs" />
+    <Compile Include="Migrations\202207120635039_changes-in-roletables.Designer.cs">
+      <DependentUpon>202207120635039_changes-in-roletables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RoleMasterProvider.cs" />
     <Compile Include="StudentProvider.cs" />
@@ -162,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207110814049_update_table_Formmst.resx">
       <DependentUpon>202207110814049_update_table_Formmst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207120635039_changes-in-roletables.resx">
+      <DependentUpon>202207120635039_changes-in-roletables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

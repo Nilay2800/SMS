@@ -23,7 +23,7 @@ namespace SMS.Data
         {
             UserRoleMapping _userRoleMapping = new UserRoleMapping();
             {
-                _userRoleMapping.RoleId = pur.Role;
+                _userRoleMapping.RoleId = pur.RoleId;
                 _userRoleMapping.UserId = pur.Userid;
             }
             _db.UserRoleMappings.Add(_userRoleMapping);
