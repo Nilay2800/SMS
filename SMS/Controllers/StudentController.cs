@@ -34,7 +34,7 @@ namespace SMS.Controllers
         public ActionResult Create()
         {
             Student s1 = new Student();
-            return View();
+            return View(s1);
         }
         [HttpPost]
         public ActionResult Create(Student student)

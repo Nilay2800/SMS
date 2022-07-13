@@ -76,10 +76,11 @@ namespace SMS.Data
                 obj.IsDisplayMenu = form.IsDisplayMenu;
                 obj.CreatedOn = form.CreatedOn;
                 obj.ParentForm = form.ParentForm;
+                obj.FormAcessCode = form.FormAcessCode;
                 obj.Id = form.Id;
                 if (obj.Id == 0)
                 {
-                    obj.FormAcessCode = form.FormAcessCode;
+                   
                     obj.CreatedOn = form.CreatedOn;
                     obj.CreatedBy = form.CreatedBy;
                     form.Id = CreateForms(obj);

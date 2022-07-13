@@ -279,9 +279,6 @@
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Forms\Index.cshtml" />
-    <Content Include="Views\Teacher\Index.cshtml" />
-    <Content Include="Views\Teacher\AddTeacher.cshtml" />
-    <Content Include="Views\Teacher\EditTeacher.cshtml" />
     <Content Include="Views\Annoucement\Index.cshtml" />
     <Content Include="Views\Annoucement\AddAnnoucement.cshtml" />
     <Content Include="Views\Annoucement\EditAnnoucement.cshtml" />
@@ -293,6 +290,9 @@
     <Content Include="Views\FormRoleMapping\ViewPermission.cshtml" />
     <Content Include="Views\Forms\Create.cshtml" />
     <Content Include="Views\RoleMaster\Index.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Teacher\AddTeacher.cshtml" />
+    <Content Include="Views\Teacher\EditTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

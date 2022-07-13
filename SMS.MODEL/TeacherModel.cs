@@ -20,6 +20,7 @@ namespace SMS.Model
         [Required(ErrorMessage = "required")]
         [MinLength(10,ErrorMessage ="mobile no should be 11")]
         public string MobileNumber { get; set; }
+        [Display(Name = "Active")]
         public bool IsActive { get; set; }
         public DateTime? CreatedOn { get; set; }
     }
