@@ -39,15 +39,7 @@ namespace SMS.Controllers
             Signups objPurchaseModel = userMasterService.UpdateUsersRole(pur);
             return RedirectToAction("DisplayUser");
         }
-
-        //public ActionResult DeleteUser(int id)
-        //{
-           
-        //    StudentEntites _db = new StudentEntites();
-        //    Signups user = _db.signups.Where(x => x.Userid == id).SingleOrDefault();
-        //    return View(user);
-        //}
-        //[HttpPost]
+    
         public ActionResult DeleteUser(int id, Signups user)
         {
             

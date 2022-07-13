@@ -13,22 +13,11 @@ namespace SMS.Data
         {
 
         }
-        //public List<Teacher> GetAllTeacher()
-        //{
-        //    var teacher = _db.teachers.ToList();
-        //    return teacher;
-        //}
-        public List<TeacherModel> GetAllTeacher()
+     
+        public List<Teacher> GetAllTeacher()
         {
-            return _db.teachers.Select(x => new TeacherModel
-            {
-                Id = x.Id,
-                FirstName = x.FirstName,
-                CreatedOn=x.CreatedOn,
-                LastName = x.LastName,
-                Email = x.Email,
-                MobileNumber=x.MobileNumber,
-            }).ToList();
+           
+          return _db.teachers.ToList();
         }
         public Teacher GetTeacherById(int id)
         {
@@ -36,25 +25,27 @@ namespace SMS.Data
         }
 
 
-        public Teacher CreateTeacher(TeacherModel teacherModel)
+        public int CreateTeacher(Teacher teachers)
         {
-            Teacher _teacher = new Teacher()
+           
+            var CreatedBy = (from Teacher in _db.teachers
+                             where teachers.Email == SessionHelper.EmailId
+                             select teachers.Id).FirstOrDefault();
+            Teacher obj = new Teacher()
             {
-                Id = teacherModel.Id,
-                FirstName = teacherModel.FirstName,
-                LastName = teacherModel.LastName,
-                Email= teacherModel.Email,
-                MobileNumber= teacherModel.MobileNumber,
-                IsActive=teacherModel.IsActive,
-                CreatedOn= teacherModel.CreatedOn
+                Id = teachers.Id,
+                FirstName = teachers.FirstName,
+                LastName = teachers.LastName,
+                Email = teachers.Email,
+                MobileNumber = teachers.MobileNumber,
+                IsActive = teachers.IsActive,
+                CreatedOn = DateTime.UtcNow
             };
-
-            _db.teachers.Add(_teacher);
+            _db.teachers.Add(obj);
             _db.SaveChanges();
-
-            return _teacher;
+            return teachers.Id;
         }
-        public TeacherModel UpdateTeacher(TeacherModel teacherModel)
+        public Teacher UpdateTeacher(Teacher teacherModel)
         {
             var objtea = GetTeacherById(teacherModel.Id);
             objtea.FirstName = teacherModel.FirstName;
@@ -76,8 +67,5 @@ namespace SMS.Data
                 _db.SaveChanges();
             }
         }
-
-
-
     }
 }

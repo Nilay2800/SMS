@@ -19,6 +19,7 @@ namespace SMS.Model
         public string Gender { get; set; }
         [Required(ErrorMessage = "Standard is required.")]
         public int Standard { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
         public string ContactNumber { get; set; }
        

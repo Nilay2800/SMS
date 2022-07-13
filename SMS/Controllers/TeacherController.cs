@@ -18,19 +18,19 @@ namespace SMS.Controllers
         // GET: Teacher
         public ActionResult Index()
         {
-            List<TeacherModel> teachers = teacherService.GetAllTeacher();
+            List<Teacher> teachers = teacherService.GetAllTeacher();
             return View(teachers);
         }
         [HttpGet]
         public ActionResult AddTeacher()
         {
-
+            Teacher T1 = new Teacher();
             return View();
         }
 
 
         [HttpPost]
-        public ActionResult AddTeacher(TeacherModel teacher)
+        public ActionResult AddTeacher(Teacher teacher)
         {
             teacherService.CreateTeacher(teacher);
             return RedirectToAction("Index","Teacher");
@@ -39,15 +39,15 @@ namespace SMS.Controllers
         public ActionResult EditTeacher(int id)
         {
 
-            TeacherModel teacherModel = teacherService.GetTeacherById(id);
+            Teacher teacherModel = teacherService.GetTeacherById(id);
             return View(teacherModel);
         }
 
 
         [HttpPost]
-        public ActionResult EditTeacher(TeacherModel teacherModel)
+        public ActionResult EditTeacher(Teacher teacherModel)
         {
-            TeacherModel teacherModel1 = teacherService.UpdateTeacher(teacherModel);
+            Teacher teacherModel1 = teacherService.UpdateTeacher(teacherModel);
             return RedirectToAction("Index");
 
         }

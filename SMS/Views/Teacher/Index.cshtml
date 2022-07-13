@@ -1,15 +1,14 @@
-﻿@model IEnumerable<SMS.Model.TeacherModel>
+﻿@model IEnumerable<SMS.Model.Teacher>
 
 @{
-    //ViewBag.Title = "Teacher List";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>TeacherList</h2>
+<h2>Teacher List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "AddTeacher",
-        null, htmlAttributes: new { @class = "mybtn" })
+    @Html.ActionLink("Create New", "AddTeacher", new { }, htmlAttributes: new { @class = "Mybtn" })
 </p>
 <table class="table">
     <tr>
@@ -56,13 +55,13 @@
                 @Html.DisplayFor(modelItem => item.CreatedOn)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditTeacher", new {id=item.Id}, htmlAttributes: new { @class = "mybtn" }) |
+                @Html.ActionLink("Edit", "EditTeacher", new { id = item.Id },  htmlAttributes: new { @class = "Mybtn" }) |
 
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "mybtn" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id },  htmlAttributes: new { @class = "Mybtn" })
             </td>
         </tr>
-        <style type="text/css">
-            a.mybtn {
+        <style>
+            a.Mybtn {
                 background: #777;
                 color: #fff;
                 display: inline-block;
@@ -70,6 +69,7 @@
                 text-decoration: none;
             }
         </style>
+
     }
 
 </table>
