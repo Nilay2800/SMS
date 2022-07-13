@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace SMS.Controllers
 {
-    public class TeacherController : Controller
+    public class TeacherController : BaseController
     {
         public readonly TeacherService teacherService;
         public TeacherController()
@@ -19,12 +19,20 @@ namespace SMS.Controllers
         public ActionResult Index()
         {
             List<Teacher> teachers = teacherService.GetAllTeacher();
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Teacher.ToString(), AcessPermission.IsView))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             return View(teachers);
         }
         [HttpGet]
         public ActionResult AddTeacher()
         {
             Teacher T1 = new Teacher();
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Teacher.ToString(), AcessPermission.IsAdd))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             return View();
         }
 
@@ -38,7 +46,10 @@ namespace SMS.Controllers
         [HttpGet]
         public ActionResult EditTeacher(int id)
         {
-
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Teacher.ToString(), AcessPermission.IsEdit))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             Teacher teacherModel = teacherService.GetTeacherById(id);
             return View(teacherModel);
         }
@@ -54,7 +65,10 @@ namespace SMS.Controllers
 
         public ActionResult Delete(int Id)
         {
-
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Teacher.ToString(), AcessPermission.IsDelete))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             teacherService.DeleteTeacher(Id);
             return RedirectToAction("Index");
         }

@@ -10,15 +10,23 @@ using System.Web.Mvc;
 
 namespace SMS.Controllers
 {
-    public class StudentController : Controller
+    public class StudentController : BaseController
     {
         public readonly StudentService _studentService;
+       
+        
         public StudentController()
         {
             _studentService = new StudentService();
+            
+            
         }
         public ActionResult Index( Guid? studentId)
         {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Student.ToString(), AcessPermission.IsView))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             List<Student> studentlist = _studentService.GetallStudent().ToList();
             studentlist = _studentService.GetallStudent().ToList();
             if (studentId == null)
@@ -33,6 +41,10 @@ namespace SMS.Controllers
         }
         public ActionResult Create()
         {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Student.ToString(), AcessPermission.IsAdd))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             Student s1 = new Student();
             return View(s1);
         }
@@ -46,6 +58,10 @@ namespace SMS.Controllers
         [HttpGet]
         public ActionResult Edit(Guid StudentId)
         {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Student.ToString(), AcessPermission.IsEdit))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             Student student = _studentService.GetStudentById(StudentId);
             return View(student);
         }
@@ -58,6 +74,10 @@ namespace SMS.Controllers
         }
         public ActionResult Delete(Guid Id)
         {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Student.ToString(), AcessPermission.IsDelete))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             _studentService.DeleteStudent(Id);
             
               return RedirectToAction("Index");

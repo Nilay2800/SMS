@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebMatrix.WebData;
 
 namespace SMS
 {
@@ -18,9 +19,17 @@ namespace SMS
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            InitializeAuthenticationProcess();
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //Database.SetInitializer<SMSContext>(new DropCreateDatabaseIfModelChanges<SMSContext>());
-            Database.SetInitializer<StudentEntites>(null);
+            //Database.SetInitializer<StudentEntites>(null);
+        }
+        private void InitializeAuthenticationProcess()
+        {
+            if (!WebSecurity.Initialized)
+            {
+                WebSecurity.InitializeDatabaseConnection("StudentEntites", "Signups", "Userid", "Email", true);
+            }
+
         }
     }
 }

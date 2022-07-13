@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SMS.Controllers
 {
-    public class UserMasterController : Controller
+    public class UserMasterController : BaseController
     {
         private readonly UserMasterService userMasterService;
         public UserMasterController()

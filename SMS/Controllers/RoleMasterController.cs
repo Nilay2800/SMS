@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace SMS.Controllers
 {
-    public class RoleMasterController : Controller
+    public class RoleMasterController : BaseController
     {
         private readonly RoleMasterService roleMasterService;
 

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace SMS.Controllers
 {
-    public class AnnoucementController : Controller
+    public class AnnoucementController : BaseController
     {
         public readonly AnnoucementService annoucementService;
 
@@ -19,6 +19,10 @@ namespace SMS.Controllers
         // GET: Annoucement
         public ActionResult Index()
         {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Annoucement.ToString(), AcessPermission.IsView))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             List<AnnoucementModel> annoucements = annoucementService.GetAllAnnoucement();
             return View(annoucements);
         }
@@ -26,7 +30,10 @@ namespace SMS.Controllers
         [HttpGet]
         public ActionResult AddAnnoucement()
         {
-
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Annoucement.ToString(), AcessPermission.IsAdd))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             return View();
         }
 
@@ -41,7 +48,10 @@ namespace SMS.Controllers
         [HttpGet]
         public ActionResult EditAnnoucement(int id)
         {
-
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Annoucement.ToString(), AcessPermission.IsEdit))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             AnnoucementModel annoucementModel = annoucementService.GetAnnocementById(id);
             return View(annoucementModel);
         }
@@ -57,7 +67,10 @@ namespace SMS.Controllers
 
         public ActionResult Delete(int Id)
         {
-
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Annoucement.ToString(), AcessPermission.IsDelete))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             annoucementService.DeleteAnnoucement(Id);
             return RedirectToAction("Index");
         }

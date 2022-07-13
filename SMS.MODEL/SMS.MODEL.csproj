@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="AcessPermission.cs" />
     <Compile Include="Annoucement.cs" />
+    <Compile Include="AuthorizeFormAccess.cs" />
     <Compile Include="DropDownList.cs" />
     <Compile Include="FormModel.cs" />
     <Compile Include="FormMst.cs" />

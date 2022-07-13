@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace SMS.Controllers
 {
-    public class FormsController : Controller
+    public class FormsController : BaseController
     {
         private readonly FormsService _formsService;
 

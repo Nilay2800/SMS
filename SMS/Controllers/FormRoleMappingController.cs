@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace SMS.Controllers
 {
-    public class FormRoleMappingController : Controller
+    public class FormRoleMappingController : BaseController
     {
         private readonly FormRoleMappingService formRoleMappingService;
         private readonly RoleMasterService roleMasterService;
