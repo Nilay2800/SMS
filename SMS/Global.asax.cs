@@ -27,7 +27,7 @@ namespace SMS
         {
             if (!WebSecurity.Initialized)
             {
-                WebSecurity.InitializeDatabaseConnection("StudentEntites", "Signups", "Userid", "Email", true);
+                WebSecurity.InitializeDatabaseConnection("StudentEntites", "Signups", "Userid", "Email",false);
             }
 
         }

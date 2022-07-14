@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace SMS.Controllers
 {
+    [Authorize]
     public class RoleMasterController : BaseController
     {
         private readonly RoleMasterService roleMasterService;
@@ -19,11 +20,19 @@ namespace SMS.Controllers
 
         public ActionResult Index()
         {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Rolemaster.ToString(), AcessPermission.IsView))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             List<RoleModel> RoleList = roleMasterService.GetAllRoles();
             return View(RoleList);
         }
         public ActionResult CreateRole()
         {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Rolemaster.ToString(), AcessPermission.IsAdd))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             return View();
         }
         [HttpPost]

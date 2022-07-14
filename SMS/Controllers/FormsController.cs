@@ -18,11 +18,19 @@ namespace SMS.Controllers
         }
         public ActionResult Index()
         {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Formmaster.ToString(), AcessPermission.IsView))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             List<FormModel> formlist = _formsService.GetAllForms();
             return View(formlist);
         }
         public ActionResult Create(int? Id)
         {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Formmaster.ToString(), AcessPermission.IsAdd))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             FormModel form = new FormModel();
             if (Id.HasValue)
             {

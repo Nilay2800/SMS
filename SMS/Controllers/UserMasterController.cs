@@ -19,13 +19,19 @@ namespace SMS.Controllers
         // GET: UserMaster
         public ActionResult DisplayUser()
         {
-           
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString(), AcessPermission.IsView))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             List<Signups> UserList = userMasterService.GetAllUser();
             return View(UserList);
         }
         public ActionResult EditUserRoleMapping(int id)
         {
-           
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString(), AcessPermission.IsAdd))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             StudentEntites _db = new StudentEntites();
             ViewBag.RoleList = userMasterService.BindRole();
             Signups user = userMasterService.GetUserById(id);
@@ -42,7 +48,10 @@ namespace SMS.Controllers
     
         public ActionResult DeleteUser(int id, Signups user)
         {
-            
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString(), AcessPermission.IsDelete))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
             userMasterService.DeleteUser(id);
             return RedirectToAction("DisplayUser");
         }
