@@ -8,6 +8,10 @@ namespace SMS.Model
 {
     public class MenuVW
     {
+        public MenuVW()
+        {
+            SubMenu = new List<MenuVW>();
+        }
         public int Id { get; set; }
         public string FormAccessCode { get; set; }
         public string Name { get; set; }
