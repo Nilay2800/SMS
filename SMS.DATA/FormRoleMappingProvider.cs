@@ -186,11 +186,13 @@ namespace SMS.Data
             SqlParameter param = new SqlParameter("@userID", userID);
 
             _fullmenuVW = _db.Database.SqlQuery<MenuVW>("getMenu_sp @userID", param).ToList();
+            
 
             var mainMenu = (from _m in _fullmenuVW
                             where (_m.ParentFormId == null || _m.ParentFormId == 0)
                             select _m).ToList();
 
+            //_menuVW = MenuTree(mainMenu, null);
             foreach (var _menu in mainMenu)
             {
                 var _submenu = (from _mm in _fullmenuVW
@@ -222,6 +224,22 @@ namespace SMS.Data
             }
             return _sMenu;
         }
+
+        //public List<MenuVW> MenuTree(List<MenuVW> menuList,int? parentID)
+        //{
+        //    return menuList.Where(x => x.ParentFormId == parentID).Select(
+        //        x=>new MenuVW
+        //        {
+        //            Id = x.Id,
+        //            FormAccessCode = x.FormAccessCode,
+        //            Name = x.Name,
+        //            NavigateURL = x.NavigateURL,
+        //            Icon = x.Icon,
+        //            ParentFormId = x.ParentFormId,
+        //            DisplayOrder = x.DisplayOrder,
+        //            SubMenu=MenuTree(menuList,x.Id)
+        //        }).ToList();
+        //}
 
     }
 }

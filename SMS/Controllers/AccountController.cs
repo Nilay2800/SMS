@@ -61,14 +61,14 @@ namespace SMS.Controllers
             {
                 using (StudentEntites smsContext = new StudentEntites())
                 {
-                    var v = smsContext.signups.Where(a => a.Email == model.EmailId).FirstOrDefault();
+                    var v = smsContext.signups.Where(a => a.Email == model.EmailId && a.Password==model.Password).FirstOrDefault();
                     if (v != null)
                     {
                         SessionHelper.EmailId = model.EmailId;
                         string returnUrl = Request.QueryString["ReturnUrl"];
-                        var p = smsContext.signups.Where(a => a.Password == model.Password).FirstOrDefault();
-                        if (p != null)
-                        {
+                        var p = smsContext.signups.Where(a => a.Password == model.Password ).FirstOrDefault();
+                        //if (p != null)
+                        //{
                             int timeout = model.RememberMe ? 525600 : 60; // 525600 min = 1 year
                             var ticket = new FormsAuthenticationTicket(model.EmailId, model.RememberMe, timeout);
                             string encrypted = FormsAuthentication.Encrypt(ticket);
@@ -93,11 +93,11 @@ namespace SMS.Controllers
                         {
                             ModelState.AddModelError("Password", " Email id or Password is invalid.");
                         }
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("EmailId", "EmailId is not registered.");
-                    }
+                    //}
+                    //else
+                    //{
+                    //    ModelState.AddModelError("EmailId", "EmailId is not registered.");
+                    //}
 
                     return View(model);
                 }

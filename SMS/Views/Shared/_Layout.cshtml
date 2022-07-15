@@ -9,43 +9,10 @@
 
 </head>
 <body>
-
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-    @* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    *@
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container body-content">*@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    @* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    *@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -60,77 +27,85 @@
                     </div>
 
                     <div class="navbar-collapse collapse" id="mobile_menu">
-                        <ul class="nav navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <ul class="nav navbar-nav">
+                                @{
+                                    if (Session["Menu"] != null)
+                                    {
+                                        List<SMS.Model.MenuVW> _menu = (List<SMS.Model.MenuVW>)Session["Menu"];
+                                        <div class="nav navbar-nav">
+                                            <ul>
+                                                @foreach (var _main in _menu)
+                                                {
+                                                    <li class="nav navbar-nav" id="@_main.Name" data-facode="@_main.Name">
+                                                        <a href="@Url.Content(_main.NavigateURL)" id="@_main.Name">
+                                                            <span class="navbar-brand">@_main.Name</span>
+                                                        </a>
+                                                        @if (_main.SubMenu != null)
+                                                        {
+                                                            <div class="dropdown-toggle">
+                                                                <ul>
+                                                                    @foreach (var _sub in _main.SubMenu)
+                                                                    {
+                                                                        <li class="dropdown-menu" data-facode="@_sub.Name">
+                                                                            <a href="@Url.Content(_sub.NavigateURL)">
+                                                                                <span class="navbar-brand">@_sub.Name</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            </div>
+                                                        }
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        Response.Redirect("~/Account/Login");
+                                    }
 
+                                }
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
 
-                            @*<li><a href="@Url.Action("Index","Home")">Home</a></li>*@
-                            <li><a href="@Url.Action("Index", "Student")">Student</a></li>
-                            <li><a href="@Url.Action("Index","Teacher")">Teacher</a></li>
-                            <li><a href="@Url.Action("Index","Annoucement")">Annoucement</a></li>
-                            <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">System<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="@Url.Action("Index", "RoleMaster")">Role Master</a></li>
-                                    <li><a href="@Url.Action("Index", "Forms")">Form Master</a></li>
-                                    <li><a href="@Url.Action("DisplayUser", "UserMaster")">User Master</a></li>
-                                </ul>
-                            </li>
+                                @*<li><a href="#"><span class="glyphicon glyphicon-user"></span> @Session["UserName"].ToString()</a></li>*@
+                                <li ><a href="@Url.Action("Logout", "Account")" class="navbar-brand">Logout</a></li>
+                            </ul>
+                        }
+                        else
+                        {
+                    <div class="nav navbar-nav navbar-right">
+                        @*<span class="glyphicon glyphicon-log-in"></span> Login / Sign Up*@
+                        <a href="#" class="navbar-brand" data-toggle="dropdown" >
+                
+                            <span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret"></span>
+                        </a>
+                        
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Login","Account")" class="navbar-brand">Login</a></li>
+                            <li><a href="@Url.Action("Signup","Account")" class="navbar-brand">Sign Up</a></li>
                         </ul>
--                        <ul class="nav navbar-nav navbar-right">
-                            @if (Session["UserName"] != null)
-                            {
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> @Session["UserName"].ToString()</a></li>
-                                <li><a href="@Url.Action("Logout","Account")">Logout</a></li>
-                            }
-                            else
-                            {
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="@Url.Action("Login","Account")">Login</a></li>
-                                        <li><a href="@Url.Action("Signup","Account")">Sign Up</a></li>
-                                    </ul>
-                                </li>
-                            }
-                        </ul>
-
-
-                        @*<ul class="nav navbar-nav">
-            <li>
-                <form action="" class="navbar-form">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="search" name="search" id="" placeholder="Search Anything Here..." class="form-control">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                        </div>
                     </div>
-                </form>
-            </li>
-        </ul>*@
-
-
+                        }
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    
-
-
     @RenderBody()
     <hr />
     <footer>
-        @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
+       
     </footer>
-    @*</div>*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
