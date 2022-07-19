@@ -43,6 +43,21 @@ namespace SMS.Data
             _db.SaveChanges();
             return s;
         }
-
+        public Signups CreateUser(Signups user)
+        {
+           
+            Signups obj = new Signups()
+            {
+                RoleId = user.RoleId,
+                Userid = user.Userid,
+                UserName = user.UserName,
+                Email = user.Email,
+                Password = user.Password,
+                
+            };
+            _db.signups.Add(obj);
+            _db.SaveChanges();
+            return user;
+        }
     }
 }

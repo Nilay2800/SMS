@@ -39,5 +39,9 @@ namespace SMS.Service
         {
             return userMasterProvider.DeleteUser(id);
         }
+        public Signups CreateUser(Signups user)
+        {
+            return userMasterProvider.CreateUser(user);
+        }
     }
 }
