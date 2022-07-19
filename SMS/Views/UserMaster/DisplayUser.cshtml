@@ -1,11 +1,13 @@
 ﻿@model IEnumerable<SMS.Model.Signups>
 
 @{
-    ViewBag.Title = "DisplayUser";
+    ViewBag.Title = "Display User";
 }
 
-<h2>DisplayUser</h2>
-
+<h2>Display User</h2>
+<p>
+    @Html.ActionLink("Create New", "CreateUser", null, htmlAttributes: new { @class = "mybtn" })
+</p>
 
 <table class="table">
     <tr>

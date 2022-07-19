@@ -187,6 +187,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\green image\kisspng-checkbox-vector-graphics-computer-icons-check-mark-toodoo-ocr-to-do-and-task-list-apps-on-google-5c6b55c1959ec1.7317369515505381776129.jpg" />
     <Content Include="Content\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\images\ui-icons_555555_256x240.png" />
     <Content Include="Content\images\ui-icons_777620_256x240.png" />
@@ -301,6 +302,7 @@
     <Content Include="Views\Teacher\EditTeacher.cshtml" />
     <Content Include="Views\Base\AccessDenied.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\UserMaster\CreateUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

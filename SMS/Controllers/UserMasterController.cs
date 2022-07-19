@@ -28,7 +28,7 @@ namespace SMS.Controllers
         }
         public ActionResult EditUserRoleMapping(int id)
         {
-            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString(), AcessPermission.IsAdd))
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString(), AcessPermission.IsEdit))
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
@@ -55,6 +55,20 @@ namespace SMS.Controllers
             userMasterService.DeleteUser(id);
             return RedirectToAction("DisplayUser");
         }
-
+        public ActionResult CreateUser()
+        {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString(), AcessPermission.IsAdd))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
+            Signups obj = new Signups();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateUser(Signups user)
+        {
+            userMasterService.CreateUser(user);
+            return RedirectToAction("DisplayUser");
+        }
     }
 }

@@ -11,9 +11,9 @@ namespace SMS.Model
     {
         [Key]
         public int Userid { get; set; }
-        
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
-       
+        [EmailAddress]
         public string Email { get; set; }       
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }

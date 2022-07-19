@@ -17,9 +17,11 @@ namespace SMS.Model
         }
         public int Id { get; set; }
         public string  Name { get; set; }
+        [Display(Name = "Navigate URL")]
         public string NavigateURL { get; set; }
+        [Display(Name = "Code")]
         public string FormAcessCode { get; set; }
-
+        [Display(Name = "Display Order")]
         public int? DisplayOrder { get; set; }
         public int? CreatedBy { get; set; }
 
@@ -28,8 +30,11 @@ namespace SMS.Model
         public int? UpdatedBy { get; set; }
 
        public DateTime? UpdatedOn { get; set; }
+        [Display(Name = "Parent Form")]
         public int? ParentForm { get; set; }
+        [Display(Name = "Active")]
         public bool  IsActive { get; set; }
+        [Display(Name = "Display Menu")]
         public bool IsDisplayMenu { get; set; }
         public List<SelectListItem> _parentFormList { get; set; }
 

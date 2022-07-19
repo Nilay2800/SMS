@@ -12,6 +12,7 @@ namespace SMS.Model
     {
         public int Id { get; set; }
         [Required]
+        [Display(Name = "Role Name")]
         public string Name { get; set; }
 
         [DisplayName("Active")]
