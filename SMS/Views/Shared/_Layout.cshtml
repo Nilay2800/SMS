@@ -15,82 +15,73 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <div class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
 
                     <div class="navbar-header">
-                        <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                        <a href="@Url.Action("Index","Home")" class="navbar-brand">SMS</a>
+                        <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-                         bar"></span></button>
+                        <a href="@Url.Action("Index", "Home")" class="navbar-brand">SMS</a>
                     </div>
 
                     <div class="navbar-collapse collapse" id="mobile_menu">
                         @if (User.Identity.IsAuthenticated)
-                        {
-                            <ul class="nav navbar-nav">
-                                @{
-                                    if (Session["Menu"] != null)
-                                    {
-                                        List<SMS.Model.MenuVW> _menu = (List<SMS.Model.MenuVW>)Session["Menu"];
-                                        <div class="nav navbar-nav">
-                                            <ul>
-                                                @foreach (var _main in _menu)
-                                                {
-                                                    <li class="nav navbar-nav" id="@_main.Name" data-facode="@_main.Name">
-                                                        <a href="@Url.Content(_main.NavigateURL)" id="@_main.Name">
-                                                            <span class="navbar-brand">@_main.Name</span>
-                                                        </a>
-                                                        @if (_main.SubMenu != null)
-                                                        {
-                                                            <div class="dropdown-toggle">
-                                                                <ul>
-                                                                    @foreach (var _sub in _main.SubMenu)
-                                                                    {
-                                                                        <li class="dropdown-menu" data-facode="@_sub.Name">
-                                                                            <a href="@Url.Content(_sub.NavigateURL)">
-                                                                                <span class="navbar-brand">@_sub.Name</span>
-                                                                            </a>
-                                                                        </li>
-                                                                    }
-                                                                </ul>
-                                                            </div>
-                                                        }
-                                                    </li>
-                                                }
-                                            </ul>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        Response.Redirect("~/Account/Login");
+                         {
+                        <ul class="nav navbar-nav">
+                            @{
+                                if (Session["Menu"] != null)
+                                {
+                                    List<SMS.Model.MenuVW> menus = (List<SMS.Model.MenuVW>)Session["Menu"];
+                                    foreach (var main in menus)
+                                     {
+                                        
+                                        if (main.SubMenu.Count > 0)
+                                        {
+                                            <li>
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@main.Name<span class="caret"></span></a>
+                                                <ul class="dropdown-menu">
+                                                    @foreach (var submenu in main.SubMenu)
+                                                    {
+                                                        <li><a href="@Url.Content(submenu.NavigateURL)">@submenu.Name</a></li>
+                                                    }
+                                                </ul>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a href="@Url.Content(main.NavigateURL)" id="@main.Name">@main.Name</a>
+                                            </li>
+                                        }
                                     }
 
                                 }
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-
-                                @*<li><a href="#"><span class="glyphicon glyphicon-user"></span> @Session["UserName"].ToString()</a></li>*@
-                                <li ><a href="@Url.Action("Logout", "Account")" class="navbar-brand">Logout</a></li>
-                            </ul>
-                        }
-                        else
-                        {
-                    <div class="nav navbar-nav navbar-right">
-                        @*<span class="glyphicon glyphicon-log-in"></span> Login / Sign Up*@
-                        <a href="#" class="navbar-brand" data-toggle="dropdown" >
-                
-                            <span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret"></span>
-                        </a>
-                        
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Login","Account")" class="navbar-brand">Login</a></li>
-                            <li><a href="@Url.Action("Signup","Account")" class="navbar-brand">Sign Up</a></li>
+                                else
+                                {
+                                    Response.Redirect("~/Account/Login");
+                                }
+                            }
                         </ul>
-                    </div>
-                        }
-
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> @Session["UserName"]</a></li>
+                                <li><a href="@Url.Action("Logout","Account")">Log Out</a></li>
+                            </ul>
+                         }
+                         else
+                         {
+                              <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                   
+                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret">                                    </span></a>
+                                   <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("Login","Account")">Login</a></li>
+                                        <li><a href="@Url.Action("Signup","Account")">Sign Up</a></li>
+                                   </ul>
+                                </li>
+                              </ul>
+                         }
+                        
                     </div>
                 </div>
             </div>
@@ -101,11 +92,10 @@
     @RenderBody()
     <hr />
     <footer>
-       
     </footer>
+    @*</div>*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
-

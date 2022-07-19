@@ -186,17 +186,17 @@ namespace SMS.Data
             SqlParameter param = new SqlParameter("@userID", userID);
 
             _fullmenuVW = _db.Database.SqlQuery<MenuVW>("getMenu_sp @userID", param).ToList();
-            
+            //_menuVW = MenuTree(_fullmenuVW, null);
 
             var mainMenu = (from _m in _fullmenuVW
-                            where (_m.ParentFormId == null || _m.ParentFormId == 0)
+                            where (_m.ParentForm == null || _m.ParentForm == 0)
                             select _m).ToList();
 
-            //_menuVW = MenuTree(mainMenu, null);
+
             foreach (var _menu in mainMenu)
             {
                 var _submenu = (from _mm in _fullmenuVW
-                                where _mm.ParentFormId == _menu.Id
+                                where _mm.ParentForm == _menu.Id
                                 select _mm).ToList();
 
                 if (_submenu.Count > 0)
@@ -214,7 +214,7 @@ namespace SMS.Data
             foreach (var _tm in _subMenu)
             {
                 var thirdmenu = (from _fm in _fullMenu
-                                 where _fm.ParentFormId == _tm.Id
+                                 where _fm.ParentForm == _tm.Id
                                  select _fm).ToList();
                 if (thirdmenu.Count > 0)
                 {
@@ -224,22 +224,19 @@ namespace SMS.Data
             }
             return _sMenu;
         }
-
-        //public List<MenuVW> MenuTree(List<MenuVW> menuList,int? parentID)
+        //public List<MenuVW> MenuTree(List<MenuVW> menuList, int? parentformId)
         //{
-        //    return menuList.Where(x => x.ParentFormId == parentID).Select(
-        //        x=>new MenuVW
-        //        {
-        //            Id = x.Id,
-        //            FormAccessCode = x.FormAccessCode,
-        //            Name = x.Name,
-        //            NavigateURL = x.NavigateURL,
-        //            Icon = x.Icon,
-        //            ParentFormId = x.ParentFormId,
-        //            DisplayOrder = x.DisplayOrder,
-        //            SubMenu=MenuTree(menuList,x.Id)
-        //        }).ToList();
+        //    return menuList.Where(x => x.ParentFormId == parentformId).Select(
+        //       x => new MenuVW
+        //       {
+        //           Id = x.Id,
+        //           Name = x.Name,
+        //           ParentFormId = x.ParentFormId,
+        //           NavigateURL = x.NavigateURL,
+        //           FormAccessCode=x.FormAccessCode,
+        //           DisplayOrder=x.DisplayOrder,
+        //           SubMenu = MenuTree(menuList, x.Id)
+        //       }).ToList();
         //}
-
     }
 }
