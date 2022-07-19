@@ -65,10 +65,8 @@ namespace SMS.Controllers
                     if (v != null)
                     {
                         SessionHelper.EmailId = model.EmailId;
+                        Session["UserName"] = v.UserName.ToString();
                         string returnUrl = Request.QueryString["ReturnUrl"];
-                        var p = smsContext.signups.Where(a => a.Password == model.Password ).FirstOrDefault();
-                        //if (p != null)
-                        //{
                             int timeout = model.RememberMe ? 525600 : 60; // 525600 min = 1 year
                             var ticket = new FormsAuthenticationTicket(model.EmailId, model.RememberMe, timeout);
                             string encrypted = FormsAuthentication.Encrypt(ticket);
