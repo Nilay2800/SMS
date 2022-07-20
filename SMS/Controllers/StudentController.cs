@@ -27,6 +27,7 @@ namespace SMS.Controllers
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
+            ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Student.ToString());
             List<Student> studentlist = _studentService.GetallStudent().ToList();
             studentlist = _studentService.GetallStudent().ToList();
             if (studentId == null)

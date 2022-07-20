@@ -24,6 +24,7 @@ namespace SMS.Controllers
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
+            ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Rolemaster.ToString());
             List<RoleModel> RoleList = roleMasterService.GetAllRoles();
             return View(RoleList);
         }

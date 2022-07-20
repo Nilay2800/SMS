@@ -18,12 +18,16 @@ namespace SMS.Controllers
         // GET: Teacher
         public ActionResult Index()
         {
-           
+
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Teacher.ToString(), AcessPermission.IsView))
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
-             List<Teacher> teachers = teacherService.GetAllTeacher();
+
+            
+            ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Teacher.ToString());
+            List<Teacher> teachers = teacherService.GetAllTeacher();
+
             return View(teachers);
         }
         [HttpGet]

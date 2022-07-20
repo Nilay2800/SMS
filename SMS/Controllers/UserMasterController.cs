@@ -23,6 +23,7 @@ namespace SMS.Controllers
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
+            ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString());
             List<Signups> UserList = userMasterService.GetAllUser();
             return View(UserList);
         }
@@ -62,6 +63,7 @@ namespace SMS.Controllers
                 return RedirectToAction("AccessDenied", "Base");
             }
             Signups obj = new Signups();
+            
             return View();
         }
         [HttpPost]

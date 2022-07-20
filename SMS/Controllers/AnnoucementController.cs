@@ -12,6 +12,7 @@ namespace SMS.Controllers
     {
         public readonly AnnoucementService annoucementService;
 
+
         public AnnoucementController()
         {
             annoucementService = new AnnoucementService();
@@ -23,6 +24,7 @@ namespace SMS.Controllers
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
+            ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Annoucement.ToString());
             List<AnnoucementModel> annoucements = annoucementService.GetAllAnnoucement();
             return View(annoucements);
         }

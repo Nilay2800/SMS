@@ -1,50 +1,64 @@
 ﻿@model IEnumerable<SMS.Model.AnnoucementModel>
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        var permission = ViewBag.Permission as SMS.Model.FormRoleMapping;
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
-<style type="text/css">
-    a.mybtn {
-        background: #777;
-        color: #fff;
-        display: inline-block;
-        padding: 6px 12px 6px 12px;
-        text-decoration: none;
-    }
-</style>
-<h2>Annoucement List</h2>
+   <style type="text/css">
+        a.mybtn {
+            background: #777;
+            color: #fff;
+            display: inline-block;
+            padding: 6px 12px 6px 12px;
+            text-decoration: none;
+        }
+    </style>
+    <h2>Annoucement List</h2>
+    <p>
+        @if (permission.AllowInsert)
+        {
+            @Html.ActionLink("Create New", "AddAnnoucement", null, htmlAttributes: new { @class = "mybtn" })
+        }
 
-<p>
-    @Html.ActionLink("Create New", "AddAnnoucement", null, htmlAttributes: new { @class = "mybtn" })
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AnnoucementDetail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnnoucementDetail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
-            </td>
-            <td>
 
-                <a class="mybtn" href="@Url.Action("EditAnnoucement", "Annoucement", new { id = item.Id })">Edit</a> |
-                <a class="mybtn" href="@Url.Action("Delete", "Annoucement", new { id = item.Id })" onclick="return confirm('Are you sure you want to Delete??')">Delete</a>
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.AnnoucementDetail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th></th>
         </tr>
 
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnnoucementDetail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                </td>
+                <td>
+                    @if (permission.AllowUpdate)
+                    {
+                    <a class="mybtn" href="@Url.Action("EditAnnoucement", "Annoucement", new { id = item.Id })">Edit</a>
+                        <text>|</text>
+                        
+                    }
+                    @if (permission.AllowDelete)
+                    {
+                      <a class="mybtn" href="@Url.Action("Delete", "Annoucement", new { id = item.Id })" onclick="return confirm('Are you sure you want to Delete??')">Delete</a>
+                    }
+                    </td>
+            </tr>
+
+        }
+
+    </table>

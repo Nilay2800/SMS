@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var permission = ViewBag.Permission as SMS.Model.FormRoleMapping;
 }
 <style>
     a.Mybtn {
@@ -16,7 +17,12 @@
 <h2>Student List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { }, htmlAttributes: new { @class = "Mybtn" })
+
+    @if (permission.AllowInsert)
+    {
+        @Html.ActionLink("Create New", "Create", new { }, htmlAttributes: new { @class = "Mybtn" })
+    }
+
 </p>
 <table class="table">
     <tr>
@@ -44,38 +50,54 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Firstname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lastname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Standard)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactNumber)
-            </td>
-            <td>
-                <a class="Mybtn" href="@Url.Action("Edit", "Student", new { StudentId = item.StudentId })">Edit</a> |
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lastname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Standard)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactNumber)
+        </td>
+        <td>
+            @if (permission.AllowUpdate)
+            {
+                <a class="Mybtn" href="@Url.Action("Edit", "Student", new { StudentId = item.StudentId })">Edit</a>
+                <text>|</text>
+            }
+            @if (permission.AllowDelete)
+            {
                 <a class="Mybtn" href="@Url.Action("Delete", "Student", new { Id = item.StudentId })" onclick="return confirm('Are you sure you want to Delete??')">Delete</a>
 
-            </td>
+            }
 
+        </td>
+    </tr>
+    <style>
+        a.Mybtn {
+            background : #777;
+            color: #fff;
+            display: inline-block;
+            padding: 6px 12px 6px 12px;
+            text-decoration: none;
+        }
+    </style>
 
-        </tr>
 
 
     }

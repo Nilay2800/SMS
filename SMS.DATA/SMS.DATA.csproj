@@ -125,6 +125,10 @@
     <Compile Include="Migrations\202207120635039_changes-in-roletables.Designer.cs">
       <DependentUpon>202207120635039_changes-in-roletables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207200455221_update_table_Signup.cs" />
+    <Compile Include="Migrations\202207200455221_update_table_Signup.Designer.cs">
+      <DependentUpon>202207200455221_update_table_Signup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RoleMasterProvider.cs" />
     <Compile Include="StudentProvider.cs" />
@@ -169,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207120635039_changes-in-roletables.resx">
       <DependentUpon>202207120635039_changes-in-roletables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207200455221_update_table_Signup.resx">
+      <DependentUpon>202207200455221_update_table_Signup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
