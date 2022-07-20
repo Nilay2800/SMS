@@ -57,5 +57,10 @@ namespace SMS.Controllers
             }
             return false;
         }
+        public FormRoleMapping GetPermission(string formCode)
+        {
+            var checkPermission = formRoleMappingService.CheckFormAccess(formCode);
+            return checkPermission;
+        }
     }
 }

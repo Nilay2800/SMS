@@ -3,13 +3,18 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var permission = ViewBag.Permission as SMS.Model.FormRoleMapping;
+}
 }
 
 <h2>Role List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateRole", null, htmlAttributes: new { @class = "Mybtn" })
-</p>
+    @if (permission.AllowInsert)
+    {
+        @Html.ActionLink("Create New", "CreateRole", null, htmlAttributes: new { @class = "Mybtn" })
+    }
+    </p>
 <table class="table">
     <tr>
         <th>
@@ -28,23 +33,25 @@
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.RoleCode)
-    </td>
-    <td>
-        <input type="checkbox" value="@item.IsActive" @(item.IsActive == false ? "" : "checked='checked'") class="Checkbox" onclick="CheckValue(@item.IsActive)" id="View_@item.IsActive" />
-    </td>
 
-    <td>
-        @Html.ActionLink("AllowPermission", "ViewPermission", "FormRoleMapping", new { id = item.Id }, htmlAttributes: new { @class = "Mybtn" })
-
-    </td>
-</tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleCode)
+            </td>
+            <td>
+                <input type="checkbox" value="@item.IsActive" @(item.IsActive == false ? "" : "checked='checked'") class="Checkbox" onclick="CheckValue(@item.IsActive)" id="View_@item.IsActive" />
+            </td>
+            <td>
+               
+                
+                @Html.ActionLink("AllowPermission", "ViewPermission", "FormRoleMapping", new { id = item.Id }, htmlAttributes: new { @class = "Mybtn" })
+                
+            </td>
+        </tr>
     }
     <style>
         a.Mybtn {

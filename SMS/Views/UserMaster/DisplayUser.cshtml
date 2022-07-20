@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Display User";
+    var permission = ViewBag.Permission as SMS.Model.FormRoleMapping;
 }
 <style type="text/css">
     a.mybtn {
@@ -14,7 +15,10 @@
 </style>
 <h2>Display User</h2>
 <p>
-    @Html.ActionLink("Create New", "CreateUser", null, htmlAttributes: new { @class = "mybtn" })
+    @if (permission.AllowInsert)
+    {
+       @Html.ActionLink("Create New", "CreateUser", null, htmlAttributes: new { @class = "mybtn" })
+    }
 </p>
 
 <table class="table">
@@ -55,13 +59,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Role)
                 </td>*@
-            <td>
-                @*@Html.ActionLink("Edit", "EditUserRoleMapping", new { id = item.Userid }, htmlAttributes: new { @class = "mybtn" }) |
-                    @Html.ActionLink("Delete", "DeleteUser", new { id = item.Userid }, htmlAttributes: new { @class = "mybtn" })*@
 
-                <a class="mybtn" href="@Url.Action("EditUserRoleMapping", "UserMaster", new { id = item.Userid })">Edit</a> |
-                <a class="mybtn" href="@Url.Action("DeleteUser", "UserMaster", new { id = item.Userid })" onclick="return confirm('Are you sure you want to Delete??')">Delete</a>
+            <td>
+                @if (permission.AllowUpdate)
+                {
+                    <a class="mybtn" href="@Url.Action("EditUserRoleMapping", "UserMaster", new { id = item.Userid })">Edit</a>
+                    <text>|</text>
+                }
+                @if (permission.AllowDelete)
+                {
+                    <a class="mybtn" href="@Url.Action("DeleteUser", "UserMaster", new { id = item.Userid })" onclick="return confirm('Are you sure you want to Delete??')">Delete</a>
+
+                }
             </td>
+
         </tr>
 
     }

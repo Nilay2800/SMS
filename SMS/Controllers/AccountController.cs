@@ -5,6 +5,8 @@ using SMS.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -36,6 +38,7 @@ namespace SMS.Controllers
             var check = smsContext.signups.FirstOrDefault(s => s.Email == model.Email);
             if (check == null)
             {
+                model.Password = GetMD5(model.Password);
                 smsContext.signups.Add(model);
                 smsContext.SaveChanges();
                 return RedirectToAction("Login");
@@ -61,7 +64,8 @@ namespace SMS.Controllers
             {
                 using (StudentEntites smsContext = new StudentEntites())
                 {
-                    var v = smsContext.signups.Where(a => a.Email == model.EmailId && a.Password==model.Password).FirstOrDefault();
+                    var f_password = GetMD5(model.Password);
+                    var v = smsContext.signups.Where(a => a.Email == model.EmailId && a.Password==f_password).FirstOrDefault();
                     if (v != null)
                     {
                         SessionHelper.EmailId = model.EmailId;
@@ -71,6 +75,7 @@ namespace SMS.Controllers
                             var ticket = new FormsAuthenticationTicket(model.EmailId, model.RememberMe, timeout);
                             string encrypted = FormsAuthentication.Encrypt(ticket);
                             var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+                            cookie.Expires = DateTime.Now.AddMinutes(timeout);
                             cookie.HttpOnly = true;
                             Response.Cookies.Add(cookie);
 
@@ -87,15 +92,11 @@ namespace SMS.Controllers
                                 return Redirect(Url.Content(returnUrl));
                             }
                         }
-                        else
-                        {
-                            ModelState.AddModelError("Password", " Email id or Password is invalid.");
-                        }
-                    //}
-                    //else
-                    //{
-                    //    ModelState.AddModelError("EmailId", "EmailId is not registered.");
-                    //}
+                    else
+                    {
+                        ModelState.AddModelError("Password", " Email id or Password is invalid.");
+                    }
+                    
 
                     return View(model);
                 }
@@ -112,5 +113,20 @@ namespace SMS.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+        public static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x2");
+
+            }
+            return byte2String;
+        }
+
     }
 }

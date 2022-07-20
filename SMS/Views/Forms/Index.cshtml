@@ -3,12 +3,16 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var permission = ViewBag.Permission as SMS.Model.FormRoleMapping;
 }
 
 <h2>Form List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create"  , new { }, htmlAttributes: new { @class = "Mybtn" })
+    @if (permission.AllowInsert)
+    {
+        @Html.ActionLink("Create New", "Create", new { }, htmlAttributes: new { @class = "Mybtn" })
+    }
 </p>
 <table class="table">
     <tr>
@@ -24,9 +28,9 @@
         <th>
             @Html.DisplayNameFor(model => model.DisplayOrder)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.ParentForm)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.IsActive)
         </th>
@@ -51,9 +55,9 @@
     <td>
         @Html.DisplayFor(modelItem => item.DisplayOrder)
     </td>
-    <td>
+    @*<td>
         @Html.DisplayFor(modelItem => item.ParentForm)
-    </td>
+    </td>*@
     <td>
         <input type="checkbox" value="@item.IsActive" @(item.IsActive == false ? "" : "checked='checked'") class="Checkbox" onclick="CheckValue(@item.IsActive)" id="View_@item.IsActive" />
     </td>
@@ -62,8 +66,11 @@
     </td>
     
     <td>
-        @Html.ActionLink("Edit", "Create", new { Id = item.Id }, htmlAttributes: new { @class = "Mybtn" }) 
-           </td>
+        @if (permission.AllowUpdate)
+        {
+            @Html.ActionLink("Edit", "Create", new { Id = item.Id }, htmlAttributes: new { @class = "Mybtn" })
+        }
+    </td>
 </tr>
         <style>
             a.Mybtn {

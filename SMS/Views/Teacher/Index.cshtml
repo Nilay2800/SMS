@@ -3,12 +3,16 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var permission = ViewBag.Permission as SMS.Model.FormRoleMapping;
 }
 
 <h2>Teacher List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "AddTeacher", new { }, htmlAttributes: new { @class = "Mybtn" })
+    @if (permission.AllowInsert)
+    {
+       @Html.ActionLink("Create New", "AddTeacher", new { }, htmlAttributes: new { @class = "Mybtn" })
+    }
 </p>
 <table class="table">
     <tr>
@@ -55,12 +59,20 @@
     @*<td>
             @Html.DisplayFor(modelItem => item.CreatedOn)
         </td>*@
-<td>
-   
-    <a class="Mybtn" href="@Url.Action("EditTeacher", "Teacher", new { id = item.Id })">Edit</a> |
-    <a class="Mybtn" href="@Url.Action("Delete", "Teacher", new { id = item.Id })" onclick="return confirm('Are you sure you want to Delete??')">Delete</a>
 
+<td>
+    @if (permission.AllowUpdate)
+    {
+        <a class="Mybtn" href="@Url.Action("EditTeacher", "Teacher", new { id = item.Id })">Edit</a>
+        <text>|</text>
+    }
+    @if (permission.AllowDelete)
+    {
+        <a class="Mybtn" href="@Url.Action("Delete", "Teacher", new { id = item.Id })" onclick="return confirm('Are you sure you want to Delete??')">Delete</a>
+
+    }
 </td>
+
 </tr>
         <style>
             a.Mybtn {

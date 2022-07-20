@@ -22,6 +22,7 @@ namespace SMS.Controllers
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
+            ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Formmaster.ToString());
             List<FormModel> formlist = _formsService.GetAllForms();
             return View(formlist);
         }
