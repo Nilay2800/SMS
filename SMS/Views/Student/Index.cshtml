@@ -4,11 +4,19 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    a.Mybtn {
+        background: #777;
+        color: #fff;
+        display: inline-block;
+        padding: 6px 12px 6px 12px;
+        text-decoration: none;
+    }
+</style>
 <h2>Student List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new {  }, htmlAttributes: new { @class = "Mybtn" })
+    @Html.ActionLink("Create New", "Create", new { }, htmlAttributes: new { @class = "Mybtn" })
 </p>
 <table class="table">
     <tr>
@@ -36,45 +44,40 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Firstname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lastname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Standard)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactNumber)
-        </td>
-        <td>
-            
-            @Html.ActionLink("Edit", "Edit", new { StudentId = item.StudentId }, htmlAttributes: new { @class = "Mybtn" }) |
-            @Html.ActionLink("Delete", "Delete", new { Id = item.StudentId }, htmlAttributes: new { @class = "Mybtn" })
-        </td>
-    </tr>
-    <style>
-        a.Mybtn {
-            background : #777;
-            color: #fff;
-            display: inline-block;
-            padding: 6px 12px 6px 12px;
-            text-decoration: none;
-        }
-    </style>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Standard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                <a class="Mybtn" href="@Url.Action("Edit", "Student", new { StudentId = item.StudentId })">Edit</a> |
+                <a class="Mybtn" href="@Url.Action("Delete", "Student", new { Id = item.StudentId })" onclick="return confirm('Are you sure you want to Delete??')">Delete</a>
 
-}
+            </td>
+
+
+        </tr>
+
+
+    }
 
 </table>

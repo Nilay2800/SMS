@@ -37,7 +37,7 @@
         @Html.DisplayFor(modelItem => item.RoleCode)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.IsActive)
+        <input type="checkbox" value="@item.IsActive" @(item.IsActive == false ? "" : "checked='checked'") class="Checkbox" onclick="CheckValue(@item.IsActive)" id="View_@item.IsActive" />
     </td>
 
     <td>

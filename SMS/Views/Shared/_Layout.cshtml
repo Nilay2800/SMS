@@ -27,68 +27,68 @@
 
                     <div class="navbar-collapse collapse" id="mobile_menu">
                         @if (User.Identity.IsAuthenticated)
-                         {
-                        <ul class="nav navbar-nav">
-                            @{
-                                if (Session["Menu"] != null)
-                                {
-                                    List<SMS.Model.MenuVW> menus = (List<SMS.Model.MenuVW>)Session["Menu"];
-                                    foreach (var main in menus)
-                                     {
-                                        
-                                        if (main.SubMenu.Count > 0)
+                        {
+                            <ul class="nav navbar-nav">
+                                @{
+                                    if (Session["Menu"] != null)
+                                    {
+                                        List<SMS.Model.MenuVW> menus = (List<SMS.Model.MenuVW>)Session["Menu"];
+                                        foreach (var main in menus)
                                         {
-                                            <li>
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@main.Name<span class="caret"></span></a>
-                                                <ul class="dropdown-menu">
-                                                    @foreach (var submenu in main.SubMenu)
-                                                    {
-                                                        <li><a href="@Url.Content(submenu.NavigateURL)">@submenu.Name</a></li>
-                                                    }
-                                                </ul>
-                                            </li>
-                                        }
-                                        else
-                                        {
-                                            <li>
-                                                <a href="@Url.Content(main.NavigateURL)" id="@main.Name">@main.Name</a>
-                                            </li>
-                                        }
-                                    }
 
+                                            if (main.SubMenu.Count > 0)
+                                            {
+                                                <li>
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@main.Name<span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        @foreach (var submenu in main.SubMenu)
+                                                        {
+                                                            <li><a href="@Url.Content(submenu.NavigateURL)">@submenu.Name</a></li>
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a href="@Url.Content(main.NavigateURL)" id="@main.Name">@main.Name</a>
+                                                </li>
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        Response.Redirect("~/Account/Login");
+                                    }
                                 }
-                                else
-                                {
-                                    Response.Redirect("~/Account/Login");
-                                }
-                            }
-                        </ul>
+                            </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> @Session["UserName"]</a></li>
                                 <li><a href="@Url.Action("Logout","Account")">Log Out</a></li>
                             </ul>
-                         }
-                         else
-                         {
-                              <ul class="nav navbar-nav navbar-right">
+                        }
+                        else
+                        {
+                            <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                   
-                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret">                                    </span></a>
-                                   <ul class="dropdown-menu">
+
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret">                                    </span></a>
+                                    <ul class="dropdown-menu">
                                         <li><a href="@Url.Action("Login","Account")">Login</a></li>
                                         <li><a href="@Url.Action("Signup","Account")">Sign Up</a></li>
-                                   </ul>
+                                    </ul>
                                 </li>
-                              </ul>
-                         }
-                        
+                            </ul>
+                        }
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
     @RenderBody()
     <hr />
     <footer>

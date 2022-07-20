@@ -9,6 +9,7 @@ namespace SMS.Model
 {
     public class LoginModel
     {
+        [Display(Name = "Email Id")]
         [Required(ErrorMessage = "Email Id is required.")]
         public string EmailId { get; set; }
 
