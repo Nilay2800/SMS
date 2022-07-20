@@ -17,7 +17,20 @@ namespace SMS.Data
 
         public Signups GetUserById(int id)
         {
-            return _db.signups.Find(id);
+            var currentUser = _db.signups.Find(id)
+;
+            var roleName = (from rolemapping in _db.UserRoleMappings
+                         join role in _db.WebpagesRoles on rolemapping.RoleId equals role.RoleId
+                         where rolemapping.UserId == currentUser.Userid
+                         orderby rolemapping.id descending
+                         select role.RoleId).FirstOrDefault();
+            var User = new Signups()
+            {
+                UserName = currentUser.UserName,
+                Email = currentUser.Email,
+                RoleId = roleName
+            };
+            return User;
         }
         public Signups UpdateUsersRole(Signups pur)
         {
