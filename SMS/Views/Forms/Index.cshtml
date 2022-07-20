@@ -55,10 +55,10 @@
         @Html.DisplayFor(modelItem => item.ParentForm)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.IsActive)
+        <input type="checkbox" value="@item.IsActive" @(item.IsActive == false ? "" : "checked='checked'") class="Checkbox" onclick="CheckValue(@item.IsActive)" id="View_@item.IsActive" />
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.IsDisplayMenu)
+        <input type="checkbox" value="@item.IsActive" @(item.IsActive == false ? "" : "checked='checked'") class="Checkbox" onclick="CheckValue(@item.IsActive)" id="View_@item.IsActive" />
     </td>
     
     <td>

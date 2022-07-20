@@ -12,6 +12,7 @@ namespace SMS.Model
         public int Id { get; set; }
         [Display(Name = "Annoucement")]
         public string AnnoucementDetail { get; set; }
+        [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }
     }
 }
