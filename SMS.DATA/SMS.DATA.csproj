@@ -129,13 +129,19 @@
     <Compile Include="Migrations\202207200455221_update_table_Signup.Designer.cs">
       <DependentUpon>202207200455221_update_table_Signup.cs</DependentUpon>
     </Compile>
+
     <Compile Include="Migrations\202207201248393_changes_in_status.cs" />
     <Compile Include="Migrations\202207201248393_changes_in_status.Designer.cs">
       <DependentUpon>202207201248393_changes_in_status.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202207210555111_Added_status_in_teacher.cs" />
-    <Compile Include="Migrations\202207210555111_Added_status_in_teacher.Designer.cs">
-      <DependentUpon>202207210555111_Added_status_in_teacher.cs</DependentUpon>
+	  <Compile Include="Migrations\202207210555111_Added_status_in_teacher.Designer.cs">
+		  <DependentUpon>202207210555111_Added_status_in_teacher.cs</DependentUpon>
+	  </Compile>	
+    <Compile Include="Migrations\202207201022038_update_table_Signup1.cs" />
+    <Compile Include="Migrations\202207201022038_update_table_Signup1.Designer.cs">
+      <DependentUpon>202207201022038_update_table_Signup1.cs</DependentUpon>
+     
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RoleMasterProvider.cs" />
@@ -185,11 +191,16 @@
     <EmbeddedResource Include="Migrations\202207200455221_update_table_Signup.resx">
       <DependentUpon>202207200455221_update_table_Signup.cs</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="Migrations\202207201248393_changes_in_status.resx">
       <DependentUpon>202207201248393_changes_in_status.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207210555111_Added_status_in_teacher.resx">
-      <DependentUpon>202207210555111_Added_status_in_teacher.cs</DependentUpon>
+	  <EmbeddedResource Include="Migrations\202207210555111_Added_status_in_teacher.resx">
+		  <DependentUpon>202207210555111_Added_status_in_teacher.cs</DependentUpon>
+	  </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207201022038_update_table_Signup1.resx">
+      <DependentUpon>202207201022038_update_table_Signup1.cs</DependentUpon>
+
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
