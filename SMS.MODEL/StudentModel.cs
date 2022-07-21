@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace SMS.Model
 {
-   public  class Student
+   public class StudentModel
     {
         public Guid StudentId { get; set; }
         [Required(ErrorMessage = "FirstName is required.")]
-        [Display(Name ="First Name")]
+        [Display(Name = "First Name")]
         public string Firstname { get; set; }
         [Display(Name = "Last Name")]
         [Required(ErrorMessage = "LastName is required.")]
@@ -27,6 +26,6 @@ namespace SMS.Model
         [Display(Name = "Contact Number")]
         public string ContactNumber { get; set; }
         public bool Status { get; set; } = true;
-       
+
     }
 }

@@ -17,7 +17,7 @@ namespace SMS.Data
         {
             return _db.students.Find(StudentId);
         }
-        public Guid CreateStudent(Student students)
+        public Guid CreateStudent(StudentModel students)
         {
             var createdby = (from Student in _db.students
                              where students.Email == SessionHelper.EmailId
@@ -39,9 +39,10 @@ namespace SMS.Data
             _db.SaveChanges();
             return students.StudentId;
         }
-        public Student UpdateStudent(Student students)
+        public StudentModel UpdateStudent(StudentModel students)
         {
-          
+
+            StudentModel student = new StudentModel();
             var obj1 = GetStudentById(students.StudentId);
             obj1.Firstname = students.Firstname;
             obj1.Lastname = students.Lastname;
@@ -53,9 +54,25 @@ namespace SMS.Data
             _db.SaveChanges();
             return students;
         }
-        public List<Student> GetallStudent()
+        public List<StudentModel> GetallStudent()
         {
-            return _db.students.ToList();
+           
+            var squery = (from student in _db.students
+                          where student.Status == true
+                          select new StudentModel
+                          {
+
+                              StudentId = student.StudentId, 
+                              Firstname = student.Firstname,
+                              Lastname = student.Lastname,
+                              Age = student.Age,
+                              Gender = student.Gender,
+                              Standard = student.Standard,
+                              Email = student.Email,
+                              ContactNumber = student.ContactNumber
+
+                          }) ;
+            return squery.ToList();
         }
 
         public void DeleteStudent(Guid Id)

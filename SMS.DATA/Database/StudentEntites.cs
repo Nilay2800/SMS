@@ -32,6 +32,21 @@ namespace SMS.Data.Database
         public DbSet<WebpagesUserRole> WebpagesUserRoles { get; set; }
         public DbSet<FormRoleMapping> FormRoleMappings { get; set; }
 
+
+        public override int SaveChanges()
+        {
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                var entity = entry.Entity;
+                if (entry.State == EntityState.Deleted)
+                {
+                    entry.State = EntityState.Modified;
+
+                    entity.GetType().GetProperty("Status").SetValue(entity, false) ;
+                }
+            }
+            return base.SaveChanges();
+        }
     }
 
     //public class MyEntity

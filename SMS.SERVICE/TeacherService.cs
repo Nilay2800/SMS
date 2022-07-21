@@ -15,23 +15,23 @@ namespace SMS.Service
         {
             teacherProvider = new TeacherProvider();
         }
-        public List<Teacher> GetAllTeacher()
+        public List<TeacherModel> GetAllTeacher()
         {
             var teachers = teacherProvider.GetAllTeacher();
             return teachers;
         }
-        public int CreateTeacher(Teacher teachers)
+        public int CreateTeacher(TeacherModel teachers)
         {         
             return teacherProvider.CreateTeacher(teachers);
         }
-        public Teacher UpdateTeacher(Teacher teacherModel)
+        public TeacherModel UpdateTeacher(TeacherModel teacherModel)
         {
             return teacherProvider.UpdateTeacher(teacherModel);
         }
-        public Teacher GetTeacherById(int id)
+        public TeacherModel GetTeacherById(int id)
         {
             var data = teacherProvider.GetTeacherById(id);
-            Teacher teacherModel = new Teacher()
+            TeacherModel teacherModel = new TeacherModel()
             {
                 Id = data.Id,
                 IsActive = data.IsActive,

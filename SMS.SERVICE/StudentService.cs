@@ -15,10 +15,11 @@ namespace SMS.Service
         {
             _studentProvider = new StudentProvider();
         }
-        public Student GetStudentById(Guid StudentId)
+        public StudentModel GetStudentById(Guid StudentId)
         {
             var data = _studentProvider.GetStudentById(StudentId);
-            Student students = new Student()
+           
+            StudentModel students = new StudentModel()
             {
                 StudentId = Guid.NewGuid(),
                 Firstname = data.Firstname,
@@ -27,26 +28,28 @@ namespace SMS.Service
                 Gender = data.Gender,
                 Standard = data.Standard,
                 Email = data.Email,
-                ContactNumber = data.ContactNumber
+                ContactNumber = data.ContactNumber,
+                Status = data.Status
 
             };
             return students;
         }
-        public Guid CreateStudent(Student student)
+        public Guid CreateStudent(StudentModel student)
         {
             return _studentProvider.CreateStudent(student);
         }
-        public Student UpdateStudent(Student students)
+        public StudentModel UpdateStudent(StudentModel students)
         {
            return _studentProvider.UpdateStudent(students);
         }
-        public List<Student> GetallStudent()
+        public List<StudentModel> GetallStudent()
         {
             var studentlist = _studentProvider.GetallStudent();
             return studentlist;
         }
         public void DeleteStudent(Guid Id)
         {
+           
             _studentProvider.DeleteStudent(Id);
         }
     }
