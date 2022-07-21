@@ -19,8 +19,10 @@ namespace SMS.Model
         public string Password { get; set; }
         
         [NotMapped]
+        [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
         [NotMapped]
+        [Display(Name = "Role Name")]
         public int RoleId { get; set; }
     }
 }

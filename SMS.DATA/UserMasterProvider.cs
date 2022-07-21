@@ -20,7 +20,7 @@ namespace SMS.Data
             
             var currentUser = _db.signups.Find(id);
 
-            var roleName = (from rolemapping in _db.UserRoleMappings
+            var roleid = (from rolemapping in _db.UserRoleMappings
                             join role in _db.WebpagesRoles on rolemapping.RoleId equals role.RoleId
                             where rolemapping.UserId == currentUser.Userid
                             orderby rolemapping.id descending
@@ -30,7 +30,7 @@ namespace SMS.Data
                 Userid=currentUser.Userid,
                 UserName = currentUser.UserName,
                 Email = currentUser.Email,
-                RoleId = currentUser.RoleId
+                RoleId = roleid 
             };
             return User;
         }
