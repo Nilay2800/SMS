@@ -14,10 +14,21 @@ namespace SMS.Data
 
         }
      
-        public List<Teacher> GetAllTeacher()
+        public List<TeacherModel> GetAllTeacher()
         {
-           
-          return _db.teachers.ToList();
+
+            var squery = (from teacher in _db.teachers
+                          where teacher.Status == true
+                          select new TeacherModel
+                          {  
+                              Id = teacher.Id,
+                              FirstName = teacher.FirstName,
+                              LastName = teacher.LastName,
+                              Email = teacher.Email,
+                              MobileNumber = teacher.MobileNumber,
+                              IsActive = teacher.IsActive
+                          });
+            return squery.ToList();
         }
         public Teacher GetTeacherById(int id)
         {
@@ -25,7 +36,7 @@ namespace SMS.Data
         }
 
 
-        public int CreateTeacher(Teacher teachers)
+        public int CreateTeacher(TeacherModel teachers)
         {
            
             var CreatedBy = (from Teacher in _db.teachers
@@ -45,7 +56,7 @@ namespace SMS.Data
             _db.SaveChanges();
             return teachers.Id;
         }
-        public Teacher UpdateTeacher(Teacher teacherModel)
+        public TeacherModel UpdateTeacher(TeacherModel teacherModel)
         {
             var objtea = GetTeacherById(teacherModel.Id);
             objtea.FirstName = teacherModel.FirstName;

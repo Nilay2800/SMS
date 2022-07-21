@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SMS.Model.Student>
+﻿@model IEnumerable<SMS.Model.StudentModel>
 
 @{
     ViewBag.Title = "Index";
@@ -47,6 +47,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ContactNumber)
         </th>
+        
         <th></th>
     </tr>
 
@@ -74,6 +75,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.ContactNumber)
         </td>
+       
         <td>
             @if (permission.AllowUpdate)
             {

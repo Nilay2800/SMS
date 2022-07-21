@@ -28,7 +28,7 @@ namespace SMS.Controllers
                 return RedirectToAction("AccessDenied", "Base");
             }
             ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Student.ToString());
-            List<Student> studentlist = _studentService.GetallStudent().ToList();
+            List<StudentModel> studentlist = _studentService.GetallStudent().ToList();
             studentlist = _studentService.GetallStudent().ToList();
             if (studentId == null)
             {
@@ -46,11 +46,11 @@ namespace SMS.Controllers
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
-            Student s1 = new Student();
+            StudentModel s1 = new StudentModel();
             return View(s1);
         }
         [HttpPost]
-        public ActionResult Create(Student student)
+        public ActionResult Create(StudentModel student)
         {
             _studentService.CreateStudent(student);
             TempData["Message"] = "Student Added Successfully!!";
@@ -63,13 +63,13 @@ namespace SMS.Controllers
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
-            Student student = _studentService.GetStudentById(StudentId);
+            StudentModel student = _studentService.GetStudentById(StudentId);
             return View(student);
         }
         [HttpPost]
-        public ActionResult Edit(Student student)
+        public ActionResult Edit(StudentModel student)
         {
-            Student student1 =  _studentService.UpdateStudent(student);
+            StudentModel student1 =  _studentService.UpdateStudent(student);
             TempData["Message"] = "Detail Updated Successfully!!";
             return RedirectToAction("Index");
         }

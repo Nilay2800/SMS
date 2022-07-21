@@ -73,6 +73,7 @@
     <Compile Include="AnnoucementModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignupModel.cs" />
+    <Compile Include="StudentModel.cs" />
     <Compile Include="Teacher.cs" />
     <Compile Include="TeacherModel.cs" />
     <Compile Include="UserRoleMapping.cs" />

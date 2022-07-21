@@ -26,7 +26,7 @@ namespace SMS.Controllers
 
             
             ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Teacher.ToString());
-            List<Teacher> teachers = teacherService.GetAllTeacher();
+            List<TeacherModel> teachers = teacherService.GetAllTeacher();
 
             return View(teachers);
         }
@@ -43,7 +43,7 @@ namespace SMS.Controllers
 
 
         [HttpPost]
-        public ActionResult AddTeacher(Teacher teacher)
+        public ActionResult AddTeacher(TeacherModel teacher)
         {
             teacherService.CreateTeacher(teacher);
             return RedirectToAction("Index","Teacher");
@@ -55,15 +55,15 @@ namespace SMS.Controllers
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
-            Teacher teacherModel = teacherService.GetTeacherById(id);
+            TeacherModel teacherModel = teacherService.GetTeacherById(id);
             return View(teacherModel);
         }
 
 
         [HttpPost]
-        public ActionResult EditTeacher(Teacher teacherModel)
+        public ActionResult EditTeacher(TeacherModel teacherModel)
         {
-            Teacher teacherModel1 = teacherService.UpdateTeacher(teacherModel);
+            TeacherModel teacherModel1 = teacherService.UpdateTeacher(teacherModel);
             return RedirectToAction("Index");
 
         }

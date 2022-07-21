@@ -25,6 +25,7 @@ namespace SMS.Model
         [Display(Name = "Active")]
         public bool IsActive { get; set; }
         public DateTime? CreatedOn { get; set; }
+        public bool Status { get; set; } = true;
 
     }
 }

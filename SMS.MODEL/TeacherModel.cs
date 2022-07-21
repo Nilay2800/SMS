@@ -11,17 +11,23 @@ namespace SMS.Model
     {
         public int Id { get; set; }
         [Required(ErrorMessage ="required")]
+        [Display(Name = "First Name")]
+
         public string FirstName { get; set; }
+        [Display(Name = "Last Name")]
         [Required(ErrorMessage = "required")]
         public string LastName { get; set; }
+        [Display(Name = "Email")]
         [Required(ErrorMessage = "required")]
         [EmailAddress]
         public string Email { get; set; }
         [Required(ErrorMessage = "required")]
         [MinLength(10,ErrorMessage ="mobile no should be 11")]
+        [Display(Name = "Contact Number")]
         public string MobileNumber { get; set; }
         [Display(Name = "Active")]
         public bool IsActive { get; set; }
         public DateTime? CreatedOn { get; set; }
+        public bool Status { get; set; } = true;
     }
 }

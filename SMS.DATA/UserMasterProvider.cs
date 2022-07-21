@@ -28,7 +28,7 @@ namespace SMS.Data
             {
                 UserName = currentUser.UserName,
                 Email = currentUser.Email,
-                RoleId = roleName
+                RoleId = currentUser.RoleId
             };
             return User;
         }
