@@ -17,15 +17,17 @@ namespace SMS.Data
 
         public Signups GetUserById(int id)
         {
-            var currentUser = _db.signups.Find(id)
-;
+            
+            var currentUser = _db.signups.Find(id);
+
             var roleName = (from rolemapping in _db.UserRoleMappings
-                         join role in _db.WebpagesRoles on rolemapping.RoleId equals role.RoleId
-                         where rolemapping.UserId == currentUser.Userid
-                         orderby rolemapping.id descending
-                         select role.RoleId).FirstOrDefault();
+                            join role in _db.WebpagesRoles on rolemapping.RoleId equals role.RoleId
+                            where rolemapping.UserId == currentUser.Userid
+                            orderby rolemapping.id descending
+                            select role.RoleId).FirstOrDefault();
             var User = new Signups()
             {
+                Userid=currentUser.Userid,
                 UserName = currentUser.UserName,
                 Email = currentUser.Email,
                 RoleId = currentUser.RoleId
@@ -34,13 +36,26 @@ namespace SMS.Data
         }
         public Signups UpdateUsersRole(Signups pur)
         {
-            UserRoleMapping _userRoleMapping = new UserRoleMapping();
-            {
-                _userRoleMapping.RoleId = pur.RoleId;
-                _userRoleMapping.UserId = pur.Userid;
-            }
-            _db.UserRoleMappings.Add(_userRoleMapping);
-            _db.SaveChanges();
+            
+            
+                var v = _db.UserRoleMappings.Where(a => a.UserId == pur.Userid).FirstOrDefault();
+                if (v != null)
+                {
+                    UserRoleMapping userRoleMapping = _db.UserRoleMappings.FirstOrDefault(x => x.id == v.id);
+                    userRoleMapping.RoleId = pur.RoleId;
+                    userRoleMapping.UserId = pur.Userid;
+                    _db.SaveChanges();
+                }
+                else
+                {
+                     UserRoleMapping _userRoleMapping = new UserRoleMapping();
+                    _userRoleMapping.RoleId = pur.RoleId;
+                    _userRoleMapping.UserId = pur.Userid;
+                    _db.UserRoleMappings.Add(_userRoleMapping);
+                    _db.SaveChanges();
+                }
+            
+            
 
             return pur;
         }
