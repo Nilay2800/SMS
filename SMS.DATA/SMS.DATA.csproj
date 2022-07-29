@@ -146,18 +146,16 @@
     <Compile Include="Migrations\202207210644275_Test_migration.Designer.cs">
       <DependentUpon>202207210644275_Test_migration.cs</DependentUpon>
     </Compile>
-
     <Compile Include="Migrations\202207271146001_EMAIL_Template.cs" />
-	  <Compile Include="Migrations\202207271146001_EMAIL_Template.Designer.cs">
-		  <DependentUpon>202207271146001_EMAIL_Template.cs</DependentUpon>
-	  </Compile>
-
+    <Compile Include="Migrations\202207271146001_EMAIL_Template.Designer.cs">
+      <DependentUpon>202207271146001_EMAIL_Template.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202207260754551_update_table.cs" />
     <Compile Include="Migrations\202207260754551_update_table.Designer.cs">
       <DependentUpon>202207260754551_update_table.cs</DependentUpon>
-
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="RoleMasterProvider.cs" />
     <Compile Include="StudentProvider.cs" />
     <Compile Include="BaseProvider.cs" />
@@ -217,14 +215,16 @@
     <EmbeddedResource Include="Migrations\202207210644275_Test_migration.resx">
       <DependentUpon>202207210644275_Test_migration.cs</DependentUpon>
     </EmbeddedResource>
-
-	  <EmbeddedResource Include="Migrations\202207271146001_EMAIL_Template.resx">
-		  <DependentUpon>202207271146001_EMAIL_Template.cs</DependentUpon>
-	  </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207271146001_EMAIL_Template.resx">
+      <DependentUpon>202207271146001_EMAIL_Template.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207260754551_update_table.resx">
       <DependentUpon>202207260754551_update_table.cs</DependentUpon>
-
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
