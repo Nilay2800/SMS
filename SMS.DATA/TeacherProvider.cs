@@ -16,7 +16,6 @@ namespace SMS.Data
      
         public List<TeacherModel> GetAllTeacher()
         {
-
             var squery = (from teacher in _db.teachers
                           where teacher.Status == true
                           select new TeacherModel
