@@ -100,6 +100,7 @@
   <ItemGroup>
     <Compile Include="AnnoucementProvider.cs" />
     <Compile Include="Database\StudentEntites.cs" />
+    <Compile Include="EmailTemplateProvider.cs" />
     <Compile Include="FormRoleMappingProvider.cs" />
     <Compile Include="Migrations\202207071155564_initial_create.cs" />
     <Compile Include="Migrations\202207071155564_initial_create.Designer.cs">
@@ -144,6 +145,10 @@
     <Compile Include="Migrations\202207210644275_Test_migration.cs" />
     <Compile Include="Migrations\202207210644275_Test_migration.Designer.cs">
       <DependentUpon>202207210644275_Test_migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207271146001_EMAIL_Template.cs" />
+    <Compile Include="Migrations\202207271146001_EMAIL_Template.Designer.cs">
+      <DependentUpon>202207271146001_EMAIL_Template.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RoleMasterProvider.cs" />
@@ -204,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207210644275_Test_migration.resx">
       <DependentUpon>202207210644275_Test_migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207271146001_EMAIL_Template.resx">
+      <DependentUpon>202207271146001_EMAIL_Template.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

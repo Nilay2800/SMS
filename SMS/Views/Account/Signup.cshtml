@@ -1,4 +1,4 @@
-﻿@model SMS.Model.SignupModel
+﻿@model SMS.Model.User
 
 @{
     ViewBag.Title = "Signup";
@@ -12,22 +12,22 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        @*<h4>SignupModel</h4>*@
+        <h4></h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -47,27 +47,26 @@
             </div>
         </div>
 
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RoleId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Signup" class="mybtn" />
+                <input type="submit" value="SignUp" class="btn btn-default" /> 
+                @*@Html.ActionLink("Login", "Index", new { }, htmlAttributes: new { @class = "btn btn-default" })*@
             </div>
         </div>
     </div>
 }
 
-
 @*<div>
-    @Html.ActionLink("Login", "Login", null, htmlAttributes: new { @class = "mybtn" })
+    @Html.ActionLink("Back to List", "Index")
 </div>*@
-<style type="text/css">
-    a.mybtn {
-        background: #777;
-        color: #fff;
-        display: inline-block;
-        padding: 6px 12px 6px 12px;
-        text-decoration: none;
-    }
-</style>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

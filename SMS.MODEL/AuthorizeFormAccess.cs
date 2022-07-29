@@ -16,8 +16,9 @@ namespace SMS.Model
             Annoucement = 4,
             Rolemaster=6,
             Formmaster=7,
-            Usermaster=8
-            
+            Usermaster=8,
+            EMAILTEMPLATE=9
+
         }
     }
 }

@@ -14,15 +14,18 @@ namespace SMS.Data
 
         }
         
-        public WebpagesRole GetRolesById(int Id)
+        public webpages_Roles GetRolesById(int Id)
         {
-            return _db.WebpagesRoles.Find(Id);
+            return _db.webpages_Roles.Find(Id);
         }
         public List<RoleModel> GetAllRoles()
         {
-            var data = (from a in _db.WebpagesRoles
+            var data = (from a in _db.webpages_Roles
                         select new RoleModel
                         {
+                           
+
+
                             Id = a.RoleId,
                             Name = a.RoleName,
                             RoleCode = a.RoleCode,
@@ -31,13 +34,13 @@ namespace SMS.Data
 
             return data;
         }
-        public WebpagesRole GetRolesByName(string roleName)
+        public webpages_Roles GetRolesByName(string roleName)
         {
-            return _db.WebpagesRoles.Where(x => x.RoleName == roleName).FirstOrDefault();
+            return _db.webpages_Roles.Where(x => x.RoleName == roleName).FirstOrDefault();
         }
-        public WebpagesRole CreateRole(WebpagesRole role)
+        public webpages_Roles CreateRole(webpages_Roles role)
         {
-            WebpagesRole _webpages_Roles = new WebpagesRole()
+            webpages_Roles _webpages_Roles = new webpages_Roles()
             {
                 RoleId = role.RoleId,
                 RoleName = role.RoleName,
@@ -46,7 +49,7 @@ namespace SMS.Data
                 
             };
 
-            _db.WebpagesRoles.Add(_webpages_Roles);
+            _db.webpages_Roles.Add(_webpages_Roles);
             _db.SaveChanges();
 
             return role;

@@ -15,17 +15,17 @@ namespace SMS.Service
         {
             userMasterProvider = new UserMasterProvider();
         }
-        public List<Signups> GetAllUser()
+        public List<User> GetAllUser()
         {
             return userMasterProvider.GetAllUser();
         }
 
-        public Signups GetUserById(int id)
+        public User GetUserById(int id)
         {
             return userMasterProvider.GetUserById(id);
         }
 
-        public Signups UpdateUsersRole(Signups pur)
+        public User UpdateUsersRole(User pur)
         {
             return userMasterProvider.UpdateUsersRole(pur);
         }
@@ -35,13 +35,21 @@ namespace SMS.Service
             return userMasterProvider.BindRole();
         }
 
-        public Signups DeleteUser(int id)
+        public User DeleteUser(int id)
         {
             return userMasterProvider.DeleteUser(id);
         }
-        public Signups CreateUser(Signups user)
+        public User CreateUser(User user)
         {
             return userMasterProvider.CreateUser(user);
+        }
+        public webpages_Membership GetWebpages_MembershipByUserId(int userid)
+        {
+            return userMasterProvider.GetWebpages_MembershipByUserId(userid);
+        }
+        public User GetEmailById(string EmailId)
+        {
+            return userMasterProvider.GetEmailById(EmailId);
         }
     }
 }

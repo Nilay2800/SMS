@@ -7,51 +7,52 @@ using System.Threading.Tasks;
 
 namespace SMS.Data
 {
+   
     public class UserMasterProvider:BaseProvider
     {
-        public List<Signups> GetAllUser()
+        public List<User> GetAllUser()
         {
-            var User = _db.signups.ToList();
+            var User = _db.usersProfile.ToList();
             return User;
         }
 
-        public Signups GetUserById(int id)
+        public User GetUserById(int id)
         {
             
-            var currentUser = _db.signups.Find(id);
+            var currentUser = _db.usersProfile.Find(id);
 
-            var roleid = (from rolemapping in _db.UserRoleMappings
-                            join role in _db.WebpagesRoles on rolemapping.RoleId equals role.RoleId
+            var roleid = (from rolemapping in _db.webpages_UsersInRoles
+                          join role in _db.webpages_Roles on rolemapping.RoleId equals role.RoleId
                             where rolemapping.UserId == currentUser.Userid
-                            orderby rolemapping.id descending
+                            orderby rolemapping.UserId descending
                             select role.RoleId).FirstOrDefault();
-            var User = new Signups()
+            var user = new User()
             {
                 Userid=currentUser.Userid,
                 UserName = currentUser.UserName,
                 Email = currentUser.Email,
-                RoleId = roleid 
+                RoleId = roleid
             };
-            return User;
+            return user;
         }
-        public Signups UpdateUsersRole(Signups pur)
+        public User UpdateUsersRole(User pur)
         {
             
             
-                var v = _db.UserRoleMappings.Where(a => a.UserId == pur.Userid).FirstOrDefault();
+                var v = _db.webpages_UsersInRoles.Where(a => a.UserId == pur.Userid).FirstOrDefault();
                 if (v != null)
                 {
-                    UserRoleMapping userRoleMapping = _db.UserRoleMappings.FirstOrDefault(x => x.id == v.id);
+                    webpages_UsersInRoles userRoleMapping = _db.webpages_UsersInRoles.FirstOrDefault(x => x.Id == v.Id);
                     userRoleMapping.RoleId = pur.RoleId;
                     userRoleMapping.UserId = pur.Userid;
                     _db.SaveChanges();
                 }
                 else
                 {
-                     UserRoleMapping _userRoleMapping = new UserRoleMapping();
+                webpages_UsersInRoles _userRoleMapping = new webpages_UsersInRoles();
                     _userRoleMapping.RoleId = pur.RoleId;
                     _userRoleMapping.UserId = pur.Userid;
-                    _db.UserRoleMappings.Add(_userRoleMapping);
+                    _db.webpages_UsersInRoles.Add(_userRoleMapping);
                     _db.SaveChanges();
                 }
             
@@ -61,20 +62,20 @@ namespace SMS.Data
         }
         public List<DropDownList> BindRole()
         {
-            return _db.WebpagesRoles.Where(s => s.IsActive == true).Select(x => new DropDownList { Key = x.RoleName, Value = x.RoleId }).ToList();
+            return _db.webpages_Roles.Where(s => s.IsActive == true).Select(x => new DropDownList { Key = x.RoleName, Value = x.RoleId }).ToList();
         }
 
-        public Signups DeleteUser(int id)
+        public User DeleteUser(int id)
         {
-            var s = _db.signups.Find(id);
-            _db.signups.Remove(s);
+            var s = _db.usersProfile.Find(id);
+            _db.usersProfile.Remove(s);
             _db.SaveChanges();
             return s;
         }
-        public Signups CreateUser(Signups user)
+        public User CreateUser(User user)
         {
-           
-            Signups obj = new Signups()
+
+            User obj = new User()
             {
                 RoleId = user.RoleId,
                 Userid = user.Userid,
@@ -83,9 +84,18 @@ namespace SMS.Data
                 Password = user.Password,
                 
             };
-            _db.signups.Add(obj);
+            _db.usersProfile.Add(obj);
             _db.SaveChanges();
             return user;
+        }
+        public webpages_Membership GetWebpages_MembershipByUserId(int userid)
+        {
+            return _db.webpages_Memberships.Where(a => a.UserId == userid).FirstOrDefault();
+        }
+
+        public User GetEmailById(string EmailId)
+        {
+            return _db.usersProfile.Where(e => e.Email == EmailId).FirstOrDefault();
         }
     }
 }

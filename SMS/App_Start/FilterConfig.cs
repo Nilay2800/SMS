@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using SMS.Filters;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SMS
@@ -9,6 +10,7 @@ namespace SMS
         {
             //filters.Add(new AuthorizeAttribute());
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new AuthenticationFilter());
         }
     }
 }

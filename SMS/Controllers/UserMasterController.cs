@@ -24,7 +24,7 @@ namespace SMS.Controllers
                 return RedirectToAction("AccessDenied", "Base");
             }
             ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString());
-            List<Signups> UserList = userMasterService.GetAllUser();
+            List<User> UserList = userMasterService.GetAllUser();
             return View(UserList);
         }
         public ActionResult EditUserRoleMapping(int id)
@@ -35,19 +35,19 @@ namespace SMS.Controllers
             }
             StudentEntites _db = new StudentEntites();
             ViewBag.RoleList = userMasterService.BindRole();
-            Signups user = userMasterService.GetUserById(id);
+            User user = userMasterService.GetUserById(id);
             return View(user);
         }
 
 
         [HttpPost]
-        public ActionResult EditUserRoleMapping(Signups pur)
+        public ActionResult EditUserRoleMapping(User pur)
         {
-            Signups objPurchaseModel = userMasterService.UpdateUsersRole(pur);
+            User objPurchaseModel = userMasterService.UpdateUsersRole(pur);
             return RedirectToAction("DisplayUser");
         }
     
-        public ActionResult DeleteUser(int id, Signups user)
+        public ActionResult DeleteUser(int id, User user)
         {
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString(), AcessPermission.IsDelete))
             {
@@ -62,12 +62,12 @@ namespace SMS.Controllers
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
-            Signups obj = new Signups();
+            User obj = new User();
             
             return View();
         }
         [HttpPost]
-        public ActionResult CreateUser(Signups user)
+        public ActionResult CreateUser(User user)
         {
             userMasterService.CreateUser(user);
             return RedirectToAction("DisplayUser");
