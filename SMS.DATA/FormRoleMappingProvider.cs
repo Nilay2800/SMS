@@ -149,9 +149,9 @@ namespace SMS.Data
 
         public FormRoleMapping CheckFormAccess(string _formaccessCode)
         {
-            int _roleID = (from user in _db.signups
-                           join roles in _db.UserRoleMappings on user.Userid equals roles.UserId
-                           where user.Email == SessionHelper.EmailId
+            int _roleID = (from user in _db.usersProfile
+                           join roles in _db.webpages_UsersInRoles on user.Userid equals roles.UserId
+                           where user.Userid == SessionHelper.UserId
                            select roles.RoleId).FirstOrDefault();
 
             SqlParameter param1 = new SqlParameter("@formaccessCode", _formaccessCode);
@@ -167,6 +167,14 @@ namespace SMS.Data
                 AcessPermission.Edit = _roleRights.AllowUpdate;
                 AcessPermission.Delete = _roleRights.AllowDelete;
             }
+            //else if ("sadmin" != null )
+            //{
+            //    AcessPermission.AllowMenu = _roleRights.AllowMenu;
+            //    AcessPermission.View = _roleRights.AllowView;
+            //    AcessPermission.Add = _roleRights.AllowInsert;
+            //    AcessPermission.Edit = _roleRights.AllowUpdate;
+            //    AcessPermission.Delete = _roleRights.AllowDelete;
+            //}
             else
             {
                 AcessPermission.AllowMenu = false;

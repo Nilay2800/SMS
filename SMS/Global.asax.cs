@@ -15,21 +15,31 @@ namespace SMS
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
+            
         {
+            //  AreaRegistration.RegisterAllAreas();
+            //  FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            //  RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ////  InitializeAuthenticationProcess();
+            //  BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Database.SetInitializer<StudentEntites>(null);
+            //  BundleTable.EnableOptimizations = true;
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            InitializeAuthenticationProcess();
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //Database.SetInitializer<StudentEntites>(null);
-        }
-        private void InitializeAuthenticationProcess()
-        {
-            if (!WebSecurity.Initialized)
-            {
-                WebSecurity.InitializeDatabaseConnection("StudentEntites", "Signups", "Userid", "Email",false);
-            }
 
+            BundleTable.EnableOptimizations = true;
         }
     }
-}
+        //private void InitializeAuthenticationProcess()
+        //{
+        //    if (!WebSecurity.Initialized)
+        //    {
+        //        WebSecurity.InitializeDatabaseConnection("StudentEntites", "User", "Userid", "UserName", true);
+        //    }
+
+        //}
+    }
+

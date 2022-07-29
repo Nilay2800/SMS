@@ -28,7 +28,7 @@ namespace SMS.Controllers
             if (Id > 0)
             {
                 model.RoleId = Id;
-                model.RoleName = roleMasterService.GetRolesById(Id).Name;
+                model.RoleName = roleMasterService.GetRolesById(Id).RoleName;
             }
             List<FormRoleMapping> Formrolemapping = FormRoleMapping_Read(model.RoleId);
             return View(Formrolemapping);

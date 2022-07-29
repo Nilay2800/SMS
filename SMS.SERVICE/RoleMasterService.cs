@@ -22,24 +22,26 @@ namespace SMS.Service
         }
        
 
-        public RoleModel GetRolesById(int Id)
+        public webpages_Roles GetRolesById(int Id)
         {
-            var data = roleMasterProvider.GetRolesById(Id);
-            RoleModel role = new RoleModel()
-            {
-                Id = data.RoleId,
-                Name = data.RoleName,
-                RoleCode = data.RoleCode,
-                IsActive = data.IsActive
-            };
-            return role;
+            //var data = roleMasterProvider.GetRolesById(Id);
+            //webpages_Roles role = new webpages_Roles()
+            //{
+            //    RoleId = data.RoleId,
+            //    RoleName = data.RoleName,
+            //    RoleCode = data.RoleCode,
+            //    IsActive = data.IsActive
+            //};
+            //return role;
+
+            return roleMasterProvider.GetRolesById(Id);
         }
-        public WebpagesRole GetRolesByName(string roleName)
+        public webpages_Roles GetRolesByName(string roleName)
         {
             return roleMasterProvider.GetRolesByName(roleName);
         }
 
-        public WebpagesRole CreateRole(WebpagesRole role)
+        public webpages_Roles CreateRole(webpages_Roles role)
         {
             return roleMasterProvider.CreateRole(role);
         }

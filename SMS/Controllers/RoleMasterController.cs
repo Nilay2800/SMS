@@ -37,7 +37,7 @@ namespace SMS.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateRole(WebpagesRole role)
+        public ActionResult CreateRole(webpages_Roles role)
         {
             roleMasterService.CreateRole(role);
             return RedirectToAction("Index");

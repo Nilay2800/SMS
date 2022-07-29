@@ -23,15 +23,16 @@ namespace SMS.Data.Database
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public DbSet<Teacher> teachers { get; set; }
-        public DbSet<Annoucement> annoucements { get; set; }
-        public DbSet<Signups> signups { get; set; }
+        public DbSet<Annoucement> annoucements { get; set; }    
         public DbSet<Student> students { get; set; }
-        public DbSet<FormMst> formModel { get; set; }
-        public DbSet<WebpagesRole> WebpagesRoles { get; set; }
-        public DbSet<UserRoleMapping> UserRoleMappings { get; set; }
-        public DbSet<WebpagesUserRole> WebpagesUserRoles { get; set; }
+        public DbSet<FormMst> formModel { get; set; }      
         public DbSet<FormRoleMapping> FormRoleMappings { get; set; }
-
+        public DbSet<webpages_Roles> webpages_Roles { get; set; }
+        public DbSet<webpages_UsersInRoles> webpages_UsersInRoles { get; set; }
+        public DbSet<User> usersProfile { get; set; }
+        public DbSet<webpages_Membership> webpages_Memberships { get; set; }
+        public DbSet<webpages_OAuthMembership> webpages_OAuthMemberships { get; set; }
+        public DbSet<EmailFP> emailtemplate { get; set; }
 
         public override int SaveChanges()
         {

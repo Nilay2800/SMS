@@ -64,8 +64,14 @@
                                 }
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> @Session["UserName"]</a></li>
-                                <li><a href="@Url.Action("Logout","Account")">Log Out</a></li>
+                                <li>
+                                    <a href="#" @*class="dropdown-toggle"*@ data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><text>  Hii  </text>@Session["UserName"]  <span class="caret">    </span></a>
+                                    <ul class="dropdown-menu">
+                                        @*<li><a href="#"><span class="glyphicon glyphicon-user"></span> @Session["UserName"]</a></li>*@
+                                        <li><a href="@Url.Action("Manage", "Account")">Change Password</a></li>
+                                        <li><a href="@Url.Action("Logout", "Account")">Log Out</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         }
                         else
