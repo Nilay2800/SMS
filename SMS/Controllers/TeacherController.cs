@@ -3,6 +3,8 @@ using SMS.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using System.Web;
 using System.Web.Mvc;
 
@@ -26,9 +28,9 @@ namespace SMS.Controllers
 
             
             ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Teacher.ToString());
-            List<TeacherModel> teachers = teacherService.GetAllTeacher();
+            //List<TeacherModel> teachers = teacherService.GetAllTeacher();
 
-            return View(teachers);
+            return View();
         }
         [HttpGet]
         public ActionResult AddTeacher()
@@ -77,5 +79,17 @@ namespace SMS.Controllers
             teacherService.DeleteTeacher(Id);
             return RedirectToAction("Index");
         }
+        //[HttpPost]
+        public ActionResult GetGridData([DataSourceRequest] DataSourceRequest request)
+        {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Teacher.ToString(), AcessPermission.IsView))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
+            var teacherDetails = teacherService.GetAllTeacher();
+            return Json(teacherDetails.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        
     }
 }
