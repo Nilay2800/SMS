@@ -62,7 +62,7 @@ namespace SMS.Data
         }
         public List<DropDownList> BindRole()
         {
-            return _db.webpages_Roles.Where(s => s.IsActive == true).Select(x => new DropDownList { Key = x.RoleName, Value = x.RoleId }).ToList();
+            return _db.webpages_Roles.Where(s => s.IsActive == true && s.RoleId != 1).Select(x => new DropDownList { Key = x.RoleName, Value = x.RoleId }).ToList();
         }
 
         public User DeleteUser(int id)

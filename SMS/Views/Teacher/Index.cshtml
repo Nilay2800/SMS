@@ -49,7 +49,7 @@
                 columns.Bound(c => c.MobileNumber).Width("10%").Title("Mobile Number");
                 columns.Bound(c => c.IsActive).Width("5%").HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center-text" }).ClientTemplate("# if(IsActive == true) {#<i class='fa fa-check'></i># } else { #<i class='fa fa-close'></i># } #").Title("Active").Filterable(filterable => filterable.Messages(m => m.IsFalse("No").IsTrue("Yes")));
                 columns.Bound(c => c.Id).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("EditTeacher", "Teacher") + "/#=Id#'" + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Edit").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);
-                columns.Command(command => { command.Destroy(); }).Width("3%").Title("Delete").HtmlAttributes(new { @class = "kendogrid_Action center_text" }).HeaderHtmlAttributes(new { @class = "center_text" });
+                columns.Command(command => { command.Destroy(); }).Width("3%").Title("Delete").HtmlAttributes(new { @class = "kendogrid_Action center_text" }).HeaderHtmlAttributes(new { @class = "center_text" }).Hidden(!permission.AllowDelete);
 
             })
             .NoRecords("No record found")

@@ -47,7 +47,7 @@
                 columns.Bound(c => c.Gender).Width("10%").Title("Gender");
                 columns.Bound(c => c.ContactNumber).Width("10%").Title("Contact Number");
                 columns.Bound(c => c.StudentId).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("Edit", "Student") + "/#=StudentId#'" + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Edit").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);
-                columns.Command(command => { command.Destroy(); }).Width("3%").Title("Delete").HtmlAttributes(new { @class = "kendogrid_Action center_text" }).HeaderHtmlAttributes(new { @class = "center_text" });
+                columns.Command(command => { command.Destroy(); }).Width("3%").Title("Delete").HtmlAttributes(new { @class = "kendogrid_Action center_text" }).HeaderHtmlAttributes(new { @class = "center_text" }).Hidden(!permission.AllowDelete);
 
             })
    .NoRecords("No record found")
