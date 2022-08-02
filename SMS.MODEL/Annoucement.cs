@@ -9,7 +9,8 @@ namespace SMS.Model
     public class Annoucement
     {
         public int Id { get; set; }
+        public string Subject { get; set; }
         public string AnnoucementDetail { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
     }
 }

@@ -18,8 +18,9 @@ namespace SMS.Data
             return _db.annoucements.Select(x => new AnnoucementModel
             {
                 Id = x.Id,
+                Subject = x.Subject,
                 AnnoucementDetail = x.AnnoucementDetail,
-                CreatedOn = x.CreatedOn,
+                CreatedOn = DateTime.Now
                
             }).ToList();
         }
@@ -32,8 +33,9 @@ namespace SMS.Data
             Annoucement _annocement = new Annoucement()
             {
                 Id = annoucementModel.Id,
+                Subject = annoucementModel.Subject,
                 AnnoucementDetail=annoucementModel.AnnoucementDetail,
-                CreatedOn=annoucementModel.CreatedOn
+                CreatedOn = DateTime.Now
                 
             };
 
@@ -46,10 +48,10 @@ namespace SMS.Data
         public AnnoucementModel UpdateAnnoucement(AnnoucementModel annoucementModel)
         {
             var objannocement = GetAnnoucementById(annoucementModel.Id);
+            objannocement.Subject = annoucementModel.Subject;
             objannocement.AnnoucementDetail = annoucementModel.AnnoucementDetail;
             objannocement.CreatedOn = annoucementModel.CreatedOn;
-
-            _db.SaveChanges();
+          _db.SaveChanges();
             return annoucementModel;
         }
         public void DeleteAnnoucement(int Id)

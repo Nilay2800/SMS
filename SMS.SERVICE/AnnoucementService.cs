@@ -34,6 +34,7 @@ namespace SMS.Service
             AnnoucementModel annoucementModel = new AnnoucementModel
             {
                 Id = data.Id,
+                Subject = data.Subject,
                 AnnoucementDetail=data.AnnoucementDetail,
                 CreatedOn = data.CreatedOn
 

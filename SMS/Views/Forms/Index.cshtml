@@ -68,7 +68,7 @@
     )
     .DataSource(dataSource => dataSource
     .Ajax()
-    .Sort(sortable=>sortable.Add("Name").Ascending())
+    .Sort(sortable=>sortable.Add("DisplayOrder").Ascending())
     .Read(read => read.Action("GetGridData", "Forms")).PageSize(10)
    
     )
