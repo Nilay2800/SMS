@@ -1,4 +1,6 @@
-﻿using SMS.Data.Database;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using SMS.Data.Database;
 using SMS.Model;
 using SMS.Service;
 using System;
@@ -23,9 +25,8 @@ namespace SMS.Controllers
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
-            ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString());
-            List<User> UserList = userMasterService.GetAllUser();
-            return View(UserList);
+            ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString());       
+            return View();
         }
         public ActionResult EditUserRoleMapping(int id)
         {
@@ -71,6 +72,16 @@ namespace SMS.Controllers
         {
             userMasterService.CreateUser(user);
             return RedirectToAction("DisplayUser");
+        }
+        public ActionResult GetGridData([DataSourceRequest] DataSourceRequest request)
+        {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString(), AcessPermission.IsView))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
+
+            List<User> UserList = userMasterService.GetAllUser();
+            return Json(UserList.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
     }
 }

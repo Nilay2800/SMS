@@ -1,4 +1,6 @@
-﻿using SMS.Model;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using SMS.Model;
 using SMS.Service;
 using System;
 using System.Collections.Generic;
@@ -25,8 +27,8 @@ namespace SMS.Controllers
                 return RedirectToAction("AccessDenied", "Base");
             }
             ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Rolemaster.ToString());
-            List<RoleModel> RoleList = roleMasterService.GetAllRoles();
-            return View(RoleList);
+          
+            return View();
         }
         public ActionResult CreateRole()
         {
@@ -42,5 +44,16 @@ namespace SMS.Controllers
             roleMasterService.CreateRole(role);
             return RedirectToAction("Index");
         }
+
+        public ActionResult GetGridData([DataSourceRequest] DataSourceRequest request)
+        {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Rolemaster.ToString(), AcessPermission.IsView))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
+            List<RoleModel> RoleList = roleMasterService.GetAllRoles();
+            return Json(RoleList.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
