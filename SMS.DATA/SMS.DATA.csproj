@@ -154,6 +154,14 @@
     <Compile Include="Migrations\202207260754551_update_table.Designer.cs">
       <DependentUpon>202207260754551_update_table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208020953580_Announcement.cs" />
+    <Compile Include="Migrations\202208020953580_Announcement.Designer.cs">
+      <DependentUpon>202208020953580_Announcement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202208021022393_Announcement-subject.cs" />
+    <Compile Include="Migrations\202208021022393_Announcement-subject.Designer.cs">
+      <DependentUpon>202208021022393_Announcement-subject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="RoleMasterProvider.cs" />
@@ -220,6 +228,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207260754551_update_table.resx">
       <DependentUpon>202207260754551_update_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208020953580_Announcement.resx">
+      <DependentUpon>202208020953580_Announcement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208021022393_Announcement-subject.resx">
+      <DependentUpon>202208021022393_Announcement-subject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

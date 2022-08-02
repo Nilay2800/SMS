@@ -10,9 +10,10 @@ namespace SMS.Model
     public class AnnoucementModel
     {
         public int Id { get; set; }
+        public string Subject { get; set; }
         [Display(Name = "Annoucement")]
         public string AnnoucementDetail { get; set; }
         [Display(Name = "Created On")]
-        public DateTime CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
     }
 }

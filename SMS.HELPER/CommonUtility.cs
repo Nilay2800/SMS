@@ -403,149 +403,149 @@ namespace SMS.Helper
     }
 }
 
-//            public static DateTime ConvertToApplicationDateTime(DateTime date)
-//            {
-//                //DateTime dateTime=_DateTime;
-//                try
-//                {
-//                    TimeZoneInfo objTimeZone = TimeZoneInfo.FindSystemTimeZoneById(SessionHelper.DefaultTimeZone);
-//                    return TimeZoneInfo.ConvertTimeFromUtc(date, objTimeZone);
-//                }
-//                catch
-//                {
-//                    return date;
-//                }
-//            }
+public static DateTime ConvertToApplicationDateTime(DateTime date)
+{
+    //DateTime dateTime=_DateTime;
+    try
+    {
+        TimeZoneInfo objTimeZone = TimeZoneInfo.FindSystemTimeZoneById(SessionHelper.DefaultTimeZone);
+        return TimeZoneInfo.ConvertTimeFromUtc(date, objTimeZone);
+    }
+    catch
+    {
+        return date;
+    }
+}
 
-//            public static string SaveThumbImage(string MainImageName, string ThumbImageName, int ThumbWidth, int ThumbHeight)
-//            {
+public static string SaveThumbImage(string MainImageName, string ThumbImageName, int ThumbWidth, int ThumbHeight)
+{
 
-//                #region File variables
-//                string _FileName = string.Empty;
-//                string _FileNameWTime = string.Empty;
-//                string _FileExtension = string.Empty;
-//                string _FileType = string.Empty;
-
-
-//                string _FilePath = string.Empty;
-//                string _ThumbPath = string.Empty;
-//                string _FullFilePath = string.Empty;
-
-//                string _InvalideFile = string.Empty;
-//                string FP_folder = string.Empty;
-//                bool isCustomeSize = false;
-//                #endregion
-//                string OriginalFileName = MainImageName;
-//                _FileName = Path.GetFileNameWithoutExtension(MainImageName);
-//                _FileExtension = Path.GetExtension(MainImageName).ToLower();
-//                _FileType = CommonUtility.GetFileType(_FileExtension);
-//                if (_FileType != null && _FileType.Length > 0)
-//                {
-//                    #region Thumb file Save
-//                    if (_FileType == FileType.Image.ToString())
-//                    {
-//                        Image img = Image.FromFile(MainImageName);
-//                        int[] intarr = CommonUtility.GetImageThumbSize();
-//                        if (ThumbWidth > 0 && ThumbHeight > 0)
-//                        {
-//                            isCustomeSize = true;
-//                            intarr[0] = ThumbWidth;
-//                            intarr[1] = ThumbHeight;
-//                        }
-
-//                        Size ThumbSize = new Size(intarr[0], intarr[1]);
-//                        int imgHeight = ThumbSize.Height;
-//                        int imgWidth = ThumbSize.Width;
-//                        if (img.Width < img.Height)
-//                        {
-//                            //portrait image  
-//                            imgHeight = ThumbSize.Height;
-//                            var imgRatio = (float)imgHeight / (float)img.Height;
-//                            imgWidth = Convert.ToInt32(img.Height * imgRatio);
-//                        }
-//                        else if (img.Height < img.Width)
-//                        {
-//                            //landscape image  
-//                            imgWidth = ThumbSize.Width;
-//                            var imgRatio = (float)imgWidth / (float)img.Width;
-//                            imgHeight = Convert.ToInt32(img.Height * imgRatio);
-//                            if (isCustomeSize)
-//                            {
-//                                imgHeight = ThumbHeight;
-//                            }
-//                        }
-//                        Bitmap bmPhoto = new Bitmap(imgWidth, imgHeight);
-//                        Graphics g = Graphics.FromImage(bmPhoto);
-//                        g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-//                        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-//                        g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-//                        g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-//                        g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-//                        g.DrawImage(img, 0, 0, imgWidth, imgHeight);
-//                        bmPhoto.Save(ThumbImageName, System.Drawing.Imaging.ImageFormat.Jpeg);
-//                        g.Dispose();
-//                        //thumb.Dispose();
-//                        img.Dispose();
-//                        bmPhoto.Dispose();
-//                    }
+    #region File variables
+    string _FileName = string.Empty;
+    string _FileNameWTime = string.Empty;
+    string _FileExtension = string.Empty;
+    string _FileType = string.Empty;
 
 
-//                    #endregion
-//                }
-//                return ThumbImageName;
-//            }
+    string _FilePath = string.Empty;
+    string _ThumbPath = string.Empty;
+    string _FullFilePath = string.Empty;
 
-//            public static string GetFileType(string Extension)
-//            {
-//                string[] ImageExtention = GetImageExtension().Split(',');
-//                string[] DocumentExtention = GetDocumentExtension().Split(',');
-//                string[] VideoExtention = GetVideoExtension().Split(',');
+    string _InvalideFile = string.Empty;
+    string FP_folder = string.Empty;
+    bool isCustomeSize = false;
+    #endregion
+    string OriginalFileName = MainImageName;
+    _FileName = Path.GetFileNameWithoutExtension(MainImageName);
+    _FileExtension = Path.GetExtension(MainImageName).ToLower();
+    _FileType = CommonUtility.GetFileType(_FileExtension);
+    if (_FileType != null && _FileType.Length > 0)
+    {
+        #region Thumb file Save
+        if (_FileType == FileType.Image.ToString())
+        {
+            Image img = Image.FromFile(MainImageName);
+            int[] intarr = CommonUtility.GetImageThumbSize();
+            if (ThumbWidth > 0 && ThumbHeight > 0)
+            {
+                isCustomeSize = true;
+                intarr[0] = ThumbWidth;
+                intarr[1] = ThumbHeight;
+            }
 
-//                if (ImageExtention.Contains(Extension))
-//                {
-//                    return FileType.Image.ToString();
-//                }
-//                else if (DocumentExtention.Contains(Extension))
-//                {
-//                    return FileType.Document.ToString();
-//                }
-//                else if (VideoExtention.Contains(Extension))
-//                {
-//                    return FileType.Video.ToString();
-//                }
-//                return null;
-//            }
+            Size ThumbSize = new Size(intarr[0], intarr[1]);
+            int imgHeight = ThumbSize.Height;
+            int imgWidth = ThumbSize.Width;
+            if (img.Width < img.Height)
+            {
+                //portrait image  
+                imgHeight = ThumbSize.Height;
+                var imgRatio = (float)imgHeight / (float)img.Height;
+                imgWidth = Convert.ToInt32(img.Height * imgRatio);
+            }
+            else if (img.Height < img.Width)
+            {
+                //landscape image  
+                imgWidth = ThumbSize.Width;
+                var imgRatio = (float)imgWidth / (float)img.Width;
+                imgHeight = Convert.ToInt32(img.Height * imgRatio);
+                if (isCustomeSize)
+                {
+                    imgHeight = ThumbHeight;
+                }
+            }
+            Bitmap bmPhoto = new Bitmap(imgWidth, imgHeight);
+            Graphics g = Graphics.FromImage(bmPhoto);
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+            g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+            g.DrawImage(img, 0, 0, imgWidth, imgHeight);
+            bmPhoto.Save(ThumbImageName, System.Drawing.Imaging.ImageFormat.Jpeg);
+            g.Dispose();
+            //thumb.Dispose();
+            img.Dispose();
+            bmPhoto.Dispose();
+        }
 
-//            public static int[] GetImageThumbSize()
-//            {
-//                string[] ThumbSizeArr = GetThumbSize().Split(',');
-//                int[] ThumbSize = ThumbSizeArr.Select(int.Parse).ToArray();
-//                return ThumbSize;
-//            }
-//            public static string GetThumbSize()
-//            {
 
-//                string value = ConfigurationStaticValues.ThumbSize;
-//                if (value != null)
-//                    return value;
-//                return null;
-//            }
+        #endregion
+    }
+    return ThumbImageName;
+}
 
-//            public static string GetImageExtension()
-//            {
-//                string value = ConfigurationStaticValues.ImageExtension;
-//                return value;
-//            }
-//            public static string GetDocumentExtension()
-//            {
-//                string value = ConfigurationStaticValues.DocumentExtension;
-//                return value;
-//            }
-//            public static string GetVideoExtension()
-//            {
-//                string value = ConfigurationStaticValues.VideoExtension;
-//                return value;
-//            }
-//        }
-//    }
-//}
+public static string GetFileType(string Extension)
+{
+    string[] ImageExtention = GetImageExtension().Split(',');
+    string[] DocumentExtention = GetDocumentExtension().Split(',');
+    string[] VideoExtention = GetVideoExtension().Split(',');
+
+    if (ImageExtention.Contains(Extension))
+    {
+        return FileType.Image.ToString();
+    }
+    else if (DocumentExtention.Contains(Extension))
+    {
+        return FileType.Document.ToString();
+    }
+    else if (VideoExtention.Contains(Extension))
+    {
+        return FileType.Video.ToString();
+    }
+    return null;
+}
+
+public static int[] GetImageThumbSize()
+{
+    string[] ThumbSizeArr = GetThumbSize().Split(',');
+    int[] ThumbSize = ThumbSizeArr.Select(int.Parse).ToArray();
+    return ThumbSize;
+}
+public static string GetThumbSize()
+{
+
+    string value = ConfigurationStaticValues.ThumbSize;
+    if (value != null)
+        return value;
+    return null;
+}
+
+public static string GetImageExtension()
+{
+    string value = ConfigurationStaticValues.ImageExtension;
+    return value;
+}
+public static string GetDocumentExtension()
+{
+    string value = ConfigurationStaticValues.DocumentExtension;
+    return value;
+}
+public static string GetVideoExtension()
+{
+    string value = ConfigurationStaticValues.VideoExtension;
+    return value;
+}
+        }
+    }
+}

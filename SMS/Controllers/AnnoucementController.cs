@@ -1,4 +1,6 @@
-﻿using SMS.Model;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using SMS.Model;
 using SMS.Service;
 using System;
 using System.Collections.Generic;
@@ -25,8 +27,8 @@ namespace SMS.Controllers
                 return RedirectToAction("AccessDenied", "Base");
             }
             ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Annoucement.ToString());
-            List<AnnoucementModel> annoucements = annoucementService.GetAllAnnoucement();
-            return View(annoucements);
+            
+            return View();
         }
 
         [HttpGet]
@@ -75,6 +77,15 @@ namespace SMS.Controllers
             }
             annoucementService.DeleteAnnoucement(Id);
             return RedirectToAction("Index");
+        }
+        public ActionResult GetGridData([DataSourceRequest] DataSourceRequest request)
+        {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Annoucement.ToString(), AcessPermission.IsView))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
+            List<AnnoucementModel> annoucements = annoucementService.GetAllAnnoucement();
+            return Json(annoucements.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
     }
 }
