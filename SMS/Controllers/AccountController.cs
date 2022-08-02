@@ -328,7 +328,7 @@ namespace SMS.Controllers
                 int passExpHours = 120;
                 var token = WebSecurity.GeneratePasswordResetToken(user.UserName, passExpHours);
 
-                NavigateUrl = " " + WebPath + "/Account/ManageChangePassword?uid=" + userencrypt + "&token" + token;
+                NavigateUrl = " " + WebPath + "/Account/ManageChangePassword?uid=" + userencrypt + "&token=" + token;
                 body = body.Replace("@@PasswordLink@@", NavigateUrl);
                 List<string> To = new List<string>();
                 List<string> CC = new List<string>();
@@ -376,9 +376,9 @@ namespace SMS.Controllers
             }
             return View(model);
         }
+        
         [HttpPost]
         [AllowAnonymous]
-
         public ActionResult ManageChangePassword(ChangePassword_VM model)
         {
             bool haslocalaccount = false;
