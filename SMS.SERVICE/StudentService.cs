@@ -15,13 +15,13 @@ namespace SMS.Service
         {
             _studentProvider = new StudentProvider();
         }
-        public StudentModel GetStudentById(Guid StudentId)
+        public StudentModel GetStudentById(string StudentId)
         {
             var data = _studentProvider.GetStudentById(StudentId);
            
             StudentModel students = new StudentModel()
             {
-                StudentId = Guid.NewGuid(),
+                StudentId = data.StudentId,
                 Firstname = data.Firstname,
                 Lastname =  data.Lastname,
                  Age = data.Age,
@@ -47,10 +47,10 @@ namespace SMS.Service
             var studentlist = _studentProvider.GetallStudent();
             return studentlist;
         }
-        public void DeleteStudent(Guid Id)
+        public void DeleteStudent(string StudentId)
         {
            
-            _studentProvider.DeleteStudent(Id);
+            _studentProvider.DeleteStudent(StudentId);
         }
     }
 }

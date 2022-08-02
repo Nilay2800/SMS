@@ -10,9 +10,12 @@ namespace SMS.Model
     public class WebpagesRole
     {
         [Key]
+
         public int RoleId { get; set; }
-        public string RoleName { get; set; }
+        [Required]
         [Display(Name = "Role Name")]
+        public string RoleName { get; set; }
+        [Display(Name = "Active")]
         [Required]
         public bool IsActive { get; set; }
         [Display(Name = "Role Code")]

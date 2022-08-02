@@ -1,4 +1,6 @@
-﻿using SMS.Model;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using SMS.Model;
 using SMS.Service;
 using System;
 using System.Collections.Generic;
@@ -19,9 +21,8 @@ namespace SMS.Controllers
         {
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.EMAILTEMPLATE.ToString(), AcessPermission.IsView))
                 return RedirectToAction("AccessDenied", "Base");
-            List<EmailTemplate> emails = emailTemplateService.GetAllEmailTemplate();
-
-            return View(emails);
+            ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.EMAILTEMPLATE.ToString());
+            return View();
         }
         public ActionResult Create(int? id)
         {
@@ -33,6 +34,7 @@ namespace SMS.Controllers
 
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.EMAILTEMPLATE.ToString(), actionPermission)) 
                 return RedirectToAction("AccessDenied", "Base");
+           // ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.EMAILTEMPLATE.ToString());
 
             EmailTemplate model = new EmailTemplate();
             if (id.HasValue)
@@ -106,6 +108,15 @@ namespace SMS.Controllers
                 obj.UpdatedOn = DateTime.UtcNow;
                 emailTemplateService.UpdateEmailTemplates(obj);
             }
+        }
+        public ActionResult GetGridData([DataSourceRequest] DataSourceRequest request)
+        {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.EMAILTEMPLATE.ToString(), AcessPermission.IsView))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
+            List<EmailTemplate> emails = emailTemplateService.GetAllEmailTemplate();
+            return Json(emails.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
     }
 }

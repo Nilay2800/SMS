@@ -130,14 +130,11 @@ namespace SMS.Controllers
                 Session["UserName"] = model.UserName.ToString();
                 SessionHelper.UserId = userID;
 
-                if (returnUrl == null)
-                {
+                
                     Session["Menu"] = formRoleMappingService.GetMenu(userID);
                     return RedirectToAction("Index", "Home");
 
-                }
-                else
-                    return RedirectToLocal(returnUrl);
+                
 
             }
             else

@@ -1,4 +1,6 @@
-﻿using SMS.Model;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using SMS.Model;
 using SMS.Service;
 using System;
 using System.Collections.Generic;
@@ -23,8 +25,7 @@ namespace SMS.Controllers
                 return RedirectToAction("AccessDenied", "Base");
             }
             ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Formmaster.ToString());
-            List<FormModel> formlist = _formsService.GetAllForms();
-            return View(formlist);
+            return View();
         }
         public ActionResult Create(int? Id)
         {
@@ -77,6 +78,15 @@ namespace SMS.Controllers
             }
             return model;
         }
+        public ActionResult GetGridData([DataSourceRequest] DataSourceRequest request)
+        {
+            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Formmaster.ToString(), AcessPermission.IsView))
+            {
+                return RedirectToAction("AccessDenied", "Base");
+            }
 
+            List<FormModel> formlist = _formsService.GetAllForms();
+            return Json(formlist.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -1,107 +1,96 @@
-﻿@model IEnumerable<SMS.Model.StudentModel>
+﻿
+@using Kendo.Mvc.UI
+
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Student List";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var permission = ViewBag.Permission as SMS.Model.FormRoleMapping;
 }
-<style>
-    a.Mybtn {
-        background: #777;
-        color: #fff;
-        display: inline-block;
-        padding: 6px 12px 6px 12px;
-        text-decoration: none;
-    }
-</style>
-<h2>Student List</h2>
+<link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />
+<link href="~/Content/kendo/2017.2.621/kendo.metro.min.css" rel="stylesheet" />
+<link href="~/Content/kendo/2017.2.621/kendo.default.min.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/font-awesome/css/font-awesome.min.css")" />
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/et-line-icon/fonts/et-line.css")" />
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/line-awesome-icon/css/line-awesome.min.css")" />
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/material-icons/material-icon.css")" />
+<script src="~/Scripts/kendo/kendo.all.min.js"></script>
+<script src="~/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
+<script src="~/Kendo/js/kendo.aspnetmvc.min.js"></script>
 
-<p>
+    <div class="subheader">
+        <div class="left_title">
+            <h2>@ViewBag.Title</h2>
 
-    @if (permission.AllowInsert)
-    {
-        @Html.ActionLink("Create New", "Create", new { }, htmlAttributes: new { @class = "Mybtn" })
-    }
-
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Firstname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lastname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Standard)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactNumber)
-        </th>
-        
-        <th></th>
-    </tr>
-
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Firstname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lastname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Standard)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactNumber)
-        </td>
-       
-        <td>
-            @if (permission.AllowUpdate)
+        </div>
+        <div class="subheader_right">
+            @if (permission.AllowInsert)
             {
-                <a class="Mybtn" href="@Url.Action("Edit", "Student", new { StudentId = item.StudentId })">Edit</a>
-                <text>|</text>
+                <a class="button button_primary button_rounded" href="@Url.Action("Create", "Student")">Add Student</a>
             }
-            @if (permission.AllowDelete)
+        </div>
+    </div>
+
+    <div class="common_white_box listingpage">
+        <div class="page-loader k-loading-image"></div>
+
+        @(Html.Kendo().Grid<SMS.Model.StudentModel>()
+            .Name("gridStudent")
+            .AutoBind(false)
+            .Columns(columns =>
             {
-                <a class="Mybtn" href="@Url.Action("Delete", "Student", new { Id = item.StudentId })" onclick="return confirm('Are you sure you want to Delete??')">Delete</a>
+                columns.Bound(c => c.Firstname).Width("10%").Title("First Name");
+                columns.Bound(c => c.Lastname).Width("10%").Title("Last Name");
+                columns.Bound(c => c.Email).Width("10%").Title("Email");
+                columns.Bound(c => c.Age).Width("10%").Title("Age");
+                columns.Bound(c => c.Standard).Width("10%").Title("Standard");
+                columns.Bound(c => c.Gender).Width("10%").Title("Gender");
+                columns.Bound(c => c.ContactNumber).Width("10%").Title("Contact Number");
+                columns.Bound(c => c.StudentId).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("Edit", "Student") + "/#=StudentId#'" + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Edit").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);
+                columns.Command(command => { command.Destroy(); }).Width("3%").Title("Delete").HtmlAttributes(new { @class = "kendogrid_Action center_text" }).HeaderHtmlAttributes(new { @class = "center_text" });
 
-            }
+            })
+   .NoRecords("No record found")
+   .Events(evt=>
+    evt
+    .DataBinding("fnKendoGridCommonDataBinding")
+    .DataBound("fnKendoGridDataBoundEvent")
+    )
+    .Sortable()
+    .Filterable(filter => filter
+    .Mode(GridFilterMode.Row)
+    .Extra(false)
+    .Operators(o => o.ForString(f => f.Clear().Contains("Contains").DoesNotContain("Does Not Contain").StartsWith("Starts With").EndsWith("Ends With").IsEqualTo("Equal To").IsNotEqualTo("Not Equal To")))
+    .Operators(o => o.ForNumber(g => g.Clear().IsEqualTo("EqualTo").IsNotEqualTo("Not Equal To").IsGreaterThan("Greater Than").IsGreaterThanOrEqualTo("Greater Than Or Equal To").IsLessThan("Less Than").IsLessThanOrEqualTo("Less Than Or Equal To")))
+    )
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(new[] {10,20, 50, 100, 200 })
+    .ButtonCount(5)
+    )
+    .DataSource(dataSource => dataSource
+    .Ajax()
+    .Sort(sortable=>sortable.Add("FirstName").Ascending())
+    .Read(read => read.Action("GetGridData", "Student")).PageSize(10)
+     .Destroy(update => update.Action("Delete", "Student"))
+     .Model(model => model.Id(p => p.StudentId))
+    )
+     .Editable(Id => Id.Mode(GridEditMode.InLine).ConfirmDelete("Are You Sure You Want To Delete?").DisplayDeleteConfirmation("Are You Sure You Want To Delete ? "))
+    )
+</div>
 
-        </td>
-    </tr>
-    <style>
-        a.Mybtn {
-            background : #777;
-            color: #fff;
-            display: inline-block;
-            padding: 6px 12px 6px 12px;
-            text-decoration: none;
-        }
-    </style>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#gridStudent').data('kendoGrid').dataSource.read();
+            $('#gridStudent').data('kendoGrid').refresh();
+        });
+        $(document).ajaxComplete(function () {
+            $(".page-loader").css("display", "none");
+            $(window).resize();
+        });
+   
+</script>
 
 
-
-    }
-
-</table>

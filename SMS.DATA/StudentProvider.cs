@@ -13,9 +13,9 @@ namespace SMS.Data
         {
 
         }
-        public Student GetStudentById(Guid StudentId)
+        public Student GetStudentById(string StudentId)
         {
-            return _db.students.Find(StudentId);
+            return _db.students.Where(x=>x.StudentId.ToString() == StudentId).FirstOrDefault();
         }
         public Guid CreateStudent(StudentModel students)
         {
@@ -43,7 +43,7 @@ namespace SMS.Data
         {
 
             StudentModel student = new StudentModel();
-            var obj1 = GetStudentById(students.StudentId);
+            var obj1 = GetStudentById(students.StudentId.ToString());
             obj1.Firstname = students.Firstname;
             obj1.Lastname = students.Lastname;
             obj1.Age = students.Age;
@@ -75,9 +75,9 @@ namespace SMS.Data
             return squery.ToList();
         }
 
-        public void DeleteStudent(Guid Id)
+        public void DeleteStudent(string StudentId)
         {
-            var data = GetStudentById(Id);
+            var data = GetStudentById(StudentId);
             if (data != null)
             {
                 _db.students.Remove(data);

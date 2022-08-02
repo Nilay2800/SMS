@@ -23,9 +23,6 @@ namespace SMS.Data
             var data = (from a in _db.webpages_Roles
                         select new RoleModel
                         {
-                           
-
-
                             Id = a.RoleId,
                             Name = a.RoleName,
                             RoleCode = a.RoleCode,

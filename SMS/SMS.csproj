@@ -71,7 +71,7 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Kendo.Mvc">
-      <HintPath>..\..\..\..\Telerik UI for ASP.NET MVC R2 2022\wrappers\aspnetmvc\Binaries\Mvc5\Kendo.Mvc.dll</HintPath>
+      <HintPath>..\..\..\kendo\wrappers\aspnetmvc\Binaries\Mvc5\Kendo.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -5260,7 +5260,6 @@
     <Content Include="Views\Teacher\EditTeacher.cshtml" />
     <Content Include="Views\Base\AccessDenied.cshtml" />
     <Content Include="Views\UserMaster\CreateUser.cshtml" />
-
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Signup.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
@@ -5268,7 +5267,6 @@
     <Content Include="Views\Account\ManageChangePassword.cshtml" />
     <Content Include="Views\EmailTemplate\Index.cshtml" />
     <Content Include="Views\EmailTemplate\Create.cshtml" />
-
     <Content Include="Scripts\kendo\2017.2.621\cultures\kendo.culture.af-ZA.min.js.map" />
     <Content Include="Scripts\kendo\2017.2.621\cultures\kendo.culture.af.min.js.map" />
     <Content Include="Scripts\kendo\2017.2.621\cultures\kendo.culture.am-ET.min.js.map" />
@@ -5809,7 +5807,6 @@
     <Content Include="Scripts\kendo\2017.2.621\kendo.virtuallist.min.js.map" />
     <Content Include="Scripts\kendo\2017.2.621\kendo.web.min.js.map" />
     <Content Include="Scripts\kendo\2017.2.621\kendo.window.min.js.map" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

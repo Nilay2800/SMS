@@ -18,7 +18,7 @@ namespace SMS.Model
         [Required]
         public string Name { get; set; }
         public string Subject { get; set; }
-        [Required]
+        //[Required]
         public string MailBody { get; set; }
         public string CC { get; set; }
         public string BCC { get; set; }
