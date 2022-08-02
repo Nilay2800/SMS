@@ -5263,7 +5263,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Signup.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ManageChangePassword.cshtml" />
     <Content Include="Views\EmailTemplate\Index.cshtml" />
     <Content Include="Views\EmailTemplate\Create.cshtml" />
@@ -5807,6 +5806,9 @@
     <Content Include="Scripts\kendo\2017.2.621\kendo.virtuallist.min.js.map" />
     <Content Include="Scripts\kendo\2017.2.621\kendo.web.min.js.map" />
     <Content Include="Scripts\kendo\2017.2.621\kendo.window.min.js.map" />
+
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

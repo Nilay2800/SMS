@@ -1,7 +1,5 @@
 ﻿
 @using Kendo.Mvc.UI
-
-
 @{
     ViewBag.Title = "Teacher List";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,6 +17,10 @@
 @*<script src="~/Kendo/js/jquery.min.js"></script>*@
 @*<script src="~/Kendo/js/kendo.all.min.js"></script>*@
 <script src="~/Kendo/js/kendo.aspnetmvc.min.js"></script>
+
+@*<div class="coman_content">*@
+    <!--This is Title div -->
+
     <div class="subheader">
         <div class="left_title">
             <h2>@ViewBag.Title</h2>
@@ -31,6 +33,7 @@
             }
         </div>
     </div>
+
 
     <div class="common_white_box listingpage">
         <div class="page-loader k-loading-image"></div>
@@ -76,6 +79,8 @@
              .Editable(Id => Id.Mode(GridEditMode.InLine).ConfirmDelete("Are You Sure You Want To Delete?").DisplayDeleteConfirmation("Are You Sure You Want To Delete ? "))
     )
     </div>
+
+@*</div>*@
 
 
     <script>

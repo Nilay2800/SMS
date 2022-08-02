@@ -96,7 +96,7 @@ namespace SMS.Model
         public string  NewPassword { get; set; }
         [DataType(DataType.Password)]
         [Display(Name = "confirm password")]
-        [Compare("password", ErrorMessage = "the password and confirm password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "the password and confirm password do not match.")]
         public string ConfirmPassword { get; set; }
         public string Forgotuid { get; set; }
         public string UserName { get; set; }

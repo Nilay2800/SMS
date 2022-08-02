@@ -22,6 +22,7 @@ namespace SMS.Controllers
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.EMAILTEMPLATE.ToString(), AcessPermission.IsView))
                 return RedirectToAction("AccessDenied", "Base");
             ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.EMAILTEMPLATE.ToString());
+
             return View();
         }
         public ActionResult Create(int? id)
@@ -109,14 +110,16 @@ namespace SMS.Controllers
                 emailTemplateService.UpdateEmailTemplates(obj);
             }
         }
+
+        [HttpPost]
         public ActionResult GetGridData([DataSourceRequest] DataSourceRequest request)
         {
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.EMAILTEMPLATE.ToString(), AcessPermission.IsView))
-            {
                 return RedirectToAction("AccessDenied", "Base");
-            }
-            List<EmailTemplate> emails = emailTemplateService.GetAllEmailTemplate();
-            return Json(emails.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+
+            var getemailtemplates = emailTemplateService.GetAllEmailTemplate();
+            return Json(getemailtemplates.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+
         }
     }
 }
