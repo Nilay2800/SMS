@@ -40,32 +40,32 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-3">
                     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.NavigateURL, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
+                @Html.LabelFor(model => model.NavigateURL, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-3">
                     @Html.EditorFor(model => model.NavigateURL, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.NavigateURL, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.FormAcessCode, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
+                @Html.LabelFor(model => model.FormAcessCode, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-3">
                     @Html.EditorFor(model => model.FormAcessCode, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.FormAcessCode, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.DisplayOrder, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
+                @Html.LabelFor(model => model.DisplayOrder, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-3">
                     @Html.EditorFor(model => model.DisplayOrder, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.DisplayOrder, "", new { @class = "text-danger" })
                 </div>
@@ -74,15 +74,15 @@
             
 
             <div class="form-group">
-                @Html.LabelFor(model => model.ParentForm, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
+                @Html.LabelFor(model => model.ParentForm, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-3">
                     @Html.DropDownListFor(model => model.ParentForm, Model._parentFormList, new { @class = "form-control", id = "Form" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
+                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-3">
                     <div class="input_box">
                         <div class="on_off_btn sms_not">
                             @Html.CheckBoxFor(model => model.IsActive, new { @class = "ch_btn" })
@@ -95,8 +95,8 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.IsDisplayMenu, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
+                @Html.LabelFor(model => model.IsDisplayMenu, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-3">
                     <div class="input_box">
                         <div class="on_off_btn sms_not">
                             @Html.CheckBoxFor(model => model.IsActive, new { @class = "ch_btn" })
@@ -109,7 +109,7 @@
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
+                <div class="col-md-offset-3 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" /> |
                     @Html.ActionLink("Back to List", "Index", new { }, htmlAttributes: new { @class = "btn btn-default" })
                 </div>
@@ -127,7 +127,7 @@
                 background: #777;
                 color: #fff;
                 display: inline-block;
-                padding: 6px 12px 6px 12px;
+                padding: 6px 13px 6px 13px;
                 text-decoration: none;
             }
         </style>
