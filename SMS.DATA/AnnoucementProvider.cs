@@ -20,7 +20,7 @@ namespace SMS.Data
                 Id = x.Id,
                 Subject = x.Subject,
                 AnnoucementDetail = x.AnnoucementDetail,
-                CreatedOn = DateTime.UtcNow
+                CreatedOn = x.CreatedOn
                
             }).ToList();
         }
