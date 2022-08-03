@@ -12,5 +12,6 @@ namespace SMS.Model
         public string Subject { get; set; }
         public string AnnoucementDetail { get; set; }
         public DateTime? CreatedOn { get; set; }
+        public bool Status { get; set; } = true;
     }
 }

@@ -50,13 +50,13 @@ namespace SMS.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditAnnoucement(int id)
+        public ActionResult EditAnnoucement(int Id)
         {
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Annoucement.ToString(), AcessPermission.IsEdit))
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
-            AnnoucementModel annoucementModel = annoucementService.GetAnnocementById(id);
+            AnnoucementModel annoucementModel = annoucementService.GetAnnocementById(Id);
             return View(annoucementModel);
         }
 
@@ -69,15 +69,15 @@ namespace SMS.Controllers
 
         }
 
-        public ActionResult Delete(int Id)
-        {
-            if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Annoucement.ToString(), AcessPermission.IsDelete))
-            {
-                return RedirectToAction("AccessDenied", "Base");
-            }
-            annoucementService.DeleteAnnoucement(Id);
-            return RedirectToAction("Index");
-        }
+        //public ActionResult Delete(int Id)
+        //{
+        //    if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Annoucement.ToString(), AcessPermission.IsDelete))
+        //    {
+        //        return RedirectToAction("AccessDenied", "Base");
+        //    }
+        //    annoucementService.DeleteAnnoucement(Id);
+        //    return RedirectToAction("Index");
+        //}
         public ActionResult GetGridData([DataSourceRequest] DataSourceRequest request)
         {
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Annoucement.ToString(), AcessPermission.IsView))
@@ -86,6 +86,14 @@ namespace SMS.Controllers
             }
             List<AnnoucementModel> annoucements = annoucementService.GetAllAnnoucement();
             return Json(annoucements.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+       // [HttpGet]
+        public ActionResult AnnoucementDetails(int Id)
+        {
+            
+            AnnoucementModel model = new AnnoucementModel();
+            var annoucementDetails = annoucementService.GetAnnocementById(Id);
+            return Json(RenderPartialViewToString(this, "_ErrorLogPopUp", annoucementDetails), JsonRequestBehavior.AllowGet);
         }
     }
 }

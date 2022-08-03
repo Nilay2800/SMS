@@ -24,9 +24,9 @@ namespace SMS.Data
                
             }).ToList();
         }
-        public Annoucement GetAnnoucementById(int id)
+        public Annoucement GetAnnoucementById(int Id)
         {
-            return _db.annoucements.Find(id);
+            return _db.annoucements.Find(Id);
         }
         public Annoucement CreateAnnoucement(AnnoucementModel annoucementModel)
         {
