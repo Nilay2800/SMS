@@ -16,14 +16,18 @@ namespace SMS.Model
         [Display(Name = "Last Name")]
         [Required(ErrorMessage = "LastName is required.")]
         public string Lastname { get; set; }
+        [Required(ErrorMessage = "Age is required.")]
         public int Age { get; set; }
+        [Required(ErrorMessage = "Gender is required.")]
         public string Gender { get; set; }
         [Required(ErrorMessage = "Standard is required.")]
         public int Standard { get; set; }
+        [Required(ErrorMessage = "Email is required.")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
         [Display(Name = "Contact Number")]
+        [Required(ErrorMessage = "Contact Number is required.")]
         public string ContactNumber { get; set; }
         public bool Status { get; set; } = true;
 
