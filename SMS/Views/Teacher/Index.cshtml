@@ -45,7 +45,7 @@
             {
                 columns.Bound(c => c.FirstName).Width("10%").Title("First Name");
                 columns.Bound(c => c.LastName).Width("10%").Title("Last Name");
-                columns.Bound(c => c.Email).Width("10%").Title("Email Id");
+                columns.Bound(c => c.Email).Width("10%").Title("Email");
                 columns.Bound(c => c.MobileNumber).Width("10%").Title("Mobile Number");
                 columns.Bound(c => c.IsActive).Width("5%").HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center-text" }).ClientTemplate("# if(IsActive == true) {#<i class='fa fa-check'></i># } else { #<i class='fa fa-close'></i># } #").Title("Active").Filterable(filterable => filterable.Messages(m => m.IsFalse("No").IsTrue("Yes")));
                 columns.Bound(c => c.Id).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("EditTeacher", "Teacher") + "/#=Id#'" + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Edit").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);

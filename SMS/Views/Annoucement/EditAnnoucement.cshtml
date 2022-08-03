@@ -7,88 +7,86 @@
 <h2>Edit</h2>
 
 <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/dot-luv/jquery-ui.css" rel="stylesheet" />
-@*<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />*@
 
-<!--<script src="~/Scripts/jquery-3.4.1.min.js"></script>-->
-@*<script src="~/Scripts/jquery-ui-1.12.1.js"></script>*@
-<!--<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>-->
-@*<script src="~/Scripts/jquery-ui-1.13.1.min.js"></script>*@
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
+
     <h4>Annoucement Details</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.AnnoucementDetail, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.AnnoucementDetail, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.AnnoucementDetail, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
     @*<div class="form-group">
-            @Html.LabelFor(model => model.CreatedOn, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.CreatedOn, new { htmlAttributes = new { @class = "datepicker" } })
-                @Html.ValidationMessageFor(model => model.CreatedOn, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+              @Html.LabelFor(model => model.AnnoucementDetail, htmlAttributes: new { @class = "control-label col-md-2" })
+              <div class="col-md-2">
+                  @Html.TextAreaFor(model => model.AnnoucementDetail, new { htmlAttributes = new { @class = "form-control" } })
+                  @Html.ValidationMessageFor(model => model.AnnoucementDetail, "", new { @class = "text-danger" })
+              </div>
+          </div>
+          <div class="form-group">
+              @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+              <div class="col-md-2">
+                  @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+                  @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+              </div>
+          </div>
+        <div class="form-group">
+              <div class="col-md-offset-2 col-md-10">
+                  <input type="submit" value="Save" class="btn btn-default" /> |
+                  @Html.ActionLink("Back to List", "Index", new { }, htmlAttributes: new { @class = "btn btn-default" })
+              </div>
+          </div>*@
+    <div class="content_box">
+        <div class="common_white_box">
+            <div class="form_element">
+                <div class="row">
+                    <div class="col-md-4">
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index", new { }, htmlAttributes: new { @class = "btn btn-default" })
+                        <div class="form_input_box">
+                            <div class="form-group">
+                                <label for="">Subject</label>
+                                <div class="input_box">
+                                    @Html.TextBoxFor(model => model.Subject, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Subject)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form_input_box">
+                            <div class="form-group">
+                                <label for="">Annoucement Details <sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
+                                <div class="input_box">
+                                    @Html.TextAreaFor(model => model.AnnoucementDetail, new { name = "MailBody", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.AnnoucementDetail)
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="button_div">
+                    <div class="form-group">
+                        <label for="">&nbsp;</label>
+                        <div class="input_box">
+                            <button type="submit" class="button button_primary">Save</button>
+                            <a href="@Url.Action("Index", "Annoucement")" class="button button_cancel">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
-}
-
-@*<div>
-        @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "mybtn" })
-    </div>*@
-<style type="text/css">
-    a.mybtn {
-        background: #777;
-        color: #fff;
-        display: inline-block;
-        padding: 6px 12px 6px 12px;
-        text-decoration: none;
-    }
-</style>
-
-@section Scripts {
-
-    <script>
-        $(document).ready(function () {
-            CKEDITOR.replace('AnnoucementDetail');
-        });
-    </script>
-
-    @*<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>*@
-
-    @*<script>
-            $(document).ready(function () {
-                $(".datepicker").datepicker({
-                    dateFormat: "dd-mm-yy",
-                    changemonth: true,
-                    changeyear: true
-                });
-            });
-        </script>*@
 
 }
+
+
 
