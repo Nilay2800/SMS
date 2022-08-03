@@ -5806,9 +5806,8 @@
     <Content Include="Scripts\kendo\2017.2.621\kendo.virtuallist.min.js.map" />
     <Content Include="Scripts\kendo\2017.2.621\kendo.web.min.js.map" />
     <Content Include="Scripts\kendo\2017.2.621\kendo.window.min.js.map" />
-
     <Content Include="Views\Account\ForgotPassword.cshtml" />
-
+    <Content Include="Views\Shared\_ErrorLogPopUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

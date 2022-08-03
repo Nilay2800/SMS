@@ -28,9 +28,9 @@ namespace SMS.Service
         {
             return annocementProvider.UpdateAnnoucement(annoucementModel);
         }
-        public AnnoucementModel GetAnnocementById(int id)
+        public AnnoucementModel GetAnnocementById(int Id)
         {
-            var data = annocementProvider.GetAnnoucementById(id);
+            var data = annocementProvider.GetAnnoucementById(Id);
             AnnoucementModel annoucementModel = new AnnoucementModel
             {
                 Id = data.Id,
