@@ -166,6 +166,10 @@
     <Compile Include="Migrations\202208021116474_status_added_anmt.Designer.cs">
       <DependentUpon>202208021116474_status_added_anmt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208040517486_update_announcement_table.cs" />
+    <Compile Include="Migrations\202208040517486_update_announcement_table.Designer.cs">
+      <DependentUpon>202208040517486_update_announcement_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="RoleMasterProvider.cs" />
@@ -241,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208021116474_status_added_anmt.resx">
       <DependentUpon>202208021116474_status_added_anmt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208040517486_update_announcement_table.resx">
+      <DependentUpon>202208040517486_update_announcement_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

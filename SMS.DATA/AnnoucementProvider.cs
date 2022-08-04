@@ -15,14 +15,34 @@ namespace SMS.Data
         }
         public List<AnnoucementModel> GetAllAnnoucement()
         {
-            return _db.annoucements.Select(x => new AnnoucementModel
+            var sadmin = SessionHelper.UserId;
+            if (sadmin==1)
             {
-                Id = x.Id,
-                Subject = x.Subject,
-                AnnoucementDetail = x.AnnoucementDetail,
-                CreatedOn = x.CreatedOn
-               
-            }).ToList();
+                return _db.annoucements.Select(x => new AnnoucementModel
+                {
+                    Id = x.Id,
+                    Subject = x.Subject,
+                    AnnoucementDetail = x.AnnoucementDetail,
+                    CreatedOn = x.CreatedOn,
+                    RoleId=x.RoleId
+                }).ToList();
+            }
+            else
+            {
+                var annoucement = (from anmct in _db.webpages_UsersInRoles
+                                   join role in _db.annoucements on anmct.RoleId equals role.RoleId
+                                   where anmct.UserId == SessionHelper.UserId && anmct.RoleId == role.RoleId
+                                   select
+                       new AnnoucementModel()
+                       {
+                           Id = role.Id,
+                           CreatedOn = role.CreatedOn,
+                           Subject = role.Subject,
+                           AnnoucementDetail = role.AnnoucementDetail,
+                           RoleId = role.RoleId
+                       }).ToList();
+                return annoucement;
+            }
         }
         public Annoucement GetAnnoucementById(int Id)
         {
@@ -35,6 +55,7 @@ namespace SMS.Data
                 Id = annoucementModel.Id,
                 Subject = annoucementModel.Subject,
                 AnnoucementDetail=annoucementModel.AnnoucementDetail,
+                RoleId=annoucementModel.RoleId,
                 CreatedOn = DateTime.UtcNow
                 
             };
@@ -50,7 +71,8 @@ namespace SMS.Data
             var objannocement = GetAnnoucementById(annoucementModel.Id);
             objannocement.Subject = annoucementModel.Subject;
             objannocement.AnnoucementDetail = annoucementModel.AnnoucementDetail;
-            objannocement.CreatedOn = annoucementModel.CreatedOn;
+            objannocement.RoleId = annoucementModel.RoleId;
+            objannocement.CreatedOn = DateTime.UtcNow;
           _db.SaveChanges();
             return annoucementModel;
         }
@@ -62,6 +84,10 @@ namespace SMS.Data
                 _db.annoucements.Remove(data);
                 _db.SaveChanges();
             }
+        }
+        public List<DropDownList> BindRole()
+        {
+            return _db.webpages_Roles.Where(s => s.IsActive == true && s.RoleId != 1).Select(x => new DropDownList { Key = x.RoleName, Value = x.RoleId }).ToList();
         }
 
     }
