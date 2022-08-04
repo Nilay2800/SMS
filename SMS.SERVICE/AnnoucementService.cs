@@ -36,6 +36,7 @@ namespace SMS.Service
                 Id = data.Id,
                 Subject = data.Subject,
                 AnnoucementDetail=data.AnnoucementDetail,
+                RoleId=data.RoleId,
                 CreatedOn = data.CreatedOn
 
             };
@@ -44,6 +45,10 @@ namespace SMS.Service
         public void DeleteAnnoucement(int Id)
         {
             annocementProvider.DeleteAnnoucement(Id);
+        }
+        public List<DropDownList> BindRole()
+        {
+            return annocementProvider.BindRole();
         }
 
     }

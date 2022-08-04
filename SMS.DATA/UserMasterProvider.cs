@@ -36,9 +36,7 @@ namespace SMS.Data
             return user;
         }
         public User UpdateUsersRole(User pur)
-        {
-            
-            
+        {                
                 var v = _db.webpages_UsersInRoles.Where(a => a.UserId == pur.Userid).FirstOrDefault();
                 if (v != null)
                 {

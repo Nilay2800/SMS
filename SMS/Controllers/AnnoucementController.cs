@@ -38,6 +38,8 @@ namespace SMS.Controllers
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
+            
+            ViewBag.RoleList = annoucementService.BindRole();
             return View();
         }
 
@@ -45,6 +47,7 @@ namespace SMS.Controllers
         [HttpPost]
         public ActionResult AddAnnoucement(AnnoucementModel annoucementModel)
         {
+            
             annoucementService.CreateAnnoucement(annoucementModel);
             return RedirectToAction("Index");
         }
@@ -57,6 +60,7 @@ namespace SMS.Controllers
                 return RedirectToAction("AccessDenied", "Base");
             }
             AnnoucementModel annoucementModel = annoucementService.GetAnnocementById(Id);
+            ViewBag.RoleList = annoucementService.BindRole();
             return View(annoucementModel);
         }
 

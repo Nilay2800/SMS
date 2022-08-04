@@ -56,6 +56,11 @@
                    .DataBinding("fnKendoGridCommonDataBinding")
                    .DataBound("fnKendoGridDataBoundEvent")
                 )
+                .Pageable(pageable => pageable
+                    .Refresh(true)
+                    .PageSizes(new[] { 10, 20, 50, 100, 200 })
+                    .ButtonCount(5)
+                )
                 .Sortable()
                 .Filterable(filter => filter
                     .Mode(GridFilterMode.Row)
@@ -63,11 +68,7 @@
                     .Operators(o => o.ForString(f => f.Clear().Contains("Contains").DoesNotContain("Does Not Contain").StartsWith("Starts With").EndsWith("Ends With").IsEqualTo("Equal To").IsNotEqualTo("Not Equal To")))
                     .Operators(o => o.ForNumber(g => g.Clear().IsEqualTo("EqualTo").IsNotEqualTo("Not Equal To").IsGreaterThan("Greater Than").IsGreaterThanOrEqualTo("Greater Than Or Equal To").IsLessThan("Less Than").IsLessThanOrEqualTo("Less Than Or Equal To")))
                 )
-                .Pageable(pageable => pageable
-                    .Refresh(true)
-                    .PageSizes(new[] {10,20, 50, 100, 200 })
-                    .ButtonCount(5)
-                )
+
                  .DataSource(dataSource => dataSource
                      .Ajax()
                      .Sort(sortable=>sortable.Add("CreatedOn").Ascending())
@@ -76,7 +77,7 @@
                      .Model(model => model.Id(p => p.Id))
                  )
                  .Editable(Id => Id.Mode(GridEditMode.InLine).ConfirmDelete("Are You Sure You Want To Delete?").DisplayDeleteConfirmation("Are You Sure You Want To Delete ? "))
-        ))
+        )
 
 
 </div>
