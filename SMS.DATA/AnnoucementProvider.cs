@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,11 +53,11 @@ namespace SMS.Data
         }
         public Annoucement CreateAnnoucement(AnnoucementModel annoucementModel)
         {
+            //string detail = WebUtility.HtmlEncode(annoucementModel.AnnoucementDetail);
             Annoucement _annocement = new Annoucement()
             {
-                Id = annoucementModel.Id,
                 Subject = annoucementModel.Subject,
-                AnnoucementDetail=annoucementModel.AnnoucementDetail,
+                AnnoucementDetail= annoucementModel.AnnoucementDetail,
                 RoleId=annoucementModel.RoleId,
                 CreatedOn = DateTime.UtcNow
                 

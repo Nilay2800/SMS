@@ -3,6 +3,7 @@ using SMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,11 +32,12 @@ namespace SMS.Service
         public AnnoucementModel GetAnnocementById(int Id)
         {
             var data = annocementProvider.GetAnnoucementById(Id);
+            string original = WebUtility.HtmlDecode(data.AnnoucementDetail);
             AnnoucementModel annoucementModel = new AnnoucementModel
             {
                 Id = data.Id,
                 Subject = data.Subject,
-                AnnoucementDetail=data.AnnoucementDetail,
+                AnnoucementDetail= original,
                 RoleId=data.RoleId,
                 CreatedOn = data.CreatedOn
 

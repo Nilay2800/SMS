@@ -16,6 +16,7 @@ namespace SMS.Model
         }
         public int Id { get; set; }
         public string Subject { get; set; }
+        [AllowHtml]
         [Display(Name = "Annoucement")]
         public string AnnoucementDetail { get; set; }
         [Display(Name = "Created On")]

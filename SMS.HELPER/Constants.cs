@@ -14,6 +14,7 @@ namespace SMS.Helper
             public const string PASSWORDRESETLINKEXPIRED = "Password link has expired";
             public const string PASSWORDCHANGESUCCESS = "Password changes successful";
             public const string PASSWORDERRORMESSAGE = "Something went wrong";
+
             public const string PASSWORDRESETEMAILSENT = "PasswordReset link sent succesfull";
             public const string STUDENTADDED = "Student added successfully!!";
             public const string TeacherAdded = "Teacher added successfully!!";
@@ -24,6 +25,8 @@ namespace SMS.Helper
 
 
 
+
+           
         }
         public enum Codes
         {

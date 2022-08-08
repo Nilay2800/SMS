@@ -337,7 +337,7 @@ namespace SMS.Controllers
                 To.Add(emailid);
 
                 bool isSucess = true;
-                isSucess = EmailHelper.SendEmail(To, CC, BCC, subject, body);
+                isSucess = EmailHelper.SendEmail(To, CC, BCC, subject, body,OrgName:"SMS");
             }
             catch (Exception ex)
             {
