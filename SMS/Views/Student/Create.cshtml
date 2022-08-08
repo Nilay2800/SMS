@@ -6,6 +6,7 @@
 
 <h2>ADD STUDENT</h2>
 
+
 <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/font-awesome/css/font-awesome.min.css")" />
 @using (Html.BeginForm())
 {
@@ -15,23 +16,23 @@
         <h4> </h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.Firstname, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <label>First Name<sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
-        <div class="col-md-2">
-            @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Firstname, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label>First Name<sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @*@Html.LabelFor(model => model.Lastname, htmlAttributes: new { @class = "control-label col-md-2" })*@
-        <label>Last Name<sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
-        <div class="col-md-2">
-            @Html.EditorFor(model => model.Lastname, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Lastname, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Lastname, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label>Last Name<sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Lastname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Lastname, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -85,7 +86,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-1 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" /> |
+                <input type="submit" value="Create" class="btn btn-primary" /> |
                 @Html.ActionLink("Back to List", "Index", new { }, htmlAttributes: new { @class = "btn btn-default" })
             </div>
         </div>
@@ -93,8 +94,8 @@
 }
 
 @*<div>
-    @Html.ActionLink("Back to List", "Index" , new { }, htmlAttributes: new { @class = "Mybtn" })
-</div>*@
+        @Html.ActionLink("Back to List", "Index" , new { }, htmlAttributes: new { @class = "Mybtn" })
+    </div>*@
 <style>
     a.Mybtn {
         background: #777;

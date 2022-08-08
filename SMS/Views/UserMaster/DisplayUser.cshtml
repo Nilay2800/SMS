@@ -69,7 +69,7 @@
                  .Destroy(update => update.Action("Delete", "UserMaster"))
                  .Model(model => model.Id(p => p.Userid))
              )
-              .Editable(Id => Id.Mode(GridEditMode.InLine).ConfirmDelete("Are You Sure You Want To Delete?").DisplayDeleteConfirmation("Are You Sure You Want To Delete ? "))
+              .Editable(Id => Id.Mode(GridEditMode.InLine).ConfirmDelete("Are you sure you want to delete?").DisplayDeleteConfirmation("Are you sure you want to delete?"))
     )
 </div>
 

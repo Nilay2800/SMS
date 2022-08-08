@@ -6,6 +6,8 @@
     ViewBag.Title = "Student List";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var permission = ViewBag.Permission as SMS.Model.FormRoleMapping;
+   
+   
 }
 <link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />
 <link href="~/Content/kendo/2017.2.621/kendo.metro.min.css" rel="stylesheet" />
@@ -17,24 +19,33 @@
 <script src="~/Scripts/kendo/kendo.all.min.js"></script>
 <script src="~/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
 <script src="~/Kendo/js/kendo.aspnetmvc.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
-    <div class="subheader">
-        <div class="left_title">
-            <h2>@ViewBag.Title</h2>
+<div class="subheader">
+    <div class="left_title">
+        <h2>@ViewBag.Title</h2>
 
-        </div>
-        <div class="subheader_right">
-            @if (permission.AllowInsert)
-            {
-                <a class="button button_primary button_rounded" href="@Url.Action("Create", "Student")">Add Student</a>
-            }
-        </div>
     </div>
+    <div class="subheader_right">
+        
+        @*@if (!String.IsNullOrWhiteSpace(TempData("Message")) )
+        {*@
+        <label class="bg-success text-white alertmsg"> @TempData["Message"]</label>
+        
 
-    <div class="common_white_box listingpage">
-        <div class="page-loader k-loading-image"></div>
 
-        @(Html.Kendo().Grid<SMS.Model.StudentModel>()
+        @if (permission.AllowInsert)
+        {
+            <a class="button button_primary button_rounded" href="@Url.Action("Create", "Student")">Add Student</a>
+        }
+    </div>
+</div>
+
+<div class="common_white_box listingpage">
+    <div class="page-loader k-loading-image"></div>
+
+    @(Html.Kendo().Grid<SMS.Model.StudentModel>()
             .Name("gridStudent")
             .AutoBind(false)
             .Columns(columns =>
@@ -75,21 +86,32 @@
      .Destroy(update => update.Action("Delete", "Student"))
      .Model(model => model.Id(p => p.StudentId))
     )
-     .Editable(Id => Id.Mode(GridEditMode.InLine).ConfirmDelete("Are You Sure You Want To Delete?").DisplayDeleteConfirmation("Are You Sure You Want To Delete ? "))
+     .Editable(Id => Id.Mode(GridEditMode.InLine).ConfirmDelete("Are you sure you want to delete?").DisplayDeleteConfirmation("Are you sure you want to delete?"))
     )
 </div>
 
 
-    <script>
+<script>
 
-        $(document).ready(function () {
-            $('#gridStudent').data('kendoGrid').dataSource.read();
-            $('#gridStudent').data('kendoGrid').refresh();
-        });
-        $(document).ajaxComplete(function () {
-            $(".page-loader").css("display", "none");
-            $(window).resize();
-        });
+    $(document).ready(function () {
+        $('#gridStudent').data('kendoGrid').dataSource.read();
+        $('#gridStudent').data('kendoGrid').refresh();
+    });
+    $(document).ajaxComplete(function () {
+        $(".page-loader").css("display", "none");
+        $(window).resize();
+    });
+    //var message = $('#Message').text();
+    //if (message != '') {
+    //    toastr.success(message);
+    //    }
+
+    $(document).ready(function () {
+        var successElement = $(".alertmsg");
+        if (successElement) {
+            setTimeout(function () { successElement.hide(); }, 2000);
+        }
+    });
    
 </script>
 

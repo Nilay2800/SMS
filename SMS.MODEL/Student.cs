@@ -29,6 +29,7 @@ namespace SMS.Model
         public string Email { get; set; }
         [Display(Name = "Contact Number")]
         [Required(ErrorMessage = "Contact Number is required.")]
+        [DataType(DataType.PhoneNumber)]
         public string ContactNumber { get; set; }
         public bool Status { get; set; } = true;
        

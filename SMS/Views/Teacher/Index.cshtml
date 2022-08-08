@@ -24,9 +24,14 @@
     <div class="subheader">
         <div class="left_title">
             <h2>@ViewBag.Title</h2>
+            @ViewBag.added
 
         </div>
         <div class="subheader_right">
+
+            <label class="bg-success text-white alertmsg"> @TempData["Message"]</label>
+
+
             @if (permission.AllowInsert)
             {
                 <a class="button button_primary button_rounded" href="@Url.Action("AddTeacher", "Teacher")">Add Teacher</a>
@@ -76,7 +81,7 @@
                  .Destroy(update => update.Action("Delete", "Teacher"))
                  .Model(model => model.Id(p => p.Id))
              )
-             .Editable(Id => Id.Mode(GridEditMode.InLine).ConfirmDelete("Are You Sure You Want To Delete?").DisplayDeleteConfirmation("Are You Sure You Want To Delete ? "))
+             .Editable(Id => Id.Mode(GridEditMode.InLine).ConfirmDelete("Are you sure you want to delete?").DisplayDeleteConfirmation("Are you sure you want to delete?"))
     )
     </div>
 
@@ -92,6 +97,17 @@
         $(document).ajaxComplete(function () {
             $(".page-loader").css("display", "none");
             $(window).resize();
+        });
+        var message = $('#Message').text();
+        if (message != '') {
+            toastr.success(message);
+        }
+
+        $(document).ready(function () {
+            var successElement = $(".alertmsg");
+            if (successElement) {
+                setTimeout(function () { successElement.hide(); }, 2000);
+            }
         });
     </script>
 

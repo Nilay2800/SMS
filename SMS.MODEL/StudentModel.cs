@@ -12,9 +12,11 @@ namespace SMS.Model
         public Guid StudentId { get; set; }
         [Required(ErrorMessage = "FirstName is required.")]
         [Display(Name = "First Name")]
+        [StringLength(20)]
         public string Firstname { get; set; }
         [Display(Name = "Last Name")]
         [Required(ErrorMessage = "LastName is required.")]
+        [StringLength(20)]
         public string Lastname { get; set; }
         [Required(ErrorMessage = "Age is required.")]
         public int Age { get; set; }
@@ -28,6 +30,8 @@ namespace SMS.Model
         public string Email { get; set; }
         [Display(Name = "Contact Number")]
         [Required(ErrorMessage = "Contact Number is required.")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         public string ContactNumber { get; set; }
         public bool Status { get; set; } = true;
 

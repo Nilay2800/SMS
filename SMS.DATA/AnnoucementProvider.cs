@@ -16,6 +16,7 @@ namespace SMS.Data
         public List<AnnoucementModel> GetAllAnnoucement()
         {
             var sadmin = SessionHelper.UserId;
+            var all = _db.webpages_UsersInRoles.Where(x=>x.UserId == sadmin).FirstOrDefault().RoleId;
             if (sadmin==1)
             {
                 return _db.annoucements.Select(x => new AnnoucementModel
@@ -27,11 +28,12 @@ namespace SMS.Data
                     RoleId=x.RoleId
                 }).ToList();
             }
-            else
+            else 
             {
-                var annoucement = (from anmct in _db.webpages_UsersInRoles
-                                   join role in _db.annoucements on anmct.RoleId equals role.RoleId
-                                   where anmct.UserId == SessionHelper.UserId && anmct.RoleId == role.RoleId
+                var annoucement = (from role in _db.annoucements
+                                   join anmct in _db.webpages_UsersInRoles on role.RoleId equals anmct.RoleId 
+                                   into list from announcement in list.DefaultIfEmpty()
+                                   where role.RoleId == all || role.RoleId == 0
                                    select
                        new AnnoucementModel()
                        {

@@ -27,6 +27,8 @@
 
     </div>
     <div class="subheader_right">
+
+        <label class="bg-success text-white alertmsg"> @TempData["Message"]</label>
         @if (permission.AllowInsert)
         {
             <a class="button button_primary button_rounded" href="@Url.Action("AddAnnoucement", "Annoucement")">Add Announcement</a>
@@ -46,7 +48,7 @@
                     columns.Bound(c => c.CreatedOn).Title("Date").Format("{0:" + CommonUtility.GetDateFormat(true) + "}").Width("5%").Filterable(false);
                     columns.Bound(c => c.Subject).Width("10%").Title("Announcement");
                     //columns.Bound(c => c.AnnoucementDetail).Width("10%").Title("Announcement");
-                    columns.Bound(c => c.Id).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + (permission.AllowUpdate ? "<a href='javascript://' onclick=\"fnShowDetails(#= Id #)\"><i class='fa fa-eye'></i></a>" : "")).Filterable(false).Title("Action").Width("8%").Sortable(false);
+                    columns.Bound(c => c.Id).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + (permission.AllowView ? "<a href='javascript://' onclick=\"fnShowDetails(#= Id #)\"><i class='fa fa-eye'></i></a>" : "")).Filterable(false).Title("Action").Width("8%").Sortable(false);
                     columns.Bound(c => c.Id).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("EditAnnoucement", "Annoucement") + "/#=Id#'" + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Edit").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);
 
 
@@ -76,7 +78,7 @@
                      .Destroy(update => update.Action("Delete", "Annoucement"))
                      .Model(model => model.Id(p => p.Id))
                  )
-                 .Editable(Id => Id.Mode(GridEditMode.InLine).ConfirmDelete("Are You Sure You Want To Delete?").DisplayDeleteConfirmation("Are You Sure You Want To Delete ? "))
+                 .Editable(Id => Id.Mode(GridEditMode.InLine).ConfirmDelete("Are you sure you want to delete?").DisplayDeleteConfirmation("Are you sure you want to delete?"))
         )
 
 
@@ -96,7 +98,7 @@
     });
 
      function fnShowDetails(Id) {
-        var popupTitle = 'Annoucement Details';
+         var popupTitle = 'Announcement Details';
         var popupURL = "@Url.Action("AnnoucementDetails", "Annoucement")";
 
         $.confirm({
@@ -126,7 +128,17 @@
         result = str.split("/")[1];
         return result;
     }
+    var message = $('#Message').text();
+    if (message != '') {
+        toastr.success(message);
+    }
 
+    $(document).ready(function () {
+        var successElement = $(".alertmsg");
+        if (successElement) {
+            setTimeout(function () { successElement.hide(); }, 2000);
+        }
+    });
 </script>
 
 
