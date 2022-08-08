@@ -1,5 +1,6 @@
 ﻿using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using SMS.Helper;
 using SMS.Model;
 
 using SMS.Service;
@@ -23,7 +24,7 @@ namespace SMS.Controllers
 
 
         }
-        public ActionResult Index()
+        public ActionResult Index(/*string msg*/)
         {
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Student.ToString(), AcessPermission.IsView))
             {
@@ -44,8 +45,8 @@ namespace SMS.Controllers
         [HttpPost]
         public ActionResult Create(StudentModel student)
         {
-            _studentService.CreateStudent(student);
-            TempData["Message"] = "Student Added Successfully!!";
+            _studentService.CreateStudent(student);                      
+            TempData["Message"] = Constants.EmailCodes.STUDENTADDED;
             return RedirectToAction("Index", "Student");
         }
         [HttpGet]
@@ -62,7 +63,7 @@ namespace SMS.Controllers
         public ActionResult Edit(StudentModel student)
         {
             StudentModel student1 = _studentService.UpdateStudent(student);
-            TempData["Message"] = "Detail Updated Successfully!!";
+            TempData["Message"] = Constants.EmailCodes.StudentEdit;
             return RedirectToAction("Index");
         }
         public ActionResult Delete(string StudentId)
@@ -72,7 +73,6 @@ namespace SMS.Controllers
                 return RedirectToAction("AccessDenied", "Base");
             }
             _studentService.DeleteStudent(StudentId);
-
             return RedirectToAction("Index");
         }
         public ActionResult GetGridData([DataSourceRequest] DataSourceRequest request)

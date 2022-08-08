@@ -167,9 +167,9 @@ namespace SMS.Controllers
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your Password has been changed. "
-              : message == ManageMessageId.RemoveLoginSuccess ? "The External Login Was Removed."
-              : message == ManageMessageId.SetPasswordSuccess ? "Your Password Has Been Set."
+                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed. "
+              : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+              : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
               : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");

@@ -7,6 +7,7 @@ using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using System.Web;
 using System.Web.Mvc;
+using SMS.Helper;
 
 namespace SMS.Controllers
 {
@@ -18,7 +19,7 @@ namespace SMS.Controllers
             teacherService = new TeacherService();
         }
         // GET: Teacher
-        public ActionResult Index()
+        public ActionResult Index(string msg)
         {
 
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Teacher.ToString(), AcessPermission.IsView))
@@ -48,6 +49,7 @@ namespace SMS.Controllers
         public ActionResult AddTeacher(TeacherModel teacher)
         {
             teacherService.CreateTeacher(teacher);
+            TempData["Message"] = Constants.EmailCodes.TeacherAdded;
             return RedirectToAction("Index","Teacher");
         }
         [HttpGet]
@@ -66,6 +68,7 @@ namespace SMS.Controllers
         public ActionResult EditTeacher(TeacherModel teacherModel)
         {
             TeacherModel teacherModel1 = teacherService.UpdateTeacher(teacherModel);
+            TempData["Message"] = Constants.EmailCodes.TeacherEdit;
             return RedirectToAction("Index");
 
         }

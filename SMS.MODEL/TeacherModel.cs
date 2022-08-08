@@ -12,10 +12,12 @@ namespace SMS.Model
         public int Id { get; set; }
         [Required(ErrorMessage ="required")]
         [Display(Name = "First Name")]
+        [StringLength(20)]
 
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]
         [Required(ErrorMessage = "required")]
+        [StringLength(20)]
         public string LastName { get; set; }
         [Display(Name = "Email")]
         [Required(ErrorMessage = "required")]
@@ -24,6 +26,8 @@ namespace SMS.Model
         [Required(ErrorMessage = "required")]
         [MinLength(10,ErrorMessage ="mobile no should be 11")]
         [Display(Name = "Contact Number")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         public string MobileNumber { get; set; }
         [Display(Name = "Active")]
         public bool IsActive { get; set; }
