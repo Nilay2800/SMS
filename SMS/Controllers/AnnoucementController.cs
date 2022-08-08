@@ -1,6 +1,5 @@
 ﻿using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
-using SMS.Helper;
 using SMS.Model;
 using SMS.Service;
 using System;
@@ -21,7 +20,7 @@ namespace SMS.Controllers
             annoucementService = new AnnoucementService();
         }
         // GET: Annoucement
-        public ActionResult Index(string msg)
+        public ActionResult Index()
         {
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Annoucement.ToString(), AcessPermission.IsView))
             {
@@ -50,7 +49,6 @@ namespace SMS.Controllers
         {
             
             annoucementService.CreateAnnoucement(annoucementModel);
-            TempData["Message"] = Constants.EmailCodes.AnnouncementAdded;
             return RedirectToAction("Index");
         }
 
@@ -71,7 +69,6 @@ namespace SMS.Controllers
         public ActionResult EditAnnoucement(AnnoucementModel annoucementModel)
         {
             AnnoucementModel annoucementModel1= annoucementService.UpdateAnnoucement(annoucementModel);
-            TempData["Message"] = Constants.EmailCodes.AnnouncementEdit;
             return RedirectToAction("Index");
 
         }
@@ -97,7 +94,6 @@ namespace SMS.Controllers
        // [HttpGet]
         public ActionResult AnnoucementDetails(int Id)
         {
-            
             AnnoucementModel model = new AnnoucementModel();
             var annoucementDetails = annoucementService.GetAnnocementById(Id);
             return Json(RenderPartialViewToString(this, "_ErrorLogPopUp", annoucementDetails), JsonRequestBehavior.AllowGet);
