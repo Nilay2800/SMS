@@ -1,33 +1,47 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@*@{
+        ViewBag.Title = "Home Page";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
 
-<h1>Welcome to School Management System</h1>
-@*<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-2">
+            <h1 class="mt-4" style="text-align:center">Details</h1>
+            <ol class="breadcrumb mb-2">
+                @*<li class="breadcrumb-item active">SMS</li>*@
+            </ol>
+            <div class="row">
+                <div class="col-xl-3 col-md-3" style="right:-80px; ">
+                    <div class="card bg-success text-white mb-4" style="height: 80px; border:hidden; border-radius:14px; ">
+                        <div class="card-body" style="text-align:center; font-size:20px"><a href="@Url.Action("Index", "Student")" style="color:black">Total Student</a></div>
+                        <div class="card-footer d-flex align-items-center justify-content-between" style="text-align:center">
+                            <a class="large text-white stretched-link" style="font-size:215%; color:blue">@ViewBag.TotalStudent</a>
+                            <div class="large text-white"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3" style="left:180px">
+                    <div class="card bg-success text-white mb-4" style="height: 80px; border: hidden; border-radius: 14px">
+                        <div class="card-body" style="text-align: center; font-size: 20px"><a href="@Url.Action("Index", "Teacher")" style="color:black">Total Teacher</a></div>
+                        <div class="card-footer d-flex align-items-center justify-content-between" style="text-align:center">
+                            <a class="large text-white stretched-link" style="font-size:215%; color:blue">@ViewBag.TotalTeacher</a>
+                            <div class="large text-white"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3" style="left:280px">
+                    <div class="card bg-success text-white mb-4" style="height: 80px; border: hidden; border-radius: 14px">
+                        <div class="card-body" style="text-align: center; font-size: 20px"><a href="@Url.Action("Index", "Annoucement")" style="color:black">Total Announcement</a></div>
+                        <div class="card-footer d-flex align-items-center justify-content-between" style="text-align:center">
+                            <a class="large text-white stretched-link" style="font-size:215%; color:blue">@ViewBag.TotalAnnouncement</a>
+                            <div class="large text-white"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>*@

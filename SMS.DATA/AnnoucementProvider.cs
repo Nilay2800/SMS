@@ -92,6 +92,10 @@ namespace SMS.Data
         {
             return _db.webpages_Roles.Where(s => s.IsActive == true && s.RoleId != 1).Select(x => new DropDownList { Key = x.RoleName, Value = x.RoleId }).ToList();
         }
+        public int TotalAnnouncement()
+        {
+            return _db.annoucements.Where(q => q.Status == true).Count();
+        }
 
     }
 }

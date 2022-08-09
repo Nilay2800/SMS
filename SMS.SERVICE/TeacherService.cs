@@ -48,5 +48,9 @@ namespace SMS.Service
         {
             teacherProvider.DeleteTeacher(Id);
         }
+        public int TotalTeacher()
+        {
+            return teacherProvider.TotalTeacher();
+        }
     }
 }
