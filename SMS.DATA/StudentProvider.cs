@@ -85,6 +85,10 @@ namespace SMS.Data
             }
             
         }
+        public int TotalStudent()
+        {
+            return _db.students.Where(x => x.Status == true).Count();
+        }
     }
 }
 

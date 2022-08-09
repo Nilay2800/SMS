@@ -52,6 +52,10 @@ namespace SMS.Service
         {
             return annocementProvider.BindRole();
         }
+        public int TotalAnnouncement()
+        {
+            return annocementProvider.TotalAnnouncement();
+        }
 
     }
 }

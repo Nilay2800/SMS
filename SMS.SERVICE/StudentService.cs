@@ -52,5 +52,9 @@ namespace SMS.Service
            
             _studentProvider.DeleteStudent(StudentId);
         }
+        public int TotalStudent()
+        {
+            return _studentProvider.TotalStudent();
+        }
     }
 }

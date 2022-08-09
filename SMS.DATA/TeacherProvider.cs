@@ -77,5 +77,10 @@ namespace SMS.Data
                 _db.SaveChanges();
             }
         }
+        public int TotalTeacher()
+        {
+            return _db.teachers.Where(a => a.Status == true).Count();
+
+        }
     }
 }

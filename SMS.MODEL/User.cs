@@ -21,10 +21,13 @@ namespace SMS.Model
         [Required]
         public string UserName { get; set; }
         [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [DataType(DataType.Password)]
         [NotMapped]
         [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage = "the password and confirm password do not match.")]
         public string ConfirmPassword { get; set; }
       
         [NotMapped]
