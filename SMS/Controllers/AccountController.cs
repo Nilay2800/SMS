@@ -36,7 +36,8 @@ namespace SMS.Controllers
         private readonly TeacherService teacherService;
         private readonly AnnoucementService annoucementService;
         private readonly EmailTemplateService emailTemplateService;
-
+        public StudentEntites _db = new StudentEntites();
+        
         public AccountController()
         {
             formRoleMappingService = new FormRoleMappingService();
@@ -47,6 +48,7 @@ namespace SMS.Controllers
             teacherService = new TeacherService();
             annoucementService = new AnnoucementService();
             emailTemplateService = new EmailTemplateService();
+            
         }
 
         // GET: User
@@ -122,17 +124,43 @@ namespace SMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string ReturnUrl = "")
         {
-
+           
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
                 var userID = WebSecurity.GetUserId(model.UserName);
                 string returnUrl = Request.QueryString["ReturnUrl"];
                 Session["UserName"] = model.UserName.ToString();
                 SessionHelper.UserId = userID;
-
+                Session["Menu"] = formRoleMappingService.GetMenu(userID);
+                var sadmin = SessionHelper.UserId;
                 
-                    Session["Menu"] = formRoleMappingService.GetMenu(userID);
-                    return RedirectToAction("Index", "Home");
+                var all = _db.webpages_UsersInRoles.Where(x => x.UserId == sadmin).FirstOrDefault().RoleId;
+                if (sadmin == 1)
+                {
+                    var annoucement = from Annoucement in _db.annoucements
+                                      where Annoucement.Status == true
+                                      select Annoucement;
+
+                    var latest = annoucement.OrderByDescending(x => x.CreatedOn).FirstOrDefault();
+                    TempData["announcement"] = latest.AnnoucementDetail;
+                    TempData["subject"] = latest.Subject;
+                    
+                }
+                else
+                {
+                    var annoucement = from role in _db.annoucements
+                                      join anmct in _db.webpages_UsersInRoles on role.RoleId equals anmct.RoleId
+                                      into list
+                                      from announcement in list.DefaultIfEmpty()
+                                      where ((role.RoleId == all || role.RoleId == 0) && (role.Status==true))
+                                      select role;
+                    var latest = annoucement.OrderByDescending(x => x.CreatedOn).FirstOrDefault();
+                    TempData["announcement"] = latest.AnnoucementDetail;
+                    TempData["subject"] = latest.Subject;
+
+
+                }
+                return RedirectToAction("Index", "Home");
 
                 
 
