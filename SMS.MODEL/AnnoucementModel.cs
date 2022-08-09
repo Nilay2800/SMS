@@ -23,5 +23,6 @@ namespace SMS.Model
         public DateTime? CreatedOn { get; set; }
         public int RoleId { get; set; }
         public List<SelectListItem> _RoleList { get; set; }
+        public bool Status { get; set; }
     }
 }

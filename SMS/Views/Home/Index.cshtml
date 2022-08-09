@@ -1,10 +1,8 @@
+
 ﻿@*@{
         ViewBag.Title = "Home Page";
         Layout = "~/Views/Shared/_Layout.cshtml";
     }*@
-
-
-
 
 <div id="layoutSidenav_content">
     <main>
@@ -45,3 +43,51 @@
         </div>
     </main>
 </div>
+
+﻿
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">@TempData["subject"]</h3>
+                    <button type="button" class="close" data-dismiss="modal" id="button" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+
+                <div class="modal-body" id="myModal">
+                    <h5>@TempData["announcement"]</h5>
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="button" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button">Got it</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<script type="text/javascript" language="javascript">
+    $(function() {
+        var r = '@TempData["announcement"]';
+        var n = '@TempData["subject"]';
+        if (r.length > 0 && n.length > 0)
+           {
+            $('#exampleModalScrollable').modal('show');
+           }
+    });
+    $("#button").click(function () {
+
+        $('#exampleModalScrollable').modal('hide');
+
+    });
+
+</script>
+
