@@ -1,93 +1,85 @@
+@using Kendo.Mvc.UI
 
-﻿@*@{
-        ViewBag.Title = "Home Page";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }*@
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />
+<link href="~/Content/kendo/2017.2.621/kendo.metro.min.css" rel="stylesheet" />
+<link href="~/Content/kendo/2017.2.621/kendo.default.min.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/font-awesome/css/font-awesome.min.css")" />
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/et-line-icon/fonts/et-line.css")" />
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/line-awesome-icon/css/line-awesome.min.css")" />
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/material-icons/material-icon.css")" />
+<script src="~/Scripts/kendo/kendo.all.min.js"></script>
+<script src="~/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
+@*<script src="~/Kendo/js/jquery.min.js"></script>*@
+@*<script src="~/Kendo/js/kendo.all.min.js"></script>*@
+<script src="~/Kendo/js/kendo.aspnetmvc.min.js"></script>
+<div class="">
+    <div class="dashboard-title-widgets">
+        <h4>System Summary </h4>
 
-<div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid px-2">
-            <h1 class="mt-4" style="text-align:center">Details</h1>
-            <ol class="breadcrumb mb-2">
-                @*<li class="breadcrumb-item active">SMS</li>*@
-            </ol>
-            <div class="row">
-                <div class="col-xl-3 col-md-3" style="right:-80px; ">
-                    <div class="card bg-success text-white mb-4" style="height: 80px; border:hidden; border-radius:14px; ">
-                        <div class="card-body" style="text-align:center; font-size:20px"><a href="@Url.Action("Index", "Student")" style="color:black">Total Student</a></div>
-                        <div class="card-footer d-flex align-items-center justify-content-between" style="text-align:center">
-                            <a class="large text-white stretched-link" style="font-size:215%; color:blue">@ViewBag.TotalStudent</a>
-                            <div class="large text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-3" style="left:180px">
-                    <div class="card bg-success text-white mb-4" style="height: 80px; border: hidden; border-radius: 14px">
-                        <div class="card-body" style="text-align: center; font-size: 20px"><a href="@Url.Action("Index", "Teacher")" style="color:black">Total Teacher</a></div>
-                        <div class="card-footer d-flex align-items-center justify-content-between" style="text-align:center">
-                            <a class="large text-white stretched-link" style="font-size:215%; color:blue">@ViewBag.TotalTeacher</a>
-                            <div class="large text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-3" style="left:280px">
-                    <div class="card bg-success text-white mb-4" style="height: 80px; border: hidden; border-radius: 14px">
-                        <div class="card-body" style="text-align: center; font-size: 20px"><a href="@Url.Action("Index", "Annoucement")" style="color:black">Total Announcement</a></div>
-                        <div class="card-footer d-flex align-items-center justify-content-between" style="text-align:center">
-                            <a class="large text-white stretched-link" style="font-size:215%; color:blue">@ViewBag.TotalAnnouncement</a>
-                            <div class="large text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="white_box widgetBox widgetBox1 clearfix text-center mb0">
+                <h3>@ViewBag.TotalStudent</h3>
+                <div class="widgetTitle">
+                    <a href='@Url.Action("Index","Student")'>Total Student</a>
                 </div>
             </div>
         </div>
-    </main>
-</div>
-
-﻿
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalScrollableTitle">@TempData["subject"]</h3>
-                    <button type="button" class="close" data-dismiss="modal" id="button" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <div class="col-md-3">
+            <div class="white_box widgetBox widgetBox2  clearfix text-center mb0">
+                <h3>@ViewBag.TotalTeacher</h3>
+                <div class="widgetTitle">
+                    <a href='@Url.Action("Index","Teacher")'>Total Teacher</a>
                 </div>
-
-
-                <div class="modal-body" id="myModal">
-                    <h5>@TempData["announcement"]</h5>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="white_box widgetBox widgetBox3 clearfix text-center mb0">
+                <h3>@ViewBag.TotalAnnouncement</h3>
+                <div class="widgetTitle">
+                    <a href='@Url.Action("Index","Annoucement")'>Total Announcement</a>
                 </div>
-
-
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="button" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="button">Got it</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="white_box widgetBox widgetBox4 clearfix text-center mb0">
+                <h3>@ViewBag.TotalUser</h3>
+                <div class="widgetTitle">
+                    <a href='@Url.Action("Index","Candidate")'>Total User</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
+<div class="common_white_box listingpage">
+    @(Html.Kendo().Chart<SMS.Model.BarChartModel>()
+      .Name("chart")
+      .Title("Students As Per Class")
+      .Legend(legend => legend
+      .Position(ChartLegendPosition.Bottom)
+      )
+      .DataSource(ds => ds.Read(read => read.Action("Read", "Home")))
+      .Series(series =>
+      {
+         series.Column(model => model.Student);
+      })
+      .CategoryAxis(axis => axis.Categories(model => model.Class)
+      )
+     ) 
+    
+</div>
 
-<script type="text/javascript" language="javascript">
-    $(function() {
-        var r = '@TempData["announcement"]';
-        var n = '@TempData["subject"]';
-        if (r.length > 0 && n.length > 0)
-           {
-            $('#exampleModalScrollable').modal('show');
-           }
-    });
-    $("#button").click(function () {
+    <script>
+        
 
-        $('#exampleModalScrollable').modal('hide');
+    </script>
 
-    });
-
-</script>
 
