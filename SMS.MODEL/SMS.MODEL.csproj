@@ -59,6 +59,7 @@
     <Compile Include="AcessPermission.cs" />
     <Compile Include="Annoucement.cs" />
     <Compile Include="AuthorizeFormAccess.cs" />
+    <Compile Include="BarChartModel.cs" />
     <Compile Include="DropDownList.cs" />
     <Compile Include="EmailFP.cs" />
     <Compile Include="EmailTemplate.cs" />

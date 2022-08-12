@@ -25,7 +25,8 @@ namespace SMS.Controllers
             {
                 return RedirectToAction("AccessDenied", "Base");
             }
-            ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString());       
+            ViewBag.Permission = GetPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString());
+            
             return View();
         }
         public ActionResult EditUserRoleMapping(int id)
