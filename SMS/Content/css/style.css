@@ -5265,7 +5265,7 @@ left_status_filter {
     font-size: 18px;
 }
 .white_box.widgetBox.widgetBox1 {
-    background: linear-gradient(153.59deg, #b986ef 28.26%, #8134d0 100%);
+    background: #d05f34 !important; /* linear-gradient(153.59deg,#ef8686 28.26%,#d05f34 100%);*/
 }
 
 .white_box.widgetBox.widgetBox2 {

@@ -1,9 +1,9 @@
 @using Kendo.Mvc.UI
 
 @{
-   
+
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
 }
 <link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />
 <link href="~/Content/kendo/2017.2.621/kendo.metro.min.css" rel="stylesheet" />
@@ -17,50 +17,56 @@
 @*<script src="~/Kendo/js/jquery.min.js"></script>*@
 @*<script src="~/Kendo/js/kendo.all.min.js"></script>*@
 <script src="~/Kendo/js/kendo.aspnetmvc.min.js"></script>
-<div class="">
-    <div class="dashboard-title-widgets">
-        <h4>System Summary </h4>
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/font-awesome/css/font-awesome.min.css")" />
+<!DOCTYPE html>
+<html lang="en">
 
+
+<body>
+    <div class="from-design" style="margin-left:90px">
+        <div class="dashboard-title-widgets">
+            <h3>System Summary </h3>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="white_box widgetBox widgetBox1 clearfix text-center mb0">
+                    <h3>@ViewBag.TotalStudent</h3>
+                    <div class="widgetTitle">
+                        <a href='@Url.Action("Index","Student")'>Total Student</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="white_box widgetBox widgetBox2  clearfix text-center mb0">
+                    <h3>@ViewBag.TotalTeacher</h3>
+                    <div class="widgetTitle">
+                        <a href='@Url.Action("Index","Teacher")'>Total Teacher</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="white_box widgetBox widgetBox3 clearfix text-center mb0">
+                    <h3>@ViewBag.TotalAnnouncement</h3>
+                    <div class="widgetTitle">
+                        <a href='@Url.Action("Index","Annoucement")'>Total Announcement</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="white_box widgetBox widgetBox4 clearfix text-center mb0">
+                    <h3>@ViewBag.TotalUser</h3>
+                    <div class="widgetTitle">
+                        <a href='@Url.Action("DisplayUser","UserMaster")'>Total User</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="white_box widgetBox widgetBox1 clearfix text-center mb0">
-                <h3>@ViewBag.TotalStudent</h3>
-                <div class="widgetTitle">
-                    <a href='@Url.Action("Index","Student")'>Total Student</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="white_box widgetBox widgetBox2  clearfix text-center mb0">
-                <h3>@ViewBag.TotalTeacher</h3>
-                <div class="widgetTitle">
-                    <a href='@Url.Action("Index","Teacher")'>Total Teacher</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="white_box widgetBox widgetBox3 clearfix text-center mb0">
-                <h3>@ViewBag.TotalAnnouncement</h3>
-                <div class="widgetTitle">
-                    <a href='@Url.Action("Index","Annoucement")'>Total Announcement</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="white_box widgetBox widgetBox4 clearfix text-center mb0">
-                <h3>@ViewBag.TotalUser</h3>
-                <div class="widgetTitle">
-                    <a href='@Url.Action("Index","Candidate")'>Total User</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-
-<div class="common_white_box listingpage">
-    @(Html.Kendo().Chart<SMS.Model.BarChartModel>()
+    <div class="from-design" style="margin-left:90px">
+        <div class="common_white_box listingpage">
+            @(Html.Kendo().Chart<SMS.Model.BarChartModel>()
       .Name("chart")
       .Title("Students As Per Class")
       .Legend(legend => legend
@@ -73,13 +79,16 @@
       })
       .CategoryAxis(axis => axis.Categories(model => model.Class)
       )
-     ) 
-    
-</div>
+     )
 
-    <script>
-        
+        </div>
+        </div>
+        <script src="Content/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+<script>
 
-    </script>
+
+</script>
 
 
