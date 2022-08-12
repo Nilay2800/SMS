@@ -10,20 +10,20 @@ namespace SMS.Model
     public class TeacherModel
     {
         public int Id { get; set; }
-        [Required(ErrorMessage ="required")]
+        [Required(ErrorMessage ="FirstName is required")]
         [Display(Name = "First Name")]
         [StringLength(20)]
 
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]
-        [Required(ErrorMessage = "required")]
+        [Required(ErrorMessage = "LastName is required")]
         [StringLength(20)]
         public string LastName { get; set; }
         [Display(Name = "Email")]
-        [Required(ErrorMessage = "required")]
+        [Required(ErrorMessage = "Email is required")]
         [EmailAddress]
         public string Email { get; set; }
-        [Required(ErrorMessage = "required")]
+        [Required(ErrorMessage = "MobileNumber is required")]
         [MinLength(10,ErrorMessage ="mobile no should be 11")]
         [Display(Name = "Contact Number")]
         [DataType(DataType.PhoneNumber)]

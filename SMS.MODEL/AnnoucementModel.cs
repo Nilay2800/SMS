@@ -15,7 +15,9 @@ namespace SMS.Model
             _RoleList = new List<SelectListItem>();
         }
         public int Id { get; set; }
+        [Required(ErrorMessage = "Subject is required")]
         public string Subject { get; set; }
+        [Required(ErrorMessage = "AnnoucementDetail is required")]
         [AllowHtml]
         [Display(Name = "Annoucement")]
         public string AnnoucementDetail { get; set; }

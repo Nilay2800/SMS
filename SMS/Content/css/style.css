@@ -3112,6 +3112,55 @@ div.DTFC_LeftWrapper table.dataTable, div.DTFC_LeftWrapper table.dataTable td, d
     width: 100%;
     margin: 0 auto;
 }
+/**login*/
+.login-section {
+    background-color: black;
+    min-height: 100vh;
+    padding: 30px;
+}
+
+.login-from {
+    margin: 50px auto;
+    max-width: 450px;
+    width: 100%;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.label-title {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.forgotPassword {
+    font-size: 26px;
+    text-decoration: none;
+}
+
+.text-right {
+    text-align: right;
+    margin-top: 0px;
+}
+
+.btn-primary btn-md {
+    width: 145px;
+}
+/* forms*/
+.from-design {
+    margin: 50px auto;
+    max-width: 1350px;
+    width: 100%;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    border-radius: 05px;
+}
 
 /**|END Detatable|**/
 /*****|| Kendo css ||******/
@@ -3942,6 +3991,8 @@ span.cont_num_span {
 
 .listingpage .k-widget {
     border: none;
+    background-color: white !important;
+
 }
 
 .listingpage .k-grid-header th.k-header {
