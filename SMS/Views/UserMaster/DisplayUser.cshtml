@@ -21,18 +21,18 @@
 <script src="~/Kendo/js/kendo.aspnetmvc.min.js"></script>
 <div class="subheader">
     <div class="left_title">
-        <h2>@ViewBag.Title</h2>
+        <h2 style="margin-left:45px">@ViewBag.Title</h2>
 
     </div>
     <div class="subheader_right">
         @if (permission.AllowInsert)
         {
-            <a class="button button_primary button_rounded" href="@Url.Action("CreateUser", "UserMaster")">Add User</a>
+            <a class="button button_primary button_rounded" href="@Url.Action("CreateUser", "UserMaster")" style="margin-right:45px">Add User</a>
         }
     </div>
 </div>
 
-<div class="common_white_box listingpage">
+<div class="common_white_box listingpage"style="margin-left: 40px; margin-right: 40px;">
     <div class="page-loader k-loading-image"></div>
 
     @(Html.Kendo().Grid<SMS.Model.User>()
