@@ -67,19 +67,23 @@
     <div class="from-design" style="margin-left:90px">
         <div class="common_white_box listingpage">
             @(Html.Kendo().Chart<SMS.Model.BarChartModel>()
-      .Name("chart")
-      .Title("Students As Per Class")
-      .Legend(legend => legend
-      .Position(ChartLegendPosition.Bottom)
-      )
-      .DataSource(ds => ds.Read(read => read.Action("Read", "Home")))
-      .Series(series =>
-      {
-         series.Column(model => model.Student);
-      })
-      .CategoryAxis(axis => axis.Categories(model => model.Class)
-      )
-     )
+             .Name("chart")
+             .Title("Students As Per Class")
+             .Legend(legend => legend
+             .Position(ChartLegendPosition.Bottom)
+             )
+             .DataSource(ds => ds.Read(read => read.Action("Read", "Home")))
+             .Series(series =>
+             {
+                 series.Column(model => model.Student).Name("Total Students");
+             })
+             .CategoryAxis(axis => axis.Categories(model => model.Class)
+             )
+             .Tooltip(tooltip => tooltip
+             .Visible(true)
+             .Template("#= series.name #: #= value #")
+             )
+            )
 
         </div>
         </div>

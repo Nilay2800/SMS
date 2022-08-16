@@ -1,5 +1,6 @@
 ﻿using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using SMS.Data.Database;
 using SMS.Model;
 using SMS.Service;
 using System;
@@ -13,6 +14,7 @@ namespace SMS.Controllers
     public class AnnoucementController : BaseController
     {
         public readonly AnnoucementService annoucementService;
+        public StudentEntites _db = new StudentEntites();
 
 
         public AnnoucementController()
@@ -97,6 +99,10 @@ namespace SMS.Controllers
             AnnoucementModel model = new AnnoucementModel();
             var annoucementDetails = annoucementService.GetAnnocementById(Id);
             return Json(RenderPartialViewToString(this, "_ErrorLogPopUp", annoucementDetails), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Get_Role()
+        {
+               return Json(_db.webpages_Roles.Where(s => s.IsActive == true && s.RoleId != 1).Select(x => new { roleId = x.RoleId, roleName = x.RoleName }), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -82,8 +82,24 @@
                             <div class="form-group">
                                 <label for="">Announcement For</label>
                                 <div class="input_box">
-                                    @Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.RoleList == null ? new SelectListItem() : ViewBag.RoleList, "Value", "Key"), "--Select Role--", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.Subject)
+                                    @*@Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.RoleList == null ? new SelectListItem() : ViewBag.RoleList, "Value", "Key"), "--Select Role--", new { @class = "form-control" })
+                                      @Html.ValidationMessageFor(model => model.Subject)*@
+                                    @(Html.Kendo()
+                                      .DropDownListFor(model=>model.RoleId)
+                                      .HtmlAttributes(new { style = "width:100%" })
+                                      .OptionLabel("Select All...")
+                                      .DataTextField("roleName")
+                                      .DataValueField("roleId")
+                                      .DataSource(source =>
+                                      {
+                                             source.Read(read =>
+                                             {
+                                                read.Action("Get_Role", "Annoucement");
+                                             });
+                                      })
+                                      .Enable(true)
+                                      .AutoBind(false)
+                                    )
                                 </div>
                             </div>
                         </div>

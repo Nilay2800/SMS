@@ -5269,17 +5269,17 @@ left_status_filter {
 }
 
 .white_box.widgetBox.widgetBox2 {
-    background: linear-gradient(153.59deg, #639DF4 28.26%, #0052CC 100%);
+    background: #00008B !important; /*linear-gradient(153.59deg, #639DF4 28.26%, #0052CC 100%);*/
     border-radius: 5px;
 }
 
 .white_box.widgetBox.widgetBox3 {
-    background: linear-gradient(153.59deg, #eda06c 28.26%, #d46418 100%);
+    background: #006400 !important; /*linear-gradient(153.59deg, #eda06c 28.26%, #d46418 100%);*/
     border-radius: 5px;
 }
 
 .white_box.widgetBox.widgetBox4 {
-    background: linear-gradient(153.59deg, #3ec689 27.54%, #318e46 97.74%);
+    background: #D7AA18 !important; /*linear-gradient(153.59deg, #3ec689 27.54%, #318e46 97.74%);*/
     border-radius: 5px;
 }
 .status {
