@@ -21,7 +21,7 @@ namespace SMS.Service
             var annoucement = annocementProvider.GetAllAnnoucement();
             return annoucement;
         }
-        public Annoucement CreateAnnoucement(AnnoucementModel annoucementModel)
+        public int CreateAnnoucement(AnnoucementModel annoucementModel)
         {
             return annocementProvider.CreateAnnoucement(annoucementModel);
         }

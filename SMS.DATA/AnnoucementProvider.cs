@@ -51,11 +51,12 @@ namespace SMS.Data
         {
             return _db.annoucements.Find(Id);
         }
-        public Annoucement CreateAnnoucement(AnnoucementModel annoucementModel)
+        public int  CreateAnnoucement(AnnoucementModel annoucementModel)
         {
             //string detail = WebUtility.HtmlEncode(annoucementModel.AnnoucementDetail);
             Annoucement _annocement = new Annoucement()
             {
+                Id=annoucementModel.Id,
                 Subject = annoucementModel.Subject,
                 AnnoucementDetail= annoucementModel.AnnoucementDetail,
                 RoleId=annoucementModel.RoleId,
@@ -65,8 +66,7 @@ namespace SMS.Data
 
             _db.annoucements.Add(_annocement);
             _db.SaveChanges();
-
-            return _annocement;
+            return annoucementModel.Id;
         }
 
         public AnnoucementModel UpdateAnnoucement(AnnoucementModel annoucementModel)
