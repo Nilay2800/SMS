@@ -36,6 +36,7 @@ namespace SMS.Data.Database
 
         public override int SaveChanges()
         {
+         
             foreach (var entry in ChangeTracker.Entries())
             {
                 var entity = entry.Entity;

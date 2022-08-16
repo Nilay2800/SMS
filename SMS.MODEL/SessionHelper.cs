@@ -21,7 +21,13 @@ namespace SMS.Model
             public const string DefaultTimeZone = "DefaultTimeZone";
             public const string EmailId = "EmailId";
             public const string IsAdmin = "IsAdmin";
+            public const string Status = "Status";
 
+        }
+        public static bool Status
+        {
+            get { return GetSessionValue<bool>(Constants.Status); }
+            set { SetSessionValue(Constants.Status, value); }
         }
         public static bool IsAdmin
         {

@@ -17,7 +17,8 @@ namespace SMS.Model
             Rolemaster=6,
             Formmaster=7,
             Usermaster=8,
-            EMAILTEMPLATE = 9
+            EMAILTEMPLATE = 9,
+            ROLES =10
 
         }
     }

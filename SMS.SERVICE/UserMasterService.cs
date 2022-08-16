@@ -35,9 +35,9 @@ namespace SMS.Service
             return userMasterProvider.BindRole();
         }
 
-        public User DeleteUser(int id)
+        public void DeleteUser(int id)
         {
-            return userMasterProvider.DeleteUser(id);
+            userMasterProvider.DeleteUser(id);
         }
         public User CreateUser(User user)
         {

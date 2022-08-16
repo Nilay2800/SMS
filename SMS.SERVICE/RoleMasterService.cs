@@ -24,16 +24,6 @@ namespace SMS.Service
 
         public webpages_Roles GetRolesById(int Id)
         {
-            //var data = roleMasterProvider.GetRolesById(Id);
-            //webpages_Roles role = new webpages_Roles()
-            //{
-            //    RoleId = data.RoleId,
-            //    RoleName = data.RoleName,
-            //    RoleCode = data.RoleCode,
-            //    IsActive = data.IsActive
-            //};
-            //return role;
-
             return roleMasterProvider.GetRolesById(Id);
         }
         public webpages_Roles GetRolesByName(string roleName)

@@ -1,9 +1,22 @@
 ﻿
 @using Kendo.Mvc.UI
+@using SMS.Service
+@using SMS.Model
+@using SMS.Data
+@using SMS.Controllers
 @{
     ViewBag.Title = "Teacher List";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var permission = ViewBag.Permission as SMS.Model.FormRoleMapping;
+    string formCode = AuthorizeFormAccess.FormAccessCode.ROLES.ToString();
+    RoleMasterService roleMasterService = new RoleMasterService();
+    UserMasterService userMasterService = new UserMasterService();
+    string role = roleMasterService.GetRolesById(SessionHelper.RoleId).RoleName;
+    //string user = userMasterService.GetUserById(SessionHelper.UserId == SessionHelper.RoleId)
+    BaseController _base = new BaseController();
+    bool AllowedEdit = _base.CheckPermission(formCode, AcessPermission.IsEdit);
+    bool AllowedAdd = _base.CheckPermission(formCode, AcessPermission.IsAdd);
+    bool AllowedDelete = _base.CheckPermission(formCode, AcessPermission.IsDelete);
 }
 <link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />
 <link href="~/Content/kendo/2017.2.621/kendo.metro.min.css" rel="stylesheet" />
@@ -19,43 +32,50 @@
 <script src="~/Kendo/js/kendo.aspnetmvc.min.js"></script>
 
 @*<div class="coman_content">*@
-    <!--This is Title div -->
+<!--This is Title div -->
 
-    <div class="subheader">
-        <div class="left_title">
-            <h2 style="margin-left:45px">@ViewBag.Title</h2>
-            @ViewBag.added
+<div class="subheader">
+    <div class="left_title">
+        <h2 style="margin-left:45px">@ViewBag.Title</h2>
+        @ViewBag.added
 
-        </div>
-        <div class="subheader_right">
-
-            <label class="bg-success text-white alertmsg"> @TempData["Message"]</label>
-
-
-            @if (permission.AllowInsert)
-            {
-                <a class="button button_primary button_rounded" href="@Url.Action("AddTeacher", "Teacher")" style="margin-right:45px">Add Teacher</a>
-            }
-        </div>
     </div>
+    <div class="subheader_right">
+        @if (TempData["Message"] != null)
+        {
+        <label class="bg-success text-white alertmsg"> @TempData["Message"]</label>
+        }
+
+        @if (permission.AllowInsert)
+        {
+            <a class="button button_primary button_rounded" href="@Url.Action("AddTeacher", "Teacher")" style="margin-right:45px">Add Teacher</a>
+        }
+    </div>
+</div>
 
 
-    <div class="common_white_box listingpage" style="margin-left: 40px; margin-right: 40px">
-        <div class="page-loader k-loading-image"></div>
+<div class="common_white_box listingpage" style="margin-left: 40px; margin-right: 40px">
+    <div class="page-loader k-loading-image"></div>
 
-        @(Html.Kendo().Grid<SMS.Model.TeacherModel>()
+    @(Html.Kendo().Grid<SMS.Model.TeacherModel>()
             .Name("gridTeacher")
             .AutoBind(false)
             .Columns(columns =>
             {
-                columns.Bound(c => c.FirstName).Width("10%").Title("First Name");
-                columns.Bound(c => c.LastName).Width("10%").Title("Last Name");
-                columns.Bound(c => c.Email).Width("10%").Title("Email");
-                columns.Bound(c => c.MobileNumber).Width("10%").Title("Mobile Number");
-                columns.Bound(c => c.IsActive).Width("5%").HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center-text" }).ClientTemplate("# if(IsActive == true) {#<i class='fa fa-check'></i># } else { #<i class='fa fa-close'></i># } #").Title("Active").Filterable(filterable => filterable.Messages(m => m.IsFalse("No").IsTrue("Yes")));
-                columns.Bound(c => c.Id).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("EditTeacher", "Teacher") + "/#=Id#'" + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Edit").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);
-                columns.Command(command => { command.Destroy(); }).Width("3%").Title("Delete").HtmlAttributes(new { @class = "kendogrid_Action center_text" }).HeaderHtmlAttributes(new { @class = "center_text" }).Hidden(!permission.AllowDelete);
+            columns.Bound(c => c.FirstName).Width("10%").Title("First Name");
+            columns.Bound(c => c.LastName).Width("10%").Title("Last Name");
+            columns.Bound(c => c.Email).Width("10%").Title("Email");
+            columns.Bound(c => c.MobileNumber).Width("10%").Title("Contact Number");
+            columns.Bound(c => c.IsActive).Width("5%").HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center-text" }).ClientTemplate("# if(IsActive == true) {#<i class='fa fa-check'></i># } else { #<i class='fa fa-close'></i># } #").Title("Active").Filterable(filterable => filterable.Messages(m => m.IsFalse("No").IsTrue("Yes")));
 
+            if (role == "sadmin")
+            {
+                columns.Bound(c => c.Id).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("EditTeacher", "Teacher") + "/#=Id#'" + "><i class='fa fa-edit'></i></a>") + (permission.AllowDelete ? "<a title='Delete'onclick=Delete('#: Id #') ><i class='fa fa-trash-o' style='font-size:17px'></i></a>" : "") + "</div>").Filterable(false).Title("Action").Width("5%").Sortable(false);
+                }
+                else
+                {
+                    columns.Bound(c => c.Id).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("EditTeacher", "Teacher") + "/#=Id#'" + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Edit").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);
+                }
             })
             .NoRecords("No record found")
             .Events(evt => evt
@@ -83,32 +103,46 @@
              )
              .Editable(Id => Id.Mode(GridEditMode.InLine).ConfirmDelete("Are you sure you want to delete?").DisplayDeleteConfirmation("Are you sure you want to delete?"))
     )
-    </div>
+</div>
 
 @*</div>*@
 
 
-    <script>
+<script>
 
-        $(document).ready(function () {
-            $('#gridTeacher').data('kendoGrid').dataSource.read();
-            $('#gridTeacher').data('kendoGrid').refresh();
-        });
-        $(document).ajaxComplete(function () {
-            $(".page-loader").css("display", "none");
-            $(window).resize();
-        });
-        var message = $('#Message').text();
-        if (message != '') {
-            toastr.success(message);
+    $(document).ready(function () {
+        $('#gridTeacher').data('kendoGrid').dataSource.read();
+        $('#gridTeacher').data('kendoGrid').refresh();
+    });
+    $(document).ajaxComplete(function () {
+        $(".page-loader").css("display", "none");
+        $(window).resize();
+    });
+    var message = $('#Message').text();
+    if (message != '') {
+        toastr.success(message);
+    }
+
+    $(document).ready(function () {
+        var successElement = $(".alertmsg");
+        if (successElement) {
+            setTimeout(function () { successElement.hide(); }, 2000);
+        }
+    });
+    function Delete(id) {
+        debugger;
+        if (confirm("Are you sure you want to delete ?") == true) {
+
+            $.get('/Teacher/Delete', { Id: id }, function () {
+                $('#gridTeacher').data('kendoGrid').dataSource.read();
+                $('#gridTeacher').data('kendoGrid').refresh();
+            });
+        }
+        else {
+            return false;
         }
 
-        $(document).ready(function () {
-            var successElement = $(".alertmsg");
-            if (successElement) {
-                setTimeout(function () { successElement.hide(); }, 2000);
-            }
-        });
-    </script>
+    }
+</script>
 
 

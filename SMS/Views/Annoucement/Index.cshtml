@@ -1,11 +1,25 @@
 ﻿@using Kendo.Mvc.UI
 @using SMS.Helper
 @using SMS.Model
+@using SMS.Service
+@using SMS.Model
+@using SMS.Data
+@using SMS.Controllers
 
 @{
     ViewBag.Title = "Announcement List";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var permission = ViewBag.Permission as SMS.Model.FormRoleMapping;
+    string formCode = AuthorizeFormAccess.FormAccessCode.ROLES.ToString();
+    RoleMasterService roleMasterService = new RoleMasterService();
+    UserMasterService userMasterService = new UserMasterService();
+    string role = roleMasterService.GetRolesById(SessionHelper.RoleId).RoleName;
+    //string user = userMasterService.GetUserById(SessionHelper.UserId == SessionHelper.RoleId)
+    BaseController _base = new BaseController();
+    bool AllowedEdit = _base.CheckPermission(formCode, AcessPermission.IsEdit);
+    bool AllowedAdd = _base.CheckPermission(formCode, AcessPermission.IsAdd);
+    bool AllowedDelete = _base.CheckPermission(formCode, AcessPermission.IsDelete);
+
 }
 <link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />
 <link href="~/Content/kendo/2017.2.621/kendo.metro.min.css" rel="stylesheet" />
@@ -27,11 +41,13 @@
 
     </div>
     <div class="subheader_right">
-
-        <label class="bg-success text-white alertmsg"> @TempData["Message"]</label>
+        @if (TempData["Message"] != null)
+        {
+            <label class="bg-success text-white alertmsg"> @TempData["Message"]</label>
+        }
         @if (permission.AllowInsert)
         {
-            <a class="button button_primary button_rounded" href="@Url.Action("AddAnnoucement", "Annoucement")"style="margin-right:45px">Add Announcement</a>
+            <a class="button button_primary button_rounded" href="@Url.Action("AddAnnoucement", "Annoucement")" style="margin-right:45px">Add Announcement</a>
         }
     </div>
 </div>
@@ -48,9 +64,13 @@
                     columns.Bound(c => c.CreatedOn).Title("Date").Format("{0:" + CommonUtility.GetDateFormat(true) + "}").Width("5%").Filterable(false);
                     columns.Bound(c => c.Subject).Width("10%").Title("Announcement");
                     //columns.Bound(c => c.AnnoucementDetail).Width("10%").Title("Announcement");
-                    columns.Bound(c => c.Id).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + (permission.AllowView ? "<a href='javascript://' onclick=\"fnShowDetails(#= Id #)\"><i class='fa fa-eye'></i></a>" : "")).Filterable(false).Title("Action").Width("8%").Sortable(false);
-                    columns.Bound(c => c.Id).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("EditAnnoucement", "Annoucement") + "/#=Id#'" + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Edit").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);
-
+                    if (role == "sadmin")
+                    {
+                        columns.Bound(c => c.Id).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + (permission.AllowView ? "<a href='javascript://' onclick=\"fnShowDetails(#= Id #)\"><i class='fa fa-eye'></i></a>" : "") + ("<a title='Edit' href='" + Url.Action("EditAnnoucement", "Annoucement") + "/#=Id#'" + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Action").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);
+                    }
+                    else {
+                        columns.Bound(c => c.Id).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + (permission.AllowView ? "<a href='javascript://' onclick=\"fnShowDetails(#= Id #)\"><i class='fa fa-eye'></i></a>" : "")).Filterable(false).Title("Action").Width("8%").Sortable(false);
+                    }
 
                 })
                 .NoRecords("No record found")

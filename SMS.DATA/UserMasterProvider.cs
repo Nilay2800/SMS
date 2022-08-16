@@ -63,12 +63,15 @@ namespace SMS.Data
             return _db.webpages_Roles.Where(s => s.IsActive == true && s.RoleId != 1).Select(x => new DropDownList { Key = x.RoleName, Value = x.RoleId }).ToList();
         }
 
-        public User DeleteUser(int id)
+        public void DeleteUser(int id)
         {
-            var s = _db.usersProfile.Find(id);
-            _db.usersProfile.Remove(s);
-            _db.SaveChanges();
-            return s;
+            var data = GetUserById(id);
+            if (data != null)
+            {
+                _db.usersProfile.Remove(data);
+                _db.SaveChanges();
+            }
+           
         }
         public User CreateUser(User user)
         {

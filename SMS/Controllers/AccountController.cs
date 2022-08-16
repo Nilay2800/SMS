@@ -128,6 +128,12 @@ namespace SMS.Controllers
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
                 var userID = WebSecurity.GetUserId(model.UserName);
+                SessionHelper.UserId = userID;
+                SessionHelper.IsAdmin = true;
+                SessionHelper.UserName = model.UserName;
+                SessionHelper.RoleName = Roles.GetRolesForUser(model.UserName).FirstOrDefault();
+                SessionHelper.RoleId = roleMasterService.GetRolesByName(SessionHelper.RoleName).RoleId;
+                SessionHelper.RoleCode = roleMasterService.GetRolesById(SessionHelper.RoleId).RoleCode;
                 string returnUrl = Request.QueryString["ReturnUrl"];
                 Session["UserName"] = model.UserName.ToString();
                 SessionHelper.UserId = userID;
