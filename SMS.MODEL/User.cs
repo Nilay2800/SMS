@@ -29,9 +29,10 @@ namespace SMS.Model
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "the password and confirm password do not match.")]
         public string ConfirmPassword { get; set; }
-      
+
         [NotMapped]
         [Display(Name = "Role Name")]
+       
         public int RoleId { get; set; }
     }
 }

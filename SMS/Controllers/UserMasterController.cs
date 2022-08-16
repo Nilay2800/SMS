@@ -49,7 +49,7 @@ namespace SMS.Controllers
             return RedirectToAction("DisplayUser");
         }
     
-        public ActionResult DeleteUser(int id, User user)
+        public ActionResult DeleteUser(int id/*, User user*/)
         {
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Usermaster.ToString(), AcessPermission.IsDelete))
             {

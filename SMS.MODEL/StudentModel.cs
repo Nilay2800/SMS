@@ -19,10 +19,12 @@ namespace SMS.Model
         [StringLength(20)]
         public string Lastname { get; set; }
         [Required(ErrorMessage = "Age is required.")]
+        [Range(2, 60, ErrorMessage ="Age is must be between 2 to 60")]
         public int Age { get; set; }
         [Required(ErrorMessage = "Gender is required.")]
         public string Gender { get; set; }
         [Required(ErrorMessage = "Standard is required.")]
+        [Range(1, 12, ErrorMessage="Standard is must be between 1 to 12")]
         public int Standard { get; set; }
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress]

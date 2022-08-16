@@ -1,11 +1,23 @@
 ﻿
 @using Kendo.Mvc.UI
-
+@using SMS.Service
+@using SMS.Model
+@using SMS.Data
+@using SMS.Controllers
 
 @{
     ViewBag.Title = " User List";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var permission = ViewBag.Permission as SMS.Model.FormRoleMapping;
+    string formCode = AuthorizeFormAccess.FormAccessCode.ROLES.ToString();
+    RoleMasterService roleMasterService = new RoleMasterService();
+    UserMasterService userMasterService = new UserMasterService();
+    string role = roleMasterService.GetRolesById(SessionHelper.RoleId).RoleName;
+    //string user = userMasterService.GetUserById(SessionHelper.UserId == SessionHelper.RoleId)
+    BaseController _base = new BaseController();
+    bool AllowedEdit = _base.CheckPermission(formCode, AcessPermission.IsEdit);
+    bool AllowedAdd = _base.CheckPermission(formCode, AcessPermission.IsAdd);
+    bool AllowedDelete = _base.CheckPermission(formCode, AcessPermission.IsDelete);
 }
 <link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />
 <link href="~/Content/kendo/2017.2.621/kendo.metro.min.css" rel="stylesheet" />
@@ -32,7 +44,7 @@
     </div>
 </div>
 
-<div class="common_white_box listingpage"style="margin-left: 40px; margin-right: 40px;">
+<div class="common_white_box listingpage" style="margin-left: 40px; margin-right: 40px;">
     <div class="page-loader k-loading-image"></div>
 
     @(Html.Kendo().Grid<SMS.Model.User>()
@@ -42,8 +54,14 @@
             {
                 columns.Bound(c => c.UserName).Width("10%").Title("User Name");
                 columns.Bound(c => c.Email).Width("10%").Title("Email");
-                columns.Bound(c => c.Userid).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit Role' href='" + Url.Action("EditUserRoleMapping", "UserMaster") + "/#=Userid#'" + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Edit Role").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);
-                columns.Command(command => { command.Destroy(); }).Width("3%").Title("Delete").HtmlAttributes(new { @class = "kendogrid_Action center_text" }).HeaderHtmlAttributes(new { @class = "center_text" }).Hidden(!permission.AllowDelete);
+                if (role == "sadmin")
+                {
+                    columns.Bound(c => c.Userid).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("EditUserRoleMapping", "UserMaster") + "/#=Userid#'" + "><i class='fa fa-edit'></i></a>") + (!permission.AllowDelete ? "<a title='Delete' onclick=Delete('#: Userid #')><i class='fa fa-trash-o' style='font-size:17px'></i></a>" : "") + "</div>").Filterable(false).Title("Action").Width("5%").Sortable(false);
+                }
+                else
+                {
+                    columns.Bound(c => c.Userid).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit Role' href='" + Url.Action("EditUserRoleMapping", "UserMaster") + "/#=Userid#'" + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Action").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);
+                }
             })
             .NoRecords("No record found")
             .Events(evt => evt
@@ -84,4 +102,18 @@
         $(".page-loader").css("display", "none");
         $(window).resize();
     });
+    function Delete(id) {
+        debugger;
+        if (confirm("Are you sure you want to delete ?") == true) {
+
+            $.get('/UserMaster/DeleteUser', { id: id }, function () {
+                $('#gridUser').data('kendoGrid').dataSource.read();
+                $('#gridUser').data('kendoGrid').refresh();
+            });
+        }
+        else {
+            return false;
+        }
+
+    }
 </script>
