@@ -94,13 +94,13 @@
                                       .DataValueField("roleId")
                                       .DataSource(source =>
                                       {
-                                             source.Read(read =>
-                                             {
-                                                read.Action("Get_Role", "Annoucement");
-                                             });
+                                          source.Read(read =>
+                                          {
+                                              read.Action("Get_Role", "Annoucement");
+                                          });
                                       })
                                       .Enable(true)
-                                      .AutoBind(false)
+                                      .AutoBind(true)
                                     )
                                 </div>
                             </div>

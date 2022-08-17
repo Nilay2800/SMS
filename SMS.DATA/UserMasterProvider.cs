@@ -12,7 +12,7 @@ namespace SMS.Data
     {
         public List<User> GetAllUser()
         {
-            var User = _db.usersProfile.ToList();
+            var User = _db.usersProfile.Where(X => X.Userid !=1).ToList();
             return User;
         }
 

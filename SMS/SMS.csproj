@@ -5260,7 +5260,6 @@
     <Content Include="Views\Teacher\EditTeacher.cshtml" />
     <Content Include="Views\Base\AccessDenied.cshtml" />
     <Content Include="Views\UserMaster\CreateUser.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Signup.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\ManageChangePassword.cshtml" />
@@ -5808,6 +5807,7 @@
     <Content Include="Scripts\kendo\2017.2.621\kendo.window.min.js.map" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Shared\_ErrorLogPopUp.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

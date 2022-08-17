@@ -22,11 +22,11 @@ namespace SMS.Helper
             public const string TeacherEdit = "Detail updated successfully!!";
             public const string AnnouncementAdded = "Announcement added successfully!!!";
             public const string AnnouncementEdit = "Detail updated successfully!!";
+            public const string Useralreadyexist = "UserName is already exists";
 
 
 
 
-           
         }
         public enum Codes
         {
