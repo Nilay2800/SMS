@@ -36,7 +36,7 @@
 
 
     <div class="form-group">
-        <label style="margin-right:50px; margin-left:145px">Role Id <sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
+        <label style="margin-right:50px; margin-left:145px">Role Name <sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
         <div class="col-md-2" style="width:28%; margin-left:-50px; margin-right:10px">
             @Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.RoleList == null ? new SelectListItem() : ViewBag.RoleList, "Value", "Key"), "--Select Role--", new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
