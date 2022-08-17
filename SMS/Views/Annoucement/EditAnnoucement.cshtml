@@ -12,12 +12,14 @@
 <script src="~/Kendo/js/jquery.min.js"></script>
 <script src="~/Kendo/js/kendo.all.min.js"></script>
 <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/dot-luv/jquery-ui.css" rel="stylesheet" />
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/dot-luv/jquery-ui.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/font-awesome/css/font-awesome.min.css")" />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    
+
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
@@ -33,7 +35,7 @@
 
                         <div class="form_input_box">
                             <div class="form-group">
-                                <label for="">Subject</label>
+                                <label for="">Subject<sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
                                 <div class="input_box">
                                     @Html.TextBoxFor(model => model.Subject, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.Subject)
@@ -83,7 +85,7 @@
                                 <label for="">Announcement For</label>
                                 <div class="input_box">
                                     @*@Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.RoleList == null ? new SelectListItem() : ViewBag.RoleList, "Value", "Key"), "--Select Role--", new { @class = "form-control" })
-                                      @Html.ValidationMessageFor(model => model.Subject)*@
+                                        @Html.ValidationMessageFor(model => model.Subject)*@
                                     @(Html.Kendo()
                                       .DropDownListFor(model=>model.RoleId)
                                       .HtmlAttributes(new { style = "width:100%" })
