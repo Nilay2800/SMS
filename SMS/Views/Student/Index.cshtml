@@ -99,7 +99,7 @@
     )
     .DataSource(dataSource => dataSource
     .Ajax()
-    .Sort(sortable=>sortable.Add("FirstName").Ascending())
+    .Sort(sortable=>sortable.Add("Standard").Ascending())
     .Read(read => read.Action("GetGridData", "Student")).PageSize(10)
     .Destroy(update => update.Action("Delete", "Student"))
     // .Destroy(d => d.Url("Index?handler=Delete").Data("forgeryToken"))

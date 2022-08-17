@@ -200,17 +200,10 @@ namespace SMS.Controllers
 
         public ActionResult Manage(ManageMessageId? message)
         {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed. "
-              : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-              : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-              : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");
             return View();
-            //bool hasLocalAcccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            //ViewBag.ReturnUrl = Url.Action("Manage");
-            //return View();
+            
         }
 
         [HttpPost]
@@ -230,6 +223,7 @@ namespace SMS.Controllers
                     try
                     {
                         changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
+                        TempData["Message"] = Constants.EmailCodes.PASSWORDCHANGESUCCESS;
                     }
                     catch (Exception)
                     {
@@ -238,7 +232,7 @@ namespace SMS.Controllers
                     }
                     if (changePasswordSucceeded)
                     {
-                        return RedirectToAction("Manage", new { message = ManageMessageId.ChangePasswordSuccess });
+                        return RedirectToAction("Login", new { message = ManageMessageId.ChangePasswordSuccess });
                     }
                     else
                     {
