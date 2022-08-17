@@ -63,7 +63,9 @@ namespace SMS.Controllers
             var allStudent = _db.students.Where(x => x.Status == true).ToList();
 
             var studentGroup = from student in allStudent
+                               orderby student.Standard ascending
                                group student by student.Standard;
+                               
             
             foreach (var student in studentGroup)
             {
