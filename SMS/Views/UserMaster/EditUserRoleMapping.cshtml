@@ -17,35 +17,37 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Userid)
 
-    @*<div class="form-group">
-        <label style="margin-right:50px; margin-left:145px">User Name <sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
-        <div class="col-md-2" style="width:28%; margin-left:-50px; margin-right:10px">
-            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label style="margin-right:50px; margin-left:145px">User Name <sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
+            <div class="col-md-2" style="width:28%; margin-left:-50px; margin-right:10px">
+                <div class="form-control">
+                    @Model.UserName
+                </div>              
+                </div>
+            </div>
+
+        <div class="form-group">
+            <label style="margin-right:50px; margin-left:145px">Email Id <sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
+            <div class="col-md-2" style="width:28%; margin-left:-50px; margin-right:10px">
+                <div class="form-control">
+                @Model.Email
+                    </div>
+            </div>
         </div>
-    </div>*@
 
-    @*<div class="form-group">
-        <label style="margin-right:50px; margin-left:145px">Email Id <sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
-        <div class="col-md-2" style="width:28%; margin-left:-50px; margin-right:10px">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+       
+
+        <div class="form-group">
+            <label style="margin-right:50px; margin-left:145px">Role Name <sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
+            <div class="col-md-2" style="width:28%; margin-left:-50px; margin-right:10px">
+                @Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.RoleList == null ? new SelectListItem() : ViewBag.RoleList, "Value", "Key"), "--Select Role--", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>*@
-
-
-
-    <div class="form-group">
-        <label style="margin-right:50px; margin-left:145px">Role Name <sup class="span_req"><i class="fa fa-star" aria-hidden="true"></i></sup></label>
-        <div class="col-md-2" style="width:28%; margin-left:-50px; margin-right:10px">
-            @Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.RoleList == null ? new SelectListItem() : ViewBag.RoleList, "Value", "Key"), "--Select Role--", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
         <div class="form-group" style="margin-left:200px">
             <div class="col-md-offset-1 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" /> |
+                <input type="submit" value="Save" class="btn btn-primary" /> 
                 @Html.ActionLink("Back to List", "DisplayUser", new { }, htmlAttributes: new { @class = "btn btn-default" })
             </div>
         </div>

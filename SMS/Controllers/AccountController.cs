@@ -71,13 +71,13 @@ namespace SMS.Controllers
                 try
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { Email = model.Email });
-                    WebSecurity.Login(model.UserName, model.Password);
+                    WebSecurity.Login(model.UserName, model.Password);                                           
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException ex)
                 {
                     ModelState.AddModelError(" ", ErrorCodeToString(ex.StatusCode));
-
+                    TempData["Message"] = Constants.EmailCodes.Useralreadyexist;
                 }
 
             }

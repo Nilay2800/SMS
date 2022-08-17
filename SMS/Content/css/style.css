@@ -3120,6 +3120,7 @@ div.DTFC_LeftWrapper table.dataTable, div.DTFC_LeftWrapper table.dataTable td, d
 }
 
 .login-from {
+    position: static;
     margin: 50px auto;
     max-width: 450px;
     width: 100%;
@@ -3130,25 +3131,30 @@ div.DTFC_LeftWrapper table.dataTable, div.DTFC_LeftWrapper table.dataTable td, d
 }
 
 .form-group {
+    position: static;
     margin-bottom: 15px;
 }
 
 .label-title {
+    position: static;
     display: block;
     margin-bottom: 5px;
 }
 
 .forgotPassword {
+    position: static;
     font-size: 26px;
     text-decoration: none;
 }
 
 .text-right {
+    position: static;
     text-align: right;
     margin-top: 0px;
 }
 
 .btn-primary btn-md {
+    position: static;
     width: 145px;
 }
 /* forms*/

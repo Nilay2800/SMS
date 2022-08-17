@@ -50,6 +50,7 @@ namespace SMS.Model
     public class LoginModel
     {
         [Display(Name = "User Name")]
+        [Required]
         public string UserName { get; set; }
         [Display(Name = "Email Id")]
         
