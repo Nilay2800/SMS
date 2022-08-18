@@ -12,27 +12,13 @@
     RoleMasterService roleMasterService = new RoleMasterService();
     UserMasterService userMasterService = new UserMasterService();
     string role = roleMasterService.GetRolesById(SessionHelper.RoleId).RoleName;
-    //string user = userMasterService.GetUserById(SessionHelper.UserId == SessionHelper.RoleId)
     BaseController _base = new BaseController();
     bool AllowedEdit = _base.CheckPermission(formCode, AcessPermission.IsEdit);
     bool AllowedAdd = _base.CheckPermission(formCode, AcessPermission.IsAdd);
     bool AllowedDelete = _base.CheckPermission(formCode, AcessPermission.IsDelete);
+    @Scripts.Render("~/bundles/kendo")
 }
-<link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />
-<link href="~/Content/kendo/2017.2.621/kendo.metro.min.css" rel="stylesheet" />
-<link href="~/Content/kendo/2017.2.621/kendo.default.min.css" rel="stylesheet" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/font-awesome/css/font-awesome.min.css")" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/et-line-icon/fonts/et-line.css")" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/line-awesome-icon/css/line-awesome.min.css")" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/material-icons/material-icon.css")" />
-<script src="~/Scripts/kendo/kendo.all.min.js"></script>
-<script src="~/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
-@*<script src="~/Kendo/js/jquery.min.js"></script>*@
-@*<script src="~/Kendo/js/kendo.all.min.js"></script>*@
-<script src="~/Kendo/js/kendo.aspnetmvc.min.js"></script>
 
-@*<div class="coman_content">*@
-<!--This is Title div -->
 
 <div class="subheader">
     <div class="left_title">
@@ -43,7 +29,7 @@
     <div class="subheader_right">
         @if (TempData["Message"] != null)
         {
-        <label class="bg-success text-white alertmsg"> @TempData["Message"]</label>
+            <label class="bg-success text-white alertmsg"> @TempData["Message"]</label>
         }
 
         @if (permission.AllowInsert)
@@ -91,7 +77,7 @@
             )
             .Pageable(pageable => pageable
                 .Refresh(true)
-                .PageSizes(new[] {10,20, 50, 100, 200 })
+                .PageSizes(new[] {5,10,20, 50, 100, 200 })
                 .ButtonCount(5)
             )
              .DataSource(dataSource => dataSource
