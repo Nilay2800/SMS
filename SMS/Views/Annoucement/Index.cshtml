@@ -19,20 +19,8 @@
     bool AllowedEdit = _base.CheckPermission(formCode, AcessPermission.IsEdit);
     bool AllowedAdd = _base.CheckPermission(formCode, AcessPermission.IsAdd);
     bool AllowedDelete = _base.CheckPermission(formCode, AcessPermission.IsDelete);
-
+    @Scripts.Render("~/bundles/kendo")
 }
-<link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />
-<link href="~/Content/kendo/2017.2.621/kendo.metro.min.css" rel="stylesheet" />
-<link href="~/Content/kendo/2017.2.621/kendo.default.min.css" rel="stylesheet" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/font-awesome/css/font-awesome.min.css")" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/et-line-icon/fonts/et-line.css")" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/line-awesome-icon/css/line-awesome.min.css")" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/material-icons/material-icon.css")" />
-<script src="~/Scripts/kendo/kendo.all.min.js"></script>
-<script src="~/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
-@*<script src="~/Kendo/js/jquery.min.js"></script>*@
-@*<script src="~/Kendo/js/kendo.all.min.js"></script>*@
-<script src="~/Kendo/js/kendo.aspnetmvc.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <div class="subheader">

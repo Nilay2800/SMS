@@ -13,26 +13,14 @@
     RoleMasterService roleMasterService = new RoleMasterService();
     UserMasterService userMasterService = new UserMasterService();
     string role = roleMasterService.GetRolesById(SessionHelper.RoleId).RoleName;
-    //string user = userMasterService.GetUserById(SessionHelper.UserId == SessionHelper.RoleId)
     BaseController _base = new BaseController();
     bool AllowedEdit = _base.CheckPermission(formCode, AcessPermission.IsEdit);
     bool AllowedAdd = _base.CheckPermission(formCode, AcessPermission.IsAdd);
     bool AllowedDelete = _base.CheckPermission(formCode, AcessPermission.IsDelete);
 
+   @Scripts.Render("~/bundles/kendo")
+
 }
-<link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />
-<link href="~/Content/kendo/2017.2.621/kendo.metro.min.css" rel="stylesheet" />
-<link href="~/Content/kendo/2017.2.621/kendo.default.min.css" rel="stylesheet" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/font-awesome/css/font-awesome.min.css")" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/et-line-icon/fonts/et-line.css")" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/line-awesome-icon/css/line-awesome.min.css")" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/material-icons/material-icon.css")" />
-<script src="~/Scripts/kendo/kendo.all.min.js"></script>
-<script src="~/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
-<script src="~/Kendo/js/kendo.aspnetmvc.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
 <div class="subheader">
     <div class="left_title">
@@ -57,28 +45,29 @@
 <div class="common_white_box listingpage" style="margin-left: 40px; margin-right: 40px">
     <div class="page-loader k-loading-image"></div>
 
-    @(Html.Kendo().Grid<SMS.Model.StudentModel>()
-            .Name("gridStudent")
-            .AutoBind(false)
-            .Columns(columns =>
-            {
-                columns.Bound(c => c.Firstname).Width("10%").Title("First Name");
-                columns.Bound(c => c.Lastname).Width("10%").Title("Last Name");
-                columns.Bound(c => c.Email).Width("10%").Title("Email");
-                columns.Bound(c => c.Age).Width("10%").Title("Age");
-                columns.Bound(c => c.Standard).Width("10%").Title("Standard");
-                columns.Bound(c => c.Gender).Width("10%").Title("Gender");
-                columns.Bound(c => c.ContactNumber).Width("10%").Title("Contact Number");
-                if (role == "sadmin")
-                {
-                    columns.Bound(c => c.StudentId).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("Edit", "Student") + "/#=StudentId#'" + "><i class='fa fa-edit'></i></a>") + (permission.AllowDelete ? "<a title='Delete' onclick=Delete('#: StudentId #') ><i class='fa fa-trash-o' style='font-size:17px'></i></a>" : "" ) + "</div>" ).Filterable(false).Title("Action").Width("5%").Sortable(false);
-                }
-                else
-                {
-                    columns.Bound(c=>
-                     c.StudentId).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("Edit", "Student") + "/#=StudentId#' " + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Edit").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);
-                }
-            })
+    @(Html.Kendo().Grid<SMS.Model.StudentModel>
+    ()
+    .Name("gridStudent")
+    .AutoBind(false)
+    .Columns(columns =>
+    {
+        columns.Bound(c => c.Firstname).Width("10%").Title("First Name");
+        columns.Bound(c => c.Lastname).Width("10%").Title("Last Name");
+        columns.Bound(c => c.Email).Width("10%").Title("Email");
+        columns.Bound(c => c.Age).Width("10%").Title("Age");
+        columns.Bound(c => c.Standard).Width("10%").Title("Standard");
+        columns.Bound(c => c.Gender).Width("10%").Title("Gender");
+        columns.Bound(c => c.ContactNumber).Width("10%").Title("Contact Number");
+        if (role == "sadmin")
+        {
+            columns.Bound(c => c.StudentId).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("Edit", "Student") + "/#=StudentId#' " + "><i class='fa fa-edit'></i></a>") + (permission.AllowDelete ? "<a title='Delete' onclick=Delete('#: StudentId #')><i class='fa fa-trash-o' style='font-size:17px'></i></a>" : "" ) + "</div>" ).Filterable(false).Title("Action").Width("5%").Sortable(false);
+        }
+        else
+        {
+            columns.Bound(c=>
+            c.StudentId).HeaderHtmlAttributes(new { @class = "center_text" }).HtmlAttributes(new { @class = "kendogrid_Action center_text" }).ClientTemplate("<div class='k_action_table'>" + ("<a title='Edit' href='" + Url.Action("Edit", "Student") + "/#=StudentId#' " + "><i class='fa fa-edit'></i></a>") + "</div>").Filterable(false).Title("Edit").Width("5%").Sortable(false).Hidden(!permission.AllowInsert);
+        }
+    })
     .NoRecords("No record found")
     .Events(evt=>
     evt
@@ -92,11 +81,10 @@
     .Operators(o => o.ForString(f => f.Clear().Contains("Contains").DoesNotContain("Does Not Contain").StartsWith("Starts With").EndsWith("Ends With").IsEqualTo("Equal To").IsNotEqualTo("Not Equal To")))
     .Operators(o => o.ForNumber(g => g.Clear().IsEqualTo("EqualTo").IsNotEqualTo("Not Equal To").IsGreaterThan("Greater Than").IsGreaterThanOrEqualTo("Greater Than Or Equal To").IsLessThan("Less Than").IsLessThanOrEqualTo("Less Than Or Equal To")))
     )
-    .Pageable(pageable => pageable
+   .Pageable(pageable => pageable
     .Refresh(true)
-    .PageSizes(new[] {10,20, 50, 100, 200 })
-    .ButtonCount(5)
-    )
+    .PageSizes(new[] { 5 ,10, 20, 50, 100, 200 })
+    .ButtonCount(5))
     .DataSource(dataSource => dataSource
     .Ajax()
     .Sort(sortable=>sortable.Add("Standard").Ascending())
@@ -121,7 +109,7 @@
         $(".page-loader").css("display", "none");
         $(window).resize();
     });
-    
+
 
     $(document).ready(function () {
         var successElement = $(".alertmsg");
@@ -129,21 +117,19 @@
             setTimeout(function () { successElement.hide(); }, 2000);
         }
     });
-  
-    function Delete(studentId)
-    {
-        debugger;
+
+    function Delete(studentId) {
         if (confirm("Are you sure you want to delete ?") == true) {
 
             $.get('/Student/Delete', { StudentId: studentId }, function () {
                 $('#gridStudent').data('kendoGrid').dataSource.read();
                 $('#gridStudent').data('kendoGrid').refresh();
-                });
+            });
         }
         else {
             return false;
         }
-        
+
     }
 
 </script>

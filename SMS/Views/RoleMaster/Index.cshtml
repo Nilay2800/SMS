@@ -6,19 +6,10 @@
     ViewBag.Title = "Role List";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var permission = ViewBag.Permission as SMS.Model.FormRoleMapping;
+
+    @Scripts.Render("~/bundles/kendo")
 }
-<link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />
-<link href="~/Content/kendo/2017.2.621/kendo.metro.min.css" rel="stylesheet" />
-<link href="~/Content/kendo/2017.2.621/kendo.default.min.css" rel="stylesheet" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/font-awesome/css/font-awesome.min.css")" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/et-line-icon/fonts/et-line.css")" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/line-awesome-icon/css/line-awesome.min.css")" />
-<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/material-icons/material-icon.css")" />
-<script src="~/Scripts/kendo/kendo.all.min.js"></script>
-<script src="~/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
-@*<script src="~/Kendo/js/jquery.min.js"></script>*@
-@*<script src="~/Kendo/js/kendo.all.min.js"></script>*@
-<script src="~/Kendo/js/kendo.aspnetmvc.min.js"></script>
+
 <div class="subheader">
     <div class="left_title">
         <h2 style="margin-left:45px">@ViewBag.Title</h2>
@@ -27,12 +18,12 @@
     <div class="subheader_right">
         @if (permission.AllowInsert)
         {
-            <a class="button button_primary button_rounded" href="@Url.Action("CreateRole", "RoleMaster")"style="margin-right:45px">Add Role</a>
+            <a class="button button_primary button_rounded" href="@Url.Action("CreateRole", "RoleMaster")" style="margin-right:45px">Add Role</a>
         }
     </div>
 </div>
 
-<div class="common_white_box listingpage"style="margin-left: 40px; margin-right: 40px">
+<div class="common_white_box listingpage" style="margin-left: 40px; margin-right: 40px">
     <div class="page-loader k-loading-image"></div>
 
     @(Html.Kendo().Grid<SMS.Model.RoleModel>()
@@ -59,7 +50,7 @@
             )
             .Pageable(pageable => pageable
                 .Refresh(true)
-                .PageSizes(new[] {10,20, 50, 100, 200 })
+                .PageSizes(new[] {5,10,20, 50, 100, 200 })
                 .ButtonCount(5)
             )
              .DataSource(dataSource => dataSource
