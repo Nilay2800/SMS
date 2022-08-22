@@ -80,6 +80,8 @@
     <Compile Include="Teacher.cs" />
     <Compile Include="TeacherModel.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserProfile.cs" />
+    <Compile Include="UserProfileModel.cs" />
     <Compile Include="UserRoleMapping.cs" />
     <Compile Include="UsersContext.cs" />
     <Compile Include="WebpagesRole.cs" />
