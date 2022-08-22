@@ -3,6 +3,7 @@ using SMS.Model;
 using SMS.Service;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,18 +25,20 @@ namespace SMS.Controllers
         [HttpGet]
         public ActionResult EditUserProfile()
         {
-            
-            UserProfileModel userProfileModel = userProfileService.GetUserProfileById();
+
+            User userProfileModel = userProfileService.GetUserProfileById();
             return View(userProfileModel);
         }
 
 
         [HttpPost]
-        public ActionResult EditUserProfile(UserProfileModel userProfileModel)
+        public ActionResult EditUserProfile(User userProfileModel) 
         {
-            //UserProfileModel userProfileModel1 = userProfileService.UpdateUserProfile(userProfileModel);
-            userProfileService.UpdateUserProfile(userProfileModel);
-           
+            //User obj = new User();
+            //obj.profileImage = userProfileModel.Userid + Path.GetExtension(profileImage.FileName);
+            //profileImage.SaveAs(Server.MapPath("~/Content/UserPics") + userProfileModel.profileImage + userProfileModel.Userid);
+            //userProfileModel.profileImage = profileImage.FileName;
+            userProfileService.UpdateUserProfile(userProfileModel);           
             return RedirectToAction("Index","Home");
 
         }

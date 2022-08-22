@@ -232,19 +232,6 @@ namespace SMS.Data
             }
             return _sMenu;
         }
-        //public List<MenuVW> MenuTree(List<MenuVW> menuList, int? parentformId)
-        //{
-        //    return menuList.Where(x => x.ParentFormId == parentformId).Select(
-        //       x => new MenuVW
-        //       {
-        //           Id = x.Id,
-        //           Name = x.Name,
-        //           ParentFormId = x.ParentFormId,
-        //           NavigateURL = x.NavigateURL,
-        //           FormAccessCode=x.FormAccessCode,
-        //           DisplayOrder=x.DisplayOrder,
-        //           SubMenu = MenuTree(menuList, x.Id)
-        //       }).ToList();
-        //}
+       
     }
 }

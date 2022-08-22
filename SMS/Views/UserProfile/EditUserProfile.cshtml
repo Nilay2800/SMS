@@ -1,4 +1,4 @@
-﻿@model SMS.Model.UserProfileModel
+﻿@model SMS.Model.User
 @using Kendo.Mvc.UI;
 
 @{
@@ -18,7 +18,7 @@
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(m => m.userId)
+    @Html.HiddenFor(m => m.Userid)
     @Html.AntiForgeryToken()
     <div class="content_box">
         <div class="from-design" style="margin-left:90px">
@@ -37,7 +37,7 @@
                         <td>
                             @*<div class="col-md-4">
                                 <div class="input_box">*@
-                            @(Html.Kendo().TextBoxFor(model=>model.userName).Name("userName"))
+                            @(Html.Kendo().TextBoxFor(model=>model.UserName).Name("userName"))
                             @*</div>
                                 </div>*@
                         </td>
@@ -70,8 +70,8 @@
                         <td>
                             <div class="col-md-4">
                                 <div class="input_box">
-                                    @(Html.Kendo().RadioButton().Name("rdoMale").Label("Male").HtmlAttributes(new { Name = "rdoGender" }))
-                                    @(Html.Kendo().RadioButton().Name("rdoFemale").Label("Female").HtmlAttributes(new { Name = "rdoGender" }))
+                                    @(Html.Kendo().RadioButtonFor(model => model.gender).Name("Male").Value("Male").Label("Male").Checked(true).HtmlAttributes(new { Name = "gender" }))
+                                    @(Html.Kendo().RadioButtonFor(model => model.gender).Name("Female").Value("Female").Label("Female").HtmlAttributes(new { Name = "gender" }))
                                 </div>
                             </div>
                         </td>
@@ -95,17 +95,17 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <!--<tr>
                         <td>Profile Image</td>
 
-                        <td>
+                        <td>-->
                             @*<div class="col-md-4">
                                 <div class="input_box">*@
-                            @(Html.Kendo().Upload().Name("profileImage"))
+                            @*@(Html.Kendo().Upload().Name("profileImage"))*@
                             @*</div>
                                 </div>*@
-                        </td>
-                    </tr>
+                        <!--</td>
+                    </tr>-->
                     <tr>
                         <td colspan="2" style="text-align:center;">
                             @*@(Html.Kendo().Button().Name("btnSubmit").HtmlAttributes(new { type = "button", @class = "ml-auto k-button k-primary", style = "height:35px;width:70px;" }).Content("Save").Events(e => e.Click("btnSubmit_Click")))*@

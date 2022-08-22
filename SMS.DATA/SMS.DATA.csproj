@@ -90,6 +90,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -186,6 +187,10 @@
     <Compile Include="Migrations\202208220808312_update_usertable.Designer.cs">
       <DependentUpon>202208220808312_update_usertable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208220959484_status_addded_inuser.cs" />
+    <Compile Include="Migrations\202208220959484_status_addded_inuser.Designer.cs">
+      <DependentUpon>202208220959484_status_addded_inuser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="RoleMasterProvider.cs" />
@@ -277,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208220808312_update_usertable.resx">
       <DependentUpon>202208220808312_update_usertable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208220959484_status_addded_inuser.resx">
+      <DependentUpon>202208220959484_status_addded_inuser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

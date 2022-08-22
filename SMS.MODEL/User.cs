@@ -20,7 +20,7 @@ namespace SMS.Model
         [Display(Name = "User Name")]
         [Required]
         public string UserName { get; set; }
-        [Required]
+       
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
@@ -37,6 +37,7 @@ namespace SMS.Model
         public string gender { get; set; }
         public DateTime DOB { get; set; }
         public string profileImage { get; set; }
+        public bool Status { get; set; } = true;
 
     }
 }

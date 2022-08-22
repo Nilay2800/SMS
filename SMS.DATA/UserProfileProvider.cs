@@ -1,9 +1,12 @@
-﻿using SMS.Model;
+﻿
+using SMS.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace SMS.Data
 {
@@ -13,27 +16,32 @@ namespace SMS.Data
         {
 
         }
-        public UserProfile GetUserProfileById(int id)
+        public User GetUserProfileById(int id)
         {
-            return _db.profile.Find(id);
+            return _db.usersProfile.Find(id);
         }
-        public int UpdateUserProfile(UserProfileModel userProfileModel)
+        public User UpdateUserProfile(User userProfileModel)
         {
             var userid = SessionHelper.UserId;
-            
-            UserProfile obj = new UserProfile()
+            var v = _db.usersProfile.Where(a => a.Userid == userid).FirstOrDefault();
+            if (v != null)
             {
-                userId = userid,
-                userName = userProfileModel.userName,
-                Email = userProfileModel.Email,
-                mobileNumber = userProfileModel.mobileNumber,
-                gender = userProfileModel.gender,
-                DOB = userProfileModel.DOB,
-                profileImage = userProfileModel.profileImage
-            };
-            _db.profile.Add(obj);
-            _db.SaveChanges();
-            return userProfileModel.id;
+                string startupPath = System.IO.Directory.GetCurrentDirectory();
+
+                string startupPath1 = Environment.CurrentDirectory;
+
+                User obj = _db.usersProfile.FirstOrDefault(x => x.Userid == v.Userid);
+                obj.UserName = userProfileModel.UserName;
+                obj.Email = userProfileModel.Email;
+                obj.mobileNumber = userProfileModel.mobileNumber;
+                obj.gender = userProfileModel.gender;
+                obj.DOB = userProfileModel.DOB;
+                //obj.profileImage = userProfileModel.profileImage;              
+                _db.SaveChanges();
+            }
+            
+            
+            return userProfileModel;
         }
     }
 }
