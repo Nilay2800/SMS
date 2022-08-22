@@ -4467,7 +4467,7 @@ body .status.close, .status.CLOSE {
 .alertmsg {
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 14px !important;
     line-height: normal;
 }
 
@@ -4890,7 +4890,7 @@ textarea:focus, textarea:hover {
     }
 
 .bg-error {
-    background: #db0000;
+    color: #db0000 !important;
 }
 
 .jconfirm-buttons {

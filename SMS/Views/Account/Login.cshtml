@@ -8,10 +8,7 @@
 {
     <label class="bg-success text-white alertmsg">@TempData["Success"]</label>
 }
-@if (TempData["Error"] != null)
-{
-    <label class="bg-error text-white alertmsg">@TempData["Error"]</label>
-}
+
 <!DOCTYPE html>
 <html lang="en">
 <body>
@@ -20,6 +17,7 @@
         @Html.AntiForgeryToken()
 
     <div class="login-from">
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <h1 style="margin-left:140px; font-family:Georgia">@ViewBag.Title</h1>
         <hr />
@@ -46,11 +44,23 @@
                 <input type="submit" value="Login" class="btn btn-primary" style="width:200%" />
             </div>
         </div>
+        @if (TempData["Error"] != null)
+        {
+            <label class="bg-error text-white alertmsg">@TempData["Error"]</label>
+        }
 
     </div>
 
     }
     <script src="Content/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var successElement = $(".alertmsg");
+            if (successElement) {
+                setTimeout(function () { successElement.hide(); }, 2000);
+            }
+        });
+    </script>
 </body>
 </html>
 

@@ -1,6 +1,7 @@
 ﻿using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using SMS.Data.Database;
+using SMS.Helper;
 using SMS.Model;
 using SMS.Service;
 using System;
@@ -46,6 +47,7 @@ namespace SMS.Controllers
         public ActionResult EditUserRoleMapping(User pur)
         {
             User objPurchaseModel = userMasterService.UpdateUsersRole(pur);
+            TempData["Message"] = Constants.EmailCodes.rolenameupdated;
             return RedirectToAction("DisplayUser");
         }
     
@@ -72,6 +74,7 @@ namespace SMS.Controllers
         public ActionResult CreateUser(User user)
         {
             userMasterService.CreateUser(user);
+            TempData["Message"] = Constants.EmailCodes.UserAdded;
             return RedirectToAction("DisplayUser");
         }
         public ActionResult GetGridData([DataSourceRequest] DataSourceRequest request)

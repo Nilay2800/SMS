@@ -16,6 +16,10 @@
 
     </div>
     <div class="subheader_right">
+        @if (TempData["Message"] != null)
+        {
+            <label class="bg-success text-white alertmsg"> @TempData["Message"]</label>
+        }
         @if (permission.AllowInsert)
         {
             <a class="button button_primary button_rounded" href="@Url.Action("Create", "Forms")" style="margin-right:45px">Add Form</a>
@@ -77,6 +81,12 @@
     $(document).ajaxComplete(function () {
         $(".page-loader").css("display", "none");
         $(window).resize();
+    });
+    $(document).ready(function () {
+        var successElement = $(".alertmsg");
+        if (successElement) {
+            setTimeout(function () { successElement.hide(); }, 2000);
+        }
     });
 
 </script>

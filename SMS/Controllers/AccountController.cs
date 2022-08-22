@@ -174,6 +174,7 @@ namespace SMS.Controllers
             else
             {
                 ModelState.AddModelError(" ", "The User name or password provided is incorrect.");
+                TempData["Error"] = Constants.EmailCodes.ERRORMSG;
                 return View(model);
             }
         }
