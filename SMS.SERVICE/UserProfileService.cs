@@ -16,27 +16,27 @@ namespace SMS.Service
         {
             userProfileProvider = new UserProfileProvider();
         }
-        public int UpdateUserProfile(UserProfileModel userProfileModel)
+        public User UpdateUserProfile(User userProfileModel)
         {
             return userProfileProvider.UpdateUserProfile(userProfileModel);
         }
-        public UserProfileModel GetUserProfileById()
+        public User GetUserProfileById()
         {
             var userid = SessionHelper.UserId;
             var data = userProfileProvider.GetUserProfileById(userid);
             
             var username = SessionHelper.UserName;
-            UserProfileModel userProfileModel = new UserProfileModel()
+            User userProfileModel = new User()
             {
-                id=data.id,
-                userId = userid,
-                userName = username,
+                
+                Userid = userid,
+                UserName = data.UserName,
                 Email = data.Email,
                 mobileNumber = data.mobileNumber,
                 gender=data.gender,
                 DOB=data.DOB,
-                profileImage=data.profileImage
-
+                //profileImage= data.profileImage ,
+                Status = data.Status
             };
             return userProfileModel;
            

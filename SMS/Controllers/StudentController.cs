@@ -24,7 +24,7 @@ namespace SMS.Controllers
 
 
         }
-        public ActionResult Index(/*string msg*/)
+        public ActionResult Index()
         {
             if (!CheckPermission(AuthorizeFormAccess.FormAccessCode.Student.ToString(), AcessPermission.IsView))
             {

@@ -53,7 +53,7 @@ namespace SMS.Data
         }
         public int  CreateAnnoucement(AnnoucementModel annoucementModel)
         {
-            //string detail = WebUtility.HtmlEncode(annoucementModel.AnnoucementDetail);
+            
             Annoucement _annocement = new Annoucement()
             {
                 Id=annoucementModel.Id,
