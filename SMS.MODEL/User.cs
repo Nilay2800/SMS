@@ -32,7 +32,11 @@ namespace SMS.Model
 
         [NotMapped]
         [Display(Name = "Role Name")]
-       
         public int RoleId { get; set; }
+        public string mobileNumber { get; set; }
+        public string gender { get; set; }
+        public DateTime DOB { get; set; }
+        public string profileImage { get; set; }
+
     }
 }
