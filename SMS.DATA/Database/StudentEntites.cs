@@ -33,6 +33,8 @@ namespace SMS.Data.Database
         public DbSet<webpages_Membership> webpages_Memberships { get; set; }
         public DbSet<webpages_OAuthMembership> webpages_OAuthMemberships { get; set; }
         public DbSet<EmailFP> emailtemplate { get; set; }
+        public DbSet<UserProfile> profile { get; set; }
+
 
         public override int SaveChanges()
         {

@@ -7,17 +7,22 @@
     @Scripts.Render("~/Scripts/polyfill.min.js")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
     @Scripts.Render("~/bundles/jqueryval")
 
 
+
+    
+    
     <script src="@Url.Content("~/Content/inc/jquery/jquery-2.1.0.min.js")"></script>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script src="~/Content/inc/ckeditor/ckeditor.js"></script>
     <link href="~/Content/inc/jqueryconfirm/jquery-confirm.min.css" rel="stylesheet" />
     <script src="~/Content/inc/jqueryconfirm/jquery-confirm.min.js"></script>
+    <script src="~/Scripts/Common.js"></script>
 
-    <link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />
+    @*<link href="~/Content/kendo/2017.2.621/kendo.common.min.css" rel="stylesheet" />*@
     <link href="~/Content/kendo/2017.2.621/kendo.metro.min.css" rel="stylesheet" />
     <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/style.css")" />
     <link href="~/Content/css/toast.css" rel="stylesheet" />
@@ -123,21 +128,22 @@
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="#" @*class="dropdown-toggle"*@ data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><text>  Hii  </text>@Session["UserName"]  <span class="caret">    </span></a>
+                                    <a href="#" @*class="dropdown-toggle"*@ data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><text>  Hii  </text>@Session["UserName"]<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        @*<li><a href="#"><span class="glyphicon glyphicon-user"></span> @Session["UserName"]</a></li>*@
                                         <li><a href="@Url.Action("Manage", "Account")">Change Password</a></li>
+                                        @*<li><a href="@Url.Action("EditUserProfile", "UserProfile")>Create Profile</a></li>*@
+                                        <li><a href="@Url.Action("EditUserProfile", "UserProfile")">Edit Profile</a></li>
                                         <li><a href="@Url.Action("Logout", "Account")">Log Out</a></li>
                                     </ul>
                                 </li>
                             </ul>
-                        }
+                         }
                         else
                         {
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
 
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret">                                    </span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="@Url.Action("Login","Account")">Login</a></li>
                                         <li><a href="@Url.Action("Signup","Account")">Sign Up</a></li>
