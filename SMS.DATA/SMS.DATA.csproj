@@ -182,6 +182,10 @@
     <Compile Include="Migrations\202208180847095_create_userProfile.Designer.cs">
       <DependentUpon>202208180847095_create_userProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208220808312_update_usertable.cs" />
+    <Compile Include="Migrations\202208220808312_update_usertable.Designer.cs">
+      <DependentUpon>202208220808312_update_usertable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="RoleMasterProvider.cs" />
@@ -270,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208180847095_create_userProfile.resx">
       <DependentUpon>202208180847095_create_userProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208220808312_update_usertable.resx">
+      <DependentUpon>202208220808312_update_usertable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -3,15 +3,16 @@
 
 @{
     ViewBag.Title = "EditUserProfile";
+   
 }
-@*<script src="~/Scripts/jquery-1.8.2.min.js"></script>*@
-<link href="~/Kendo/styles/kendo.common-material.min.css" rel="stylesheet" />
-<link href="~/Kendo/styles/kendo.material.min.css" rel="stylesheet" />
-<link href="~/Kendo/styles/kendo.material.mobile.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+@*<link href="~/Kendo/styles/kendo.common-material.min.css" rel="stylesheet" />*@
+@*<link href="~/Kendo/styles/kendo.material.min.css" rel="stylesheet" />*@
+@*<link href="~/Kendo/styles/kendo.material.mobile.min.css" rel="stylesheet" />*@
 <script src="~/Kendo/js/jquery.min.js"></script>
 <script src="~/Kendo/js/kendo.all.min.js"></script>
 @*<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/dot-luv/jquery-ui.css" rel="stylesheet" />*@
-@*<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/font-awesome/css/font-awesome.min.css")" />*@
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/inc/font-awesome/css/font-awesome.min.css")" />
 
 
 
@@ -19,13 +20,13 @@
 {
     @Html.HiddenFor(m => m.userId)
     @Html.AntiForgeryToken()
-<div class="content_box">
-    <div class="from-design" style="margin-left:90px">
-        
+    <div class="content_box">
+        <div class="from-design" style="margin-left:90px">
+
             <table class="table table-bordered">
                 <thead class="bg-dark text-center text-white">
                     <tr>
-                        <th colspan="2" style="text-align:center;" >Edit Profile</th>
+                        <th colspan="2" style="text-align:center;">Edit Profile</th>
 
                     </tr>
                 </thead>
@@ -36,9 +37,9 @@
                         <td>
                             @*<div class="col-md-4">
                                 <div class="input_box">*@
-                                    @(Html.Kendo().TextAreaFor(model=>model.userName).Name("userName"))
-                                @*</div>
-                            </div>*@
+                            @(Html.Kendo().TextBoxFor(model=>model.userName).Name("userName"))
+                            @*</div>
+                                </div>*@
                         </td>
                     </tr>
                     <tr>
@@ -47,9 +48,9 @@
                         <td>
                             @*<div class="col-md-4">
                                 <div class="input_box">*@
-                                    @(Html.Kendo().TextAreaFor(model=>model.Email).Name("Email").HtmlAttributes(new { type = "email" }))
-                                @*</div>
-                            </div>*@
+                            @(Html.Kendo().TextBoxFor(model=>model.Email).Name("Email").HtmlAttributes(new { type = "email" }))
+                            @*</div>
+                                </div>*@
                         </td>
                     </tr>
                     <tr>
@@ -58,9 +59,9 @@
                         <td>
                             @*<div class="col-md-4">
                                 <div class="input_box">*@
-                                    @(Html.Kendo().TextAreaFor(model=>model.mobileNumber).Name("mobileNumber").HtmlAttributes(new { type = "mobileNumber" }))
-                                @*</div>
-                            </div>*@
+                            @(Html.Kendo().TextBoxFor(model=>model.mobileNumber).Name("mobileNumber").HtmlAttributes(new { type = "mobileNumber" }))
+                            @*</div>
+                                </div>*@
                         </td>
                     </tr>
                     <tr>
@@ -84,12 +85,12 @@
                                 @*<div class="form_input_box">
                                     <div class="form-group">*@
 
-                                        
-                                        <div class="input_box">
-                                            @(Html.Kendo().DatePickerFor(model=>model.DOB).Name("DOB"))
-                                        </div>
-                                    @*</div>
-                                </div>*@
+
+                                <div class="input_box">
+                                    @(Html.Kendo().DatePickerFor(model=>model.DOB).Name("DOB"))
+                                </div>
+                                @*</div>
+                                    </div>*@
                             </div>
                         </td>
                     </tr>
@@ -100,9 +101,9 @@
                         <td>
                             @*<div class="col-md-4">
                                 <div class="input_box">*@
-                                    @(Html.Kendo().Upload().Name("profileImage"))
-                                @*</div>
-                            </div>*@
+                            @(Html.Kendo().Upload().Name("profileImage"))
+                            @*</div>
+                                </div>*@
                         </td>
                     </tr>
                     <tr>
@@ -114,9 +115,9 @@
                     </tr>
                 </tbody>
             </table>
-        
+
+        </div>
     </div>
-</div>
 
 
 }
