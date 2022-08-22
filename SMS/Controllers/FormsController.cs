@@ -56,10 +56,9 @@ namespace SMS.Controllers
         }
         [HttpPost]
         public ActionResult Create(FormModel form)
-        {
-            
-            _formsService.SaveUpdateForm(form);
-            TempData["Message"] = "Data Saved Successfully!!";
+        {           
+            _formsService.SaveUpdateForm(form);      
+            TempData["Message"] = "Data Saved Successfully!!";           
             return RedirectToAction("Index");
 
         }

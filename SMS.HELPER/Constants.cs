@@ -23,7 +23,10 @@ namespace SMS.Helper
             public const string AnnouncementAdded = "Announcement added successfully!!!";
             public const string AnnouncementEdit = "Detail updated successfully!!";
             public const string Useralreadyexist = "UserName  already exists";
-
+            public const string ERRORMSG = "Sorry, your username and  password was incorrect";
+            public const string rolenameupdated = "Detail updated successfully!";
+            public const string RoleADDED = "Role added successfully !";
+            public const string UserAdded = "User added successfully !";
 
 
 

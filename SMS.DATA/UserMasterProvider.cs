@@ -60,7 +60,7 @@ namespace SMS.Data
         }
         public List<DropDownList> BindRole()
         {
-            return _db.webpages_Roles.Where(s => s.IsActive == true && s.RoleId != 1).Select(x => new DropDownList { Key = x.RoleName, Value = x.RoleId }).ToList();
+            return _db.webpages_Roles.Where(s => s.IsActive == true && s.RoleCode != "SADMIN").Select(x => new DropDownList { Key = x.RoleName, Value = x.RoleId }).ToList();
         }
 
         public void DeleteUser(int id)
@@ -77,13 +77,11 @@ namespace SMS.Data
         {
 
             User obj = new User()
-            {
-                RoleId = user.RoleId,
-                Userid = user.Userid,
+            {               
                 UserName = user.UserName,
                 Email = user.Email,
                 Password = user.Password,
-                
+                ConfirmPassword = user.ConfirmPassword
             };
             _db.usersProfile.Add(obj);
             _db.SaveChanges();

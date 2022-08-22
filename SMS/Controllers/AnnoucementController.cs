@@ -102,7 +102,7 @@ namespace SMS.Controllers
         }
         public JsonResult Get_Role()
         {
-               return Json(_db.webpages_Roles.Where(s => s.IsActive == true && s.RoleId != 1).Select(x => new { roleId = x.RoleId, roleName = x.RoleName }), JsonRequestBehavior.AllowGet);
+               return Json(_db.webpages_Roles.Where(s => s.IsActive == true && s.RoleCode != "SADMIN").Select(x => new { roleId = x.RoleId, roleName = x.RoleName }), JsonRequestBehavior.AllowGet);
         }
     }
 }

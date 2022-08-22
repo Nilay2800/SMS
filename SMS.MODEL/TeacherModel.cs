@@ -23,7 +23,7 @@ namespace SMS.Model
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress]
         public string Email { get; set; }
-        [Required(ErrorMessage = "MobileNumber is required")]
+        [Required(ErrorMessage = "Contact Number  is required")]
         [MinLength(10,ErrorMessage ="mobile no should be 11")]
         [Display(Name = "Contact Number")]
         [DataType(DataType.PhoneNumber)]

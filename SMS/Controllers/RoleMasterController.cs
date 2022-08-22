@@ -1,5 +1,6 @@
 ﻿using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using SMS.Helper;
 using SMS.Model;
 using SMS.Service;
 using System;
@@ -42,6 +43,7 @@ namespace SMS.Controllers
         public ActionResult CreateRole(webpages_Roles role)
         {
             roleMasterService.CreateRole(role);
+            TempData["Message"] = Constants.EmailCodes.RoleADDED;
             return RedirectToAction("Index");
         }
 
